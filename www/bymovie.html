@@ -1,0 +1,6292 @@
+﻿<!DOCTYPE html>
+
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta property="fb:admins" content="591472802" />
+	<title>Horarios de películas en cartelera en los Cines del Perú | Cartelera Perú</title>
+	<meta name="author" content="Cartelera Perú punto com" >
+	
+	<meta name="description" content="Películas en cartelera en los cines del Perú. Estrenos películas" >
+	<meta name="keywords" content="peliculas, pelicula, carterlera, cine, estreno">
+	
+	<meta name="Revisit-after" content="1 days">
+
+    <!-- Bootstrap -->
+	<link href="static/css/bootstrap.css" rel="stylesheet">
+	<style>
+		body {
+        	padding-top: 80px; /* 60px to make the container go all the way to the bottom of the topbar */
+		}
+	</style>
+
+	<link href="static/css/bootstrap-responsive.css" rel="stylesheet">
+
+	<!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+ 	<!--[if lt IE 9]>
+		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+
+	<!-- JQuery libraries -->
+	<script type="text/javascript" src="static/js/jquery-1.7.2.min.js"></script>
+
+
+
+<style type="text/css" media="screen">
+.horario  {
+	padding-left: 5px;
+	padding-right: 5px;
+}
+
+section {
+	padding-top: 40px;
+	margin-bottom: -10px;
+}
+
+h1 {
+	font-size: 90%;
+	font-weight: normal;
+}
+
+h2 {
+	/* margin-bottom: -30px; */
+}
+
+#footer {
+	margin-top:50px; 
+	padding-top: 10px;
+	border-top: 1px solid #ccc;
+}
+
+table.horarios {
+	width: 90%;
+}
+
+td.cine {
+	width: 30%;
+}
+td.attr {
+	width: 10%;
+}
+
+
+.navbar .brand {
+	font-size: 16px;
+	padding-top: 10px;
+}
+
+.moviebox {
+	font-size: 8pt;
+}
+
+.moviebox label {
+	display: inline;
+	padding-left: 2px;
+}
+</style>
+
+<body>	
+
+<script>
+	
+	$(document).ready(function() {
+		$('.uiGrid').hide();
+
+		$('.chk_movie').change(function(event){
+			var detail_movie = "#detail_" + event.target.id;
+			alert(detail_movie);
+			$(detail_movie).hide();
+		});
+	});
+</script>
+	
+
+<div class="container-fluid">
+
+<!-- filter header -->
+<div class="row-fluid filter">
+	<div class="span4">
+		<div class="moviebox">
+		<ul class="unstyled">
+		
+			<li><input class="chk_movie" id="movie_0" type="checkbox" />
+			<label for="movie_0">Agentes Secretos</label></li>
+		
+			<li><input class="chk_movie" id="movie_1" type="checkbox" />
+			<label for="movie_1">Animales al Ataque</label></li>
+		
+			<li><input class="chk_movie" id="movie_2" type="checkbox" />
+			<label for="movie_2">Batman El Cab.</label></li>
+		
+			<li><input class="chk_movie" id="movie_3" type="checkbox" />
+			<label for="movie_3">Batman: El Caballero de la Noche Asciende</label></li>
+		
+			<li><input class="chk_movie" id="movie_4" type="checkbox" />
+			<label for="movie_4">Diario De Un Seductor</label></li>
+		
+			<li><input class="chk_movie" id="movie_5" type="checkbox" />
+			<label for="movie_5">Donde Habita el Diablo</label></li>
+		
+			<li><input class="chk_movie" id="movie_6" type="checkbox" />
+			<label for="movie_6">El Codigo Del Miedo</label></li>
+		
+			<li><input class="chk_movie" id="movie_7" type="checkbox" />
+			<label for="movie_7">El Dictador</label></li>
+		
+			<li><input class="chk_movie" id="movie_8" type="checkbox" />
+			<label for="movie_8">El Secreto de Albert Nobbs (Cine Arte)</label></li>
+		
+			<li><input class="chk_movie" id="movie_9" type="checkbox" />
+			<label for="movie_9">El Sorprendente Hombre Araña</label></li>
+		
+			<li><input class="chk_movie" id="movie_10" type="checkbox" />
+			<label for="movie_10">El Vengador del Futuro</label></li>
+		
+			<li><input class="chk_movie" id="movie_11" type="checkbox" />
+			<label for="movie_11">Katty Perry</label></li>
+		
+			<li><input class="chk_movie" id="movie_12" type="checkbox" />
+			<label for="movie_12">La Era de Hielo 4</label></li>
+		
+			<li><input class="chk_movie" id="movie_13" type="checkbox" />
+			<label for="movie_13">Locura en el Paraíso</label></li>
+		
+			<li><input class="chk_movie" id="movie_14" type="checkbox" />
+			<label for="movie_14">Presas del Diablo</label></li>
+		
+			<li><input class="chk_movie" id="movie_15" type="checkbox" />
+			<label for="movie_15">Valiente</label></li>
+		
+		</ul>
+		</div>
+
+	</div><!-- span4 -->
+
+	<div class="span8">
+	</div><!-- span8 -->
+
+<div><!-- row-fluid -->
+
+
+<div class="row-fluid">
+<div class="span9">
+<section id="home" style="padding-top: 0px;">
+<h1>Películas en cartelera en los cines del Perú</h1>
+</section>
+
+
+<div id="detail_movie_0"> 
+<h2>Agentes Secretos</h2>
+
+<table class="table table-stripped table-condensed">
+<tbody>
+	
+	<tr>
+		<td colspan="3"><h3>Cineplanet</h3></td>
+	</tr>
+		
+		<tr>
+			<td class="cine">CinePlanet Risso</td>
+		
+			
+			
+				
+				<td class="attr">
+					
+					<span class="label label-warning" title="Subtitulada">Sub</span>
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">9:40pm</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">CinePlanet San Miguel</td>
+		
+			
+			
+				
+				<td class="attr">
+					
+					<span class="label label-warning" title="Subtitulada">Sub</span>
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">4:35pm</span>
+					
+						<span class="horario">9:45pm</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">CinePlanet La Molina</td>
+		
+			
+			
+				
+				<td class="attr">
+					
+					<span class="label label-warning" title="Subtitulada">Sub</span>
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">2:50pm</span>
+					
+						<span class="horario">7:20pm</span>
+					
+						<span class="horario">9:30pm</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">CinePlanet Alcázar</td>
+		
+			
+			
+				
+				<td class="attr">
+					
+					<span class="label label-warning" title="Subtitulada">Sub</span>
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">7:40pm</span>
+					
+						<span class="horario">9:50pm</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">CinePlanet Primavera</td>
+		
+			
+			
+				
+				<td class="attr">
+					
+					<span class="label label-warning" title="Subtitulada">Sub</span>
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">7:10pm</span>
+					
+						<span class="horario">9:30pm</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">CinePlanet Norte</td>
+		
+			
+			
+				
+				<td class="attr">
+					
+					<span class="label label-warning" title="Subtitulada">Sub</span>
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">4:30pm</span>
+					
+						<span class="horario">9:10pm</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		<!-- cine -->
+	</tr>
+	
+	<tr>
+		<td colspan="3"><h3>UVK Multicines</h3></td>
+	</tr>
+		
+		<tr>
+			<td class="cine">UVK Platino Basadre</td>
+		
+			
+			
+				
+				<td class="attr">
+					
+					<span class="label label-warning" title="Subtitulada">Sub</span>
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">8:10 </span>
+					
+						<span class="horario">10:20</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">UVK Larcomar</td>
+		
+			
+			
+				
+				<td class="attr">
+					
+					<span class="label label-warning" title="Subtitulada">Sub</span>
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">4:30 </span>
+					
+						<span class="horario">6:30 </span>
+					
+						<span class="horario">8:30 </span>
+					
+						<span class="horario">10:30</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">UVK Caminos del Inca</td>
+		
+			
+			
+				
+				<td class="attr">
+					
+					<span class="label label-warning" title="Subtitulada">Sub</span>
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">6:15 </span>
+					
+						<span class="horario">10:15</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		<!-- cine -->
+	</tr>
+	<!-- cadena -->
+</tbody>
+</table>
+</div>
+
+<div id="detail_movie_1"> 
+<h2>Animales al Ataque</h2>
+
+<table class="table table-stripped table-condensed">
+<tbody>
+	
+	<tr>
+		<td colspan="3"><h3>Cineplanet</h3></td>
+	</tr>
+		
+		<tr>
+			<td class="cine">CinePlanet Risso</td>
+		
+			
+			
+				
+				<td class="attr">
+					<span class="label label-warning" title="Doblada" >Dob</span>
+					
+					
+					<span class="label label-info" title="3D">3D</span>
+				</td>
+				<td>
+					
+						<span class="horario">1:20pm</span>
+					
+						<span class="horario">3:20pm</span>
+					
+						<span class="horario">5:30pm</span>
+					
+						<span class="horario">7:30pm</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">CinePlanet Huancayo</td>
+		
+			
+			
+				
+				<td class="attr">
+					<span class="label label-warning" title="Doblada" >Dob</span>
+					
+					
+					<span class="label label-info" title="3D">3D</span>
+				</td>
+				<td>
+					
+						<span class="horario">3:00pm</span>
+					
+						<span class="horario">5:00pm</span>
+					
+						<span class="horario">7:00pm</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">CinePlanet San Miguel</td>
+		
+			
+			
+				
+				<td class="attr">
+					<span class="label label-warning" title="Doblada" >Dob</span>
+					
+					
+					<span class="label label-info" title="3D">3D</span>
+				</td>
+				<td>
+					
+						<span class="horario">1:30pm</span>
+					
+						<span class="horario">3:30pm</span>
+					
+						<span class="horario">5:30pm</span>
+					
+						<span class="horario">7:30pm</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">CinePlanet La Molina</td>
+		
+			
+			
+				
+				<td class="attr">
+					<span class="label label-warning" title="Doblada" >Dob</span>
+					
+					
+					<span class="label label-info" title="3D">3D</span>
+				</td>
+				<td>
+					
+						<span class="horario">3:10pm</span>
+					
+						<span class="horario">5:20pm</span>
+					
+						<span class="horario">7:30pm</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">CinePlanet Alcázar</td>
+		
+			
+			
+				
+				<td class="attr">
+					<span class="label label-warning" title="Doblada" >Dob</span>
+					
+					
+					<span class="label label-info" title="3D">3D</span>
+				</td>
+				<td>
+					
+						<span class="horario">3:30pm</span>
+					
+						<span class="horario">5:30pm</span>
+					
+						<span class="horario">7:30pm</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">CinePlanet Tacna</td>
+		
+			
+			
+				
+				<td class="attr">
+					<span class="label label-warning" title="Doblada" >Dob</span>
+					
+					
+					<span class="label label-info" title="3D">3D</span>
+				</td>
+				<td>
+					
+						<span class="horario">3:30pm</span>
+					
+						<span class="horario">5:30pm</span>
+					
+						<span class="horario">7:30pm</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">CinePlanet Norte</td>
+		
+			
+			
+				
+				<td class="attr">
+					<span class="label label-warning" title="Doblada" >Dob</span>
+					
+					
+					<span class="label label-info" title="3D">3D</span>
+				</td>
+				<td>
+					
+						<span class="horario">1:30pm</span>
+					
+						<span class="horario">3:30pm</span>
+					
+						<span class="horario">5:30pm</span>
+					
+						<span class="horario">7:30pm</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">CinePlanet Primavera</td>
+		
+			
+			
+				
+				<td class="attr">
+					<span class="label label-warning" title="Doblada" >Dob</span>
+					
+					
+					<span class="label label-info" title="3D">3D</span>
+				</td>
+				<td>
+					
+						<span class="horario">1:20pm</span>
+					
+						<span class="horario">3:20pm</span>
+					
+						<span class="horario">5:20pm</span>
+					
+						<span class="horario">7:30pm</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">CinePlanet Santa Clara</td>
+		
+			
+			
+				
+				<td class="attr">
+					<span class="label label-warning" title="Doblada" >Dob</span>
+					
+					
+					<span class="label label-info" title="3D">3D</span>
+				</td>
+				<td>
+					
+						<span class="horario">3:30pm</span>
+					
+						<span class="horario">5:30pm</span>
+					
+						<span class="horario">7:30pm</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">CinePlanet Juliaca</td>
+		
+			
+			
+				
+				<td class="attr">
+					<span class="label label-warning" title="Doblada" >Dob</span>
+					
+					
+					<span class="label label-info" title="3D">3D</span>
+				</td>
+				<td>
+					
+						<span class="horario">1:30pm</span>
+					
+						<span class="horario">3:30pm</span>
+					
+						<span class="horario">5:30pm</span>
+					
+						<span class="horario">7:30pm</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">CinePlanet Chiclayo</td>
+		
+			
+			
+				
+				<td class="attr">
+					<span class="label label-warning" title="Doblada" >Dob</span>
+					
+					
+					<span class="label label-info" title="3D">3D</span>
+				</td>
+				<td>
+					
+						<span class="horario">3:30pm</span>
+					
+						<span class="horario">5:30pm</span>
+					
+						<span class="horario">7:30pm</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">CinePlanet Comas</td>
+		
+			
+			
+				
+				<td class="attr">
+					<span class="label label-warning" title="Doblada" >Dob</span>
+					
+					
+					<span class="label label-info" title="3D">3D</span>
+				</td>
+				<td>
+					
+						<span class="horario">3:30pm</span>
+					
+						<span class="horario">5:30pm</span>
+					
+						<span class="horario">7:30pm</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">CinePlanet Trujillo Real Plaza</td>
+		
+			
+			
+				
+				<td class="attr">
+					<span class="label label-warning" title="Doblada" >Dob</span>
+					
+					
+					<span class="label label-info" title="3D">3D</span>
+				</td>
+				<td>
+					
+						<span class="horario">3:30pm</span>
+					
+						<span class="horario">5:30pm</span>
+					
+						<span class="horario">7:30pm</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">CinePlanet Centro</td>
+		
+			
+			
+				
+				<td class="attr">
+					<span class="label label-warning" title="Doblada" >Dob</span>
+					
+					
+					<span class="label label-info" title="3D">3D</span>
+				</td>
+				<td>
+					
+						<span class="horario">1:30pm</span>
+					
+						<span class="horario">3:30pm</span>
+					
+						<span class="horario">5:30pm</span>
+					
+						<span class="horario">7:30pm</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		<!-- cine -->
+	</tr>
+	
+	<tr>
+		<td colspan="3"><h3>UVK Multicines</h3></td>
+	</tr>
+		
+		<tr>
+			<td class="cine">UVK San Martín Centro</td>
+		
+			
+			
+				
+				<td class="attr">
+					
+					<span class="label label-warning" title="Subtitulada">Sub</span>
+					
+					<span class="label label-info" title="3D">3D</span>
+				</td>
+				<td>
+					
+						<span class="horario">1:00 </span>
+					
+						<span class="horario">3:00 </span>
+					
+						<span class="horario">5:00 </span>
+					
+						<span class="horario">7:00</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">UVK Huacho</td>
+		
+			
+			
+				
+				<td class="attr">
+					
+					<span class="label label-warning" title="Subtitulada">Sub</span>
+					
+					<span class="label label-info" title="3D">3D</span>
+				</td>
+				<td>
+					
+						<span class="horario">2:10 </span>
+					
+						<span class="horario">4:05 </span>
+					
+						<span class="horario">6:00 </span>
+					
+						<span class="horario">8:10</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">UVK El Agustino</td>
+		
+			
+			
+				
+				<td class="attr">
+					
+					<span class="label label-warning" title="Subtitulada">Sub</span>
+					
+					<span class="label label-info" title="3D">3D</span>
+				</td>
+				<td>
+					
+						<span class="horario">1:50 </span>
+					
+						<span class="horario">3:50 </span>
+					
+						<span class="horario">5:50 </span>
+					
+						<span class="horario">7:50</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">UVK Caminos del Inca</td>
+		
+			
+			
+				
+				<td class="attr">
+					
+					<span class="label label-warning" title="Subtitulada">Sub</span>
+					
+					<span class="label label-info" title="3D">3D</span>
+				</td>
+				<td>
+					
+						<span class="horario">2:20 </span>
+					
+						<span class="horario">4:10 </span>
+					
+						<span class="horario">6:00 </span>
+					
+						<span class="horario">7:50</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">UVK Larcomar</td>
+		
+			
+			
+				
+				<td class="attr">
+					
+					<span class="label label-warning" title="Subtitulada">Sub</span>
+					
+					<span class="label label-info" title="3D">3D</span>
+				</td>
+				<td>
+					
+						<span class="horario">2:10 </span>
+					
+						<span class="horario">3:40 </span>
+					
+						<span class="horario">5:30 </span>
+					
+						<span class="horario">7:20</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">UVK Ica</td>
+		
+			
+			
+				
+				<td class="attr">
+					
+					<span class="label label-warning" title="Subtitulada">Sub</span>
+					
+					<span class="label label-info" title="3D">3D</span>
+				</td>
+				<td>
+					
+						<span class="horario">3:30 </span>
+					
+						<span class="horario">5:30 </span>
+					
+						<span class="horario">7:30</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		<!-- cine -->
+	</tr>
+	<!-- cadena -->
+</tbody>
+</table>
+</div>
+
+<div id="detail_movie_2"> 
+<h2>Batman El Cab.</h2>
+
+<table class="table table-stripped table-condensed">
+<tbody>
+	
+	<tr>
+		<td colspan="3"><h3>Cineplanet</h3></td>
+	</tr>
+		
+		<tr>
+			<td class="cine">CinePlanet Primavera</td>
+		
+			
+			
+				
+				<td class="attr">
+					<span class="label label-warning" title="Doblada" >Dob</span>
+					
+					<span class="label label-info" title="Alta definición">HD</span>
+					
+				</td>
+				<td>
+					
+						<span class="horario">3:40pm</span>
+					
+						<span class="horario">7:00pm</span>
+					
+						<span class="horario">10:20pm</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">CinePlanet Risso</td>
+		
+			
+			
+				
+				<td class="attr">
+					<span class="label label-warning" title="Doblada" >Dob</span>
+					
+					<span class="label label-info" title="Alta definición">HD</span>
+					
+				</td>
+				<td>
+					
+						<span class="horario">12:30pm</span>
+					
+						<span class="horario">4:00pm</span>
+					
+						<span class="horario">7:20pm</span>
+					
+						<span class="horario">10:40pm</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		<!-- cine -->
+	</tr>
+	<!-- cadena -->
+</tbody>
+</table>
+</div>
+
+<div id="detail_movie_3"> 
+<h2>Batman: El Caballero de la Noche Asciende</h2>
+
+<table class="table table-stripped table-condensed">
+<tbody>
+	
+	<tr>
+		<td colspan="3"><h3>Cineplanet</h3></td>
+	</tr>
+		
+		<tr>
+			<td class="cine">CinePlanet Risso</td>
+		
+			
+			
+				
+				<td class="attr">
+					
+					<span class="label label-warning" title="Subtitulada">Sub</span>
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">2:50pm</span>
+					
+						<span class="horario">6:10pm</span>
+					
+						<span class="horario">9:30pm</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">CinePlanet Huancayo</td>
+		
+			
+			
+				
+				<td class="attr">
+					<span class="label label-warning" title="Doblada" >Dob</span>
+					
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">3:30pm</span>
+					
+						<span class="horario">6:50pm</span>
+					
+						<span class="horario">9:00pm</span>
+					
+						<span class="horario">10:30pm</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">CinePlanet San Miguel</td>
+		
+			
+			
+				
+				<td class="attr">
+					<span class="label label-warning" title="Doblada" >Dob</span>
+					
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">1:50pm</span>
+					
+						<span class="horario">3:20pm</span>
+					
+						<span class="horario">5:10pm</span>
+					
+						<span class="horario">6:40pm</span>
+					
+						<span class="horario">8:30pm</span>
+					
+						<span class="horario">10:00pm</span>
+					
+				</td>
+			</tr>
+			
+			
+				<tr><td class="cine">&nbsp;</td>
+				<td class="attr">
+					
+					<span class="label label-warning" title="Subtitulada">Sub</span>
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">2:20pm</span>
+					
+						<span class="horario">3:50pm</span>
+					
+						<span class="horario">5:40pm</span>
+					
+						<span class="horario">7:10pm</span>
+					
+						<span class="horario">9:00pm</span>
+					
+						<span class="horario">10:30pm</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">CinePlanet La Molina</td>
+		
+			
+			
+				
+				<td class="attr">
+					
+					<span class="label label-warning" title="Subtitulada">Sub</span>
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">2:20pm</span>
+					
+						<span class="horario">3:50pm</span>
+					
+						<span class="horario">5:40pm</span>
+					
+						<span class="horario">7:10pm</span>
+					
+						<span class="horario">9:00pm</span>
+					
+						<span class="horario">10:30pm</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">CinePlanet Alcázar</td>
+		
+			
+			
+				
+				<td class="attr">
+					
+					<span class="label label-warning" title="Subtitulada">Sub</span>
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">2:00pm</span>
+					
+						<span class="horario">3:00pm</span>
+					
+						<span class="horario">4:00pm</span>
+					
+						<span class="horario">5:20pm</span>
+					
+						<span class="horario">6:20pm</span>
+					
+						<span class="horario">7:20pm</span>
+					
+						<span class="horario">8:40pm</span>
+					
+						<span class="horario">9:40pm</span>
+					
+						<span class="horario">10:40pm</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">CinePlanet Santa Clara</td>
+		
+			
+			
+				
+				<td class="attr">
+					<span class="label label-warning" title="Doblada" >Dob</span>
+					
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">3:40pm</span>
+					
+						<span class="horario">7:00pm</span>
+					
+						<span class="horario">8:50pm</span>
+					
+						<span class="horario">10:20pm</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">CinePlanet Arequipa</td>
+		
+			
+			
+				
+				<td class="attr">
+					<span class="label label-warning" title="Doblada" >Dob</span>
+					
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">2:00pm</span>
+					
+						<span class="horario">3:40pm</span>
+					
+						<span class="horario">5:20pm</span>
+					
+						<span class="horario">7:00pm</span>
+					
+						<span class="horario">8:40pm</span>
+					
+						<span class="horario">10:20pm</span>
+					
+				</td>
+			</tr>
+			
+			
+				<tr><td class="cine">&nbsp;</td>
+				<td class="attr">
+					
+					<span class="label label-warning" title="Subtitulada">Sub</span>
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">9:30pm</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">CinePlanet Tacna</td>
+		
+			
+			
+				
+				<td class="attr">
+					
+					<span class="label label-warning" title="Subtitulada">Sub</span>
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">3:40pm</span>
+					
+						<span class="horario">7:00pm</span>
+					
+						<span class="horario">9:00pm</span>
+					
+						<span class="horario">10:20pm</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">CinePlanet Centro</td>
+		
+			
+			
+				
+				<td class="attr">
+					
+					<span class="label label-warning" title="Subtitulada">Sub</span>
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">12:40pm</span>
+					
+						<span class="horario">2:20pm</span>
+					
+						<span class="horario">4:00pm</span>
+					
+						<span class="horario">5:40pm</span>
+					
+						<span class="horario">7:20pm</span>
+					
+						<span class="horario">9:00pm</span>
+					
+						<span class="horario">10:40pm</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">CinePlanet Piura</td>
+		
+			
+			
+				
+				<td class="attr">
+					
+					<span class="label label-warning" title="Subtitulada">Sub</span>
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">2:20pm</span>
+					
+						<span class="horario">3:40pm</span>
+					
+						<span class="horario">5:40pm</span>
+					
+						<span class="horario">7:00pm</span>
+					
+						<span class="horario">9:00pm</span>
+					
+						<span class="horario">10:20pm</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">CinePlanet Norte</td>
+		
+			
+			
+				
+				<td class="attr">
+					<span class="label label-warning" title="Doblada" >Dob</span>
+					
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">12:20pm</span>
+					
+						<span class="horario">2:00pm</span>
+					
+						<span class="horario">3:40pm</span>
+					
+						<span class="horario">5:20pm</span>
+					
+						<span class="horario">7:00pm</span>
+					
+						<span class="horario">8:40pm</span>
+					
+						<span class="horario">10:20pm</span>
+					
+				</td>
+			</tr>
+			
+			
+				<tr><td class="cine">&nbsp;</td>
+				<td class="attr">
+					
+					<span class="label label-warning" title="Subtitulada">Sub</span>
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">9:20pm</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">CinePlanet Juliaca</td>
+		
+			
+			
+				
+				<td class="attr">
+					<span class="label label-warning" title="Doblada" >Dob</span>
+					
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">2:40pm</span>
+					
+						<span class="horario">6:00pm</span>
+					
+						<span class="horario">9:20pm</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">CinePlanet Primavera</td>
+		
+			
+			
+				
+				<td class="attr">
+					
+					<span class="label label-warning" title="Subtitulada">Sub</span>
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">2:40pm</span>
+					
+						<span class="horario">6:00pm</span>
+					
+						<span class="horario">9:20pm</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">CinePlanet Chiclayo</td>
+		
+			
+			
+				
+				<td class="attr">
+					<span class="label label-warning" title="Doblada" >Dob</span>
+					
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">2:20pm</span>
+					
+						<span class="horario">3:40pm</span>
+					
+						<span class="horario">5:40pm</span>
+					
+						<span class="horario">7:00pm</span>
+					
+						<span class="horario">9:00pm</span>
+					
+				</td>
+			</tr>
+			
+			
+				<tr><td class="cine">&nbsp;</td>
+				<td class="attr">
+					
+					<span class="label label-warning" title="Subtitulada">Sub</span>
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">10:20pm</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">CinePlanet Trujillo Centro</td>
+		
+			
+			
+				
+				<td class="attr">
+					<span class="label label-warning" title="Doblada" >Dob</span>
+					
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">3:10pm</span>
+					
+						<span class="horario">6:30pm</span>
+					
+						<span class="horario">9:50pm</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">CinePlanet Comas</td>
+		
+			
+			
+				
+				<td class="attr">
+					<span class="label label-warning" title="Doblada" >Dob</span>
+					
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">3:50pm</span>
+					
+						<span class="horario">7:20pm</span>
+					
+						<span class="horario">9:00pm</span>
+					
+						<span class="horario">10:40pm</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">CinePlanet Trujillo Real Plaza</td>
+		
+			
+			
+				
+				<td class="attr">
+					
+					<span class="label label-warning" title="Subtitulada">Sub</span>
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">2:20pm</span>
+					
+						<span class="horario">3:40pm</span>
+					
+						<span class="horario">5:40pm</span>
+					
+						<span class="horario">7:00pm</span>
+					
+						<span class="horario">9:00pm</span>
+					
+						<span class="horario">10:20pm</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">CinePlanet Arequipa Real Plaza</td>
+		
+			
+			
+				
+				<td class="attr">
+					
+					<span class="label label-warning" title="Subtitulada">Sub</span>
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">2:00pm</span>
+					
+						<span class="horario">3:30pm</span>
+					
+						<span class="horario">5:20pm</span>
+					
+						<span class="horario">6:50pm</span>
+					
+						<span class="horario">8:40pm</span>
+					
+						<span class="horario">10:10pm</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		<!-- cine -->
+	</tr>
+	
+	<tr>
+		<td colspan="3"><h3>UVK Multicines</h3></td>
+	</tr>
+		
+		<tr>
+			<td class="cine">UVK Platino Basadre</td>
+		
+			
+			
+				
+				<td class="attr">
+					
+					<span class="label label-warning" title="Subtitulada">Sub</span>
+					<span class="label label-info" title="Alta definición">HD</span>
+					
+				</td>
+				<td>
+					
+						<span class="horario">4:20 </span>
+					
+						<span class="horario">7:30 </span>
+					
+						<span class="horario">10:40</span>
+					
+				</td>
+			</tr>
+			
+			
+				<tr><td class="cine">&nbsp;</td>
+				<td class="attr">
+					
+					<span class="label label-warning" title="Subtitulada">Sub</span>
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">4:00 </span>
+					
+						<span class="horario">7:10 </span>
+					
+						<span class="horario">10:20</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">UVK San Martín Centro</td>
+		
+			
+			
+				
+				<td class="attr">
+					<span class="label label-warning" title="Doblada" >Dob</span>
+					
+					<span class="label label-info" title="Alta definición">HD</span>
+					
+				</td>
+				<td>
+					
+						<span class="horario">8:45</span>
+					
+				</td>
+			</tr>
+			
+			
+				<tr><td class="cine">&nbsp;</td>
+				<td class="attr">
+					<span class="label label-warning" title="Doblada" >Dob</span>
+					
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">2:30 </span>
+					
+						<span class="horario">3:30 </span>
+					
+						<span class="horario">5:45 </span>
+					
+						<span class="horario">6:45 </span>
+					
+						<span class="horario">9:00 </span>
+					
+						<span class="horario">9:55</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">UVK Huacho</td>
+		
+			
+			
+				
+				<td class="attr">
+					<span class="label label-warning" title="Doblada" >Dob</span>
+					
+					<span class="label label-info" title="Alta definición">HD</span>
+					
+				</td>
+				<td>
+					
+						<span class="horario">10:10</span>
+					
+				</td>
+			</tr>
+			
+			
+				<tr><td class="cine">&nbsp;</td>
+				<td class="attr">
+					<span class="label label-warning" title="Doblada" >Dob</span>
+					
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">1:55 </span>
+					
+						<span class="horario">5:00 </span>
+					
+						<span class="horario">8:15</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">UVK El Agustino</td>
+		
+			
+			
+				
+				<td class="attr">
+					<span class="label label-warning" title="Doblada" >Dob</span>
+					
+					<span class="label label-info" title="Alta definición">HD</span>
+					
+				</td>
+				<td>
+					
+						<span class="horario">9:50</span>
+					
+				</td>
+			</tr>
+			
+			
+				<tr><td class="cine">&nbsp;</td>
+				<td class="attr">
+					<span class="label label-warning" title="Doblada" >Dob</span>
+					
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">1:30 </span>
+					
+						<span class="horario">4:35 </span>
+					
+						<span class="horario">7:40 </span>
+					
+						<span class="horario">10:40</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">UVK Caminos del Inca</td>
+		
+			
+			
+				
+				<td class="attr">
+					
+					<span class="label label-warning" title="Subtitulada">Sub</span>
+					<span class="label label-info" title="Alta definición">HD</span>
+					
+				</td>
+				<td>
+					
+						<span class="horario">3:30 </span>
+					
+						<span class="horario">6:45 </span>
+					
+						<span class="horario">10:00</span>
+					
+				</td>
+			</tr>
+			
+			
+				<tr><td class="cine">&nbsp;</td>
+				<td class="attr">
+					
+					<span class="label label-warning" title="Subtitulada">Sub</span>
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">2:50 </span>
+					
+						<span class="horario">4:00 </span>
+					
+						<span class="horario">6:00 </span>
+					
+						<span class="horario">7:10 </span>
+					
+						<span class="horario">9:10 </span>
+					
+						<span class="horario">10:20</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">UVK Larcomar</td>
+		
+			
+			
+				
+				<td class="attr">
+					<span class="label label-warning" title="Doblada" >Dob</span>
+					
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">2:50 </span>
+					
+						<span class="horario">6:00</span>
+					
+				</td>
+			</tr>
+			
+			
+				<tr><td class="cine">&nbsp;</td>
+				<td class="attr">
+					
+					<span class="label label-warning" title="Subtitulada">Sub</span>
+					<span class="label label-info" title="Alta definición">HD</span>
+					
+				</td>
+				<td>
+					
+						<span class="horario">4:00 </span>
+					
+						<span class="horario">7:10 </span>
+					
+						<span class="horario">10:20</span>
+					
+				</td>
+			</tr>
+			
+			
+				<tr><td class="cine">&nbsp;</td>
+				<td class="attr">
+					
+					<span class="label label-warning" title="Subtitulada">Sub</span>
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">3:30 </span>
+					
+						<span class="horario">4:40 </span>
+					
+						<span class="horario">6:40 </span>
+					
+						<span class="horario">7:50 </span>
+					
+						<span class="horario">9:10 </span>
+					
+						<span class="horario">11:00</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">UVK Ica</td>
+		
+			
+			
+				
+				<td class="attr">
+					<span class="label label-warning" title="Doblada" >Dob</span>
+					
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">9:50</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		<!-- cine -->
+	</tr>
+	<!-- cadena -->
+</tbody>
+</table>
+</div>
+
+<div id="detail_movie_4"> 
+<h2>Diario De Un Seductor</h2>
+
+<table class="table table-stripped table-condensed">
+<tbody>
+	
+	<tr>
+		<td colspan="3"><h3>Cineplanet</h3></td>
+	</tr>
+		
+		<tr>
+			<td class="cine">CinePlanet Chiclayo</td>
+		
+			
+			
+				
+				<td class="attr">
+					
+					<span class="label label-warning" title="Subtitulada">Sub</span>
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">2:10pm</span>
+					
+						<span class="horario">4:40pm</span>
+					
+						<span class="horario">7:10pm</span>
+					
+						<span class="horario">9:40pm</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		<!-- cine -->
+	</tr>
+	<!-- cadena -->
+</tbody>
+</table>
+</div>
+
+<div id="detail_movie_5"> 
+<h2>Donde Habita el Diablo</h2>
+
+<table class="table table-stripped table-condensed">
+<tbody>
+	
+	<tr>
+		<td colspan="3"><h3>Cineplanet</h3></td>
+	</tr>
+		
+		<tr>
+			<td class="cine">CinePlanet Risso</td>
+		
+			
+			
+				
+				<td class="attr">
+					
+					<span class="label label-warning" title="Subtitulada">Sub</span>
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">1:30pm</span>
+					
+						<span class="horario">3:40pm</span>
+					
+						<span class="horario">6:00pm</span>
+					
+						<span class="horario">8:00pm</span>
+					
+						<span class="horario">10:10pm</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">CinePlanet Huancayo</td>
+		
+			
+			
+				
+				<td class="attr">
+					
+					<span class="label label-warning" title="Subtitulada">Sub</span>
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">4:00pm</span>
+					
+						<span class="horario">6:00pm</span>
+					
+						<span class="horario">8:00pm</span>
+					
+						<span class="horario">10:00pm</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">CinePlanet San Miguel</td>
+		
+			
+			
+				
+				<td class="attr">
+					
+					<span class="label label-warning" title="Subtitulada">Sub</span>
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">1:25pm</span>
+					
+						<span class="horario">3:25pm</span>
+					
+						<span class="horario">5:25pm</span>
+					
+						<span class="horario">7:25pm</span>
+					
+						<span class="horario">9:25pm</span>
+					
+						<span class="horario">10:35pm</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">CinePlanet Piura</td>
+		
+			
+			
+				
+				<td class="attr">
+					
+					<span class="label label-warning" title="Subtitulada">Sub</span>
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">4:00pm</span>
+					
+						<span class="horario">6:00pm</span>
+					
+						<span class="horario">8:00pm</span>
+					
+						<span class="horario">10:00pm</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">CinePlanet Arequipa</td>
+		
+			
+			
+				
+				<td class="attr">
+					
+					<span class="label label-warning" title="Subtitulada">Sub</span>
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">6:10pm</span>
+					
+						<span class="horario">8:10pm</span>
+					
+						<span class="horario">10:10pm</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">CinePlanet Tacna</td>
+		
+			
+			
+				
+				<td class="attr">
+					
+					<span class="label label-warning" title="Subtitulada">Sub</span>
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">2:00pm</span>
+					
+						<span class="horario">4:00pm</span>
+					
+						<span class="horario">6:00pm</span>
+					
+						<span class="horario">8:00pm</span>
+					
+						<span class="horario">10:10pm</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">CinePlanet Norte</td>
+		
+			
+			
+				
+				<td class="attr">
+					
+					<span class="label label-warning" title="Subtitulada">Sub</span>
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">1:50pm</span>
+					
+						<span class="horario">3:50pm</span>
+					
+						<span class="horario">5:50pm</span>
+					
+						<span class="horario">7:50pm</span>
+					
+						<span class="horario">9:50pm</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">CinePlanet Primavera</td>
+		
+			
+			
+				
+				<td class="attr">
+					
+					<span class="label label-warning" title="Subtitulada">Sub</span>
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">2:10pm</span>
+					
+						<span class="horario">4:10pm</span>
+					
+						<span class="horario">6:10pm</span>
+					
+						<span class="horario">8:10pm</span>
+					
+						<span class="horario">10:10pm</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">CinePlanet Santa Clara</td>
+		
+			
+			
+				
+				<td class="attr">
+					
+					<span class="label label-warning" title="Subtitulada">Sub</span>
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">7:20pm</span>
+					
+						<span class="horario">9:20pm</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">CinePlanet Juliaca</td>
+		
+			
+			
+				
+				<td class="attr">
+					
+					<span class="label label-warning" title="Subtitulada">Sub</span>
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">7:10pm</span>
+					
+						<span class="horario">9:10pm</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">CinePlanet Chiclayo</td>
+		
+			
+			
+				
+				<td class="attr">
+					
+					<span class="label label-warning" title="Subtitulada">Sub</span>
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">3:50pm</span>
+					
+						<span class="horario">5:50pm</span>
+					
+						<span class="horario">7:50pm</span>
+					
+						<span class="horario">9:50pm</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">CinePlanet Trujillo Centro</td>
+		
+			
+			
+				
+				<td class="attr">
+					
+					<span class="label label-warning" title="Subtitulada">Sub</span>
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">5:10pm</span>
+					
+						<span class="horario">7:10pm</span>
+					
+						<span class="horario">9:10pm</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">CinePlanet Comas</td>
+		
+			
+			
+				
+				<td class="attr">
+					
+					<span class="label label-warning" title="Subtitulada">Sub</span>
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">6:10pm</span>
+					
+						<span class="horario">8:10pm</span>
+					
+						<span class="horario">10:10pm</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">CinePlanet Trujillo Real Plaza</td>
+		
+			
+			
+				
+				<td class="attr">
+					
+					<span class="label label-warning" title="Subtitulada">Sub</span>
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">5:10pm</span>
+					
+						<span class="horario">7:20pm</span>
+					
+						<span class="horario">9:20pm</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">CinePlanet Centro</td>
+		
+			
+			
+				
+				<td class="attr">
+					
+					<span class="label label-warning" title="Subtitulada">Sub</span>
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">2:30pm</span>
+					
+						<span class="horario">6:30pm</span>
+					
+						<span class="horario">8:40pm</span>
+					
+						<span class="horario">10:50pm</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		<!-- cine -->
+	</tr>
+	
+	<tr>
+		<td colspan="3"><h3>UVK Multicines</h3></td>
+	</tr>
+		
+		<tr>
+			<td class="cine">UVK Larcomar</td>
+		
+			
+			
+				
+				<td class="attr">
+					
+					<span class="label label-warning" title="Subtitulada">Sub</span>
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">9:10 </span>
+					
+						<span class="horario">11:00</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">UVK San Martín Centro</td>
+		
+			
+			
+				
+				<td class="attr">
+					
+					<span class="label label-warning" title="Subtitulada">Sub</span>
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">4:00 </span>
+					
+						<span class="horario">6:00 </span>
+					
+						<span class="horario">8:00 </span>
+					
+						<span class="horario">10:00</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">UVK Huacho</td>
+		
+			
+			
+				
+				<td class="attr">
+					
+					<span class="label label-warning" title="Subtitulada">Sub</span>
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">3:45 </span>
+					
+						<span class="horario">5:45 </span>
+					
+						<span class="horario">7:45 </span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">UVK El Agustino</td>
+		
+			
+			
+				
+				<td class="attr">
+					
+					<span class="label label-warning" title="Subtitulada">Sub</span>
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">7:20 </span>
+					
+						<span class="horario">9:20</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		<!-- cine -->
+	</tr>
+	<!-- cadena -->
+</tbody>
+</table>
+</div>
+
+<div id="detail_movie_6"> 
+<h2>El Codigo Del Miedo</h2>
+
+<table class="table table-stripped table-condensed">
+<tbody>
+	
+	<tr>
+		<td colspan="3"><h3>Cineplanet</h3></td>
+	</tr>
+		
+		<tr>
+			<td class="cine">CinePlanet Risso</td>
+		
+			
+			
+				
+				<td class="attr">
+					
+					<span class="label label-warning" title="Subtitulada">Sub</span>
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">9:50pm</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">CinePlanet San Miguel</td>
+		
+			
+			
+				
+				<td class="attr">
+					
+					<span class="label label-warning" title="Subtitulada">Sub</span>
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">9:10pm</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">CinePlanet Arequipa</td>
+		
+			
+			
+				
+				<td class="attr">
+					
+					<span class="label label-warning" title="Subtitulada">Sub</span>
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">2:10pm</span>
+					
+						<span class="horario">4:10pm</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">CinePlanet Trujillo Centro</td>
+		
+			
+			
+				
+				<td class="attr">
+					
+					<span class="label label-warning" title="Subtitulada">Sub</span>
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">3:00pm</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">CinePlanet Trujillo Real Plaza</td>
+		
+			
+			
+				
+				<td class="attr">
+					
+					<span class="label label-warning" title="Subtitulada">Sub</span>
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">10:10pm</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">CinePlanet Norte</td>
+		
+			
+			
+				
+				<td class="attr">
+					
+					<span class="label label-warning" title="Subtitulada">Sub</span>
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">10:30pm</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		<!-- cine -->
+	</tr>
+	<!-- cadena -->
+</tbody>
+</table>
+</div>
+
+<div id="detail_movie_7"> 
+<h2>El Dictador</h2>
+
+<table class="table table-stripped table-condensed">
+<tbody>
+	
+	<tr>
+		<td colspan="3"><h3>Cineplanet</h3></td>
+	</tr>
+		
+		<tr>
+			<td class="cine">CinePlanet San Miguel</td>
+		
+			
+			
+				
+				<td class="attr">
+					
+					<span class="label label-warning" title="Subtitulada">Sub</span>
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">1:35pm</span>
+					
+						<span class="horario">3:35pm</span>
+					
+						<span class="horario">5:35pm</span>
+					
+						<span class="horario">7:35pm</span>
+					
+						<span class="horario">9:35pm</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">CinePlanet Primavera</td>
+		
+			
+			
+				
+				<td class="attr">
+					
+					<span class="label label-warning" title="Subtitulada">Sub</span>
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">7:50pm</span>
+					
+						<span class="horario">9:50pm</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">CinePlanet Alcázar</td>
+		
+			
+			
+				
+				<td class="attr">
+					
+					<span class="label label-warning" title="Subtitulada">Sub</span>
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">3:10pm</span>
+					
+						<span class="horario">5:20pm</span>
+					
+						<span class="horario">9:00pm</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">CinePlanet Centro</td>
+		
+			
+			
+				
+				<td class="attr">
+					
+					<span class="label label-warning" title="Subtitulada">Sub</span>
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">9:50pm</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">CinePlanet La Molina</td>
+		
+			
+			
+				
+				<td class="attr">
+					
+					<span class="label label-warning" title="Subtitulada">Sub</span>
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">6:50pm</span>
+					
+						<span class="horario">9:10pm</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">CinePlanet Chiclayo</td>
+		
+			
+			
+				
+				<td class="attr">
+					<span class="label label-warning" title="Doblada" >Dob</span>
+					
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">8:00pm</span>
+					
+						<span class="horario">10:10pm</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">CinePlanet Norte</td>
+		
+			
+			
+				
+				<td class="attr">
+					<span class="label label-warning" title="Doblada" >Dob</span>
+					
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">2:30pm</span>
+					
+						<span class="horario">6:50pm</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		<!-- cine -->
+	</tr>
+	
+	<tr>
+		<td colspan="3"><h3>UVK Multicines</h3></td>
+	</tr>
+		
+		<tr>
+			<td class="cine">UVK Larcomar</td>
+		
+			
+			
+				
+				<td class="attr">
+					
+					<span class="label label-warning" title="Subtitulada">Sub</span>
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">6:50 </span>
+					
+						<span class="horario">8:40 </span>
+					
+						<span class="horario">10:40</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">UVK Caminos del Inca</td>
+		
+			
+			
+				
+				<td class="attr">
+					
+					<span class="label label-warning" title="Subtitulada">Sub</span>
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">4:15 </span>
+					
+						<span class="horario">8:15 </span>
+					
+						<span class="horario">10:10</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		<!-- cine -->
+	</tr>
+	<!-- cadena -->
+</tbody>
+</table>
+</div>
+
+<div id="detail_movie_8"> 
+<h2>El Secreto de Albert Nobbs (Cine Arte)</h2>
+
+<table class="table table-stripped table-condensed">
+<tbody>
+	
+	<tr>
+		<td colspan="3"><h3>Cineplanet</h3></td>
+	</tr>
+		
+		<tr>
+			<td class="cine">CinePlanet La Molina</td>
+		
+			
+			
+				
+				<td class="attr">
+					
+					<span class="label label-warning" title="Subtitulada">Sub</span>
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">2:40pm</span>
+					
+						<span class="horario">5:10pm</span>
+					
+						<span class="horario">7:40pm</span>
+					
+						<span class="horario">10:10pm</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">CinePlanet Alcázar</td>
+		
+			
+			
+				
+				<td class="attr">
+					
+					<span class="label label-warning" title="Subtitulada">Sub</span>
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">3:20pm</span>
+					
+						<span class="horario">5:40pm</span>
+					
+						<span class="horario">8:00pm</span>
+					
+						<span class="horario">10:20pm</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">CinePlanet San Miguel</td>
+		
+			
+			
+				
+				<td class="attr">
+					
+					<span class="label label-warning" title="Subtitulada">Sub</span>
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">2:45pm</span>
+					
+						<span class="horario">5:15pm</span>
+					
+						<span class="horario">7:45pm</span>
+					
+						<span class="horario">10:15pm</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">CinePlanet Primavera</td>
+		
+			
+			
+				
+				<td class="attr">
+					
+					<span class="label label-warning" title="Subtitulada">Sub</span>
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">3:00pm</span>
+					
+						<span class="horario">5:30pm</span>
+					
+						<span class="horario">8:00pm</span>
+					
+						<span class="horario">10:30pm</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		<!-- cine -->
+	</tr>
+	
+	<tr>
+		<td colspan="3"><h3>UVK Multicines</h3></td>
+	</tr>
+		
+		<tr>
+			<td class="cine">UVK Platino Basadre</td>
+		
+			
+			
+				
+				<td class="attr">
+					
+					<span class="label label-warning" title="Subtitulada">Sub</span>
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">3:00 </span>
+					
+						<span class="horario">5:30 </span>
+					
+						<span class="horario">8:00 </span>
+					
+						<span class="horario">10:30</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">UVK Larcomar</td>
+		
+			
+			
+				
+				<td class="attr">
+					
+					<span class="label label-warning" title="Subtitulada">Sub</span>
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">3:00 </span>
+					
+						<span class="horario">5:30 </span>
+					
+						<span class="horario">8:00 </span>
+					
+						<span class="horario">10:30</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">UVK Caminos del Inca</td>
+		
+			
+			
+				
+				<td class="attr">
+					
+					<span class="label label-warning" title="Subtitulada">Sub</span>
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">3:15 </span>
+					
+						<span class="horario">5:45 </span>
+					
+						<span class="horario">8:15 </span>
+					
+						<span class="horario">10:40</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		<!-- cine -->
+	</tr>
+	<!-- cadena -->
+</tbody>
+</table>
+</div>
+
+<div id="detail_movie_9"> 
+<h2>El Sorprendente Hombre Araña</h2>
+
+<table class="table table-stripped table-condensed">
+<tbody>
+	
+	<tr>
+		<td colspan="3"><h3>Cineplanet</h3></td>
+	</tr>
+		
+		<tr>
+			<td class="cine">CinePlanet San Miguel</td>
+		
+			
+			
+				
+				<td class="attr">
+					<span class="label label-warning" title="Doblada" >Dob</span>
+					
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">1:45pm</span>
+					
+						<span class="horario">6:45pm</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">CinePlanet Huancayo</td>
+		
+			
+			
+				
+				<td class="attr">
+					<span class="label label-warning" title="Doblada" >Dob</span>
+					
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">9:10pm</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">CinePlanet Piura</td>
+		
+			
+			
+				
+				<td class="attr">
+					<span class="label label-warning" title="Doblada" >Dob</span>
+					
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">9:50pm</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">CinePlanet Arequipa</td>
+		
+			
+			
+				
+				<td class="attr">
+					<span class="label label-warning" title="Doblada" >Dob</span>
+					
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">3:20pm</span>
+					
+						<span class="horario">6:20pm</span>
+					
+						<span class="horario">9:20pm</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">CinePlanet Tacna</td>
+		
+			
+			
+				
+				<td class="attr">
+					<span class="label label-warning" title="Doblada" >Dob</span>
+					
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">9:30pm</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">CinePlanet Norte</td>
+		
+			
+			
+				
+				<td class="attr">
+					<span class="label label-warning" title="Doblada" >Dob</span>
+					
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">3:20pm</span>
+					
+						<span class="horario">6:10pm</span>
+					
+						<span class="horario">9:00pm</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">CinePlanet Arequipa Real Plaza</td>
+		
+			
+			
+				
+				<td class="attr">
+					<span class="label label-warning" title="Doblada" >Dob</span>
+					
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">2:30pm</span>
+					
+						<span class="horario">6:20pm</span>
+					
+						<span class="horario">9:10pm</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		<!-- cine -->
+	</tr>
+	
+	<tr>
+		<td colspan="3"><h3>UVK Multicines</h3></td>
+	</tr>
+		
+		<tr>
+			<td class="cine">UVK Larcomar</td>
+		
+			
+			
+				
+				<td class="attr">
+					
+					<span class="label label-warning" title="Subtitulada">Sub</span>
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">9:50</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		<!-- cine -->
+	</tr>
+	<!-- cadena -->
+</tbody>
+</table>
+</div>
+
+<div id="detail_movie_10"> 
+<h2>El Vengador del Futuro</h2>
+
+<table class="table table-stripped table-condensed">
+<tbody>
+	
+	<tr>
+		<td colspan="3"><h3>Cineplanet</h3></td>
+	</tr>
+		
+		<tr>
+			<td class="cine">CinePlanet Risso</td>
+		
+			
+			
+				
+				<td class="attr">
+					
+					<span class="label label-warning" title="Subtitulada">Sub</span>
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">12:40pm</span>
+					
+						<span class="horario">3:10pm</span>
+					
+						<span class="horario">5:40pm</span>
+					
+						<span class="horario">8:10pm</span>
+					
+						<span class="horario">10:40pm</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">CinePlanet Huancayo</td>
+		
+			
+			
+				
+				<td class="attr">
+					
+					<span class="label label-warning" title="Subtitulada">Sub</span>
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">3:10pm</span>
+					
+						<span class="horario">5:40pm</span>
+					
+						<span class="horario">8:10pm</span>
+					
+						<span class="horario">10:40pm</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">CinePlanet San Miguel</td>
+		
+			
+			
+				
+				<td class="attr">
+					
+					<span class="label label-warning" title="Subtitulada">Sub</span>
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">3:15pm</span>
+					
+						<span class="horario">5:45pm</span>
+					
+						<span class="horario">8:15pm</span>
+					
+						<span class="horario">10:45pm</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">CinePlanet La Molina</td>
+		
+			
+			
+				
+				<td class="attr">
+					
+					<span class="label label-warning" title="Subtitulada">Sub</span>
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">3:00pm</span>
+					
+						<span class="horario">5:35pm</span>
+					
+						<span class="horario">8:10pm</span>
+					
+						<span class="horario">10:40pm</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">CinePlanet Alcázar</td>
+		
+			
+			
+				
+				<td class="attr">
+					
+					<span class="label label-warning" title="Subtitulada">Sub</span>
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">3:15pm</span>
+					
+						<span class="horario">5:45pm</span>
+					
+						<span class="horario">8:15pm</span>
+					
+						<span class="horario">10:45pm</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">CinePlanet Santa Clara</td>
+		
+			
+			
+				
+				<td class="attr">
+					
+					<span class="label label-warning" title="Subtitulada">Sub</span>
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">3:10pm</span>
+					
+						<span class="horario">5:40pm</span>
+					
+						<span class="horario">8:10pm</span>
+					
+						<span class="horario">10:40pm</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">CinePlanet Arequipa</td>
+		
+			
+			
+				
+				<td class="attr">
+					
+					<span class="label label-warning" title="Subtitulada">Sub</span>
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">3:00pm</span>
+					
+						<span class="horario">5:30pm</span>
+					
+						<span class="horario">8:00pm</span>
+					
+						<span class="horario">10:30pm</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">CinePlanet Tacna</td>
+		
+			
+			
+				
+				<td class="attr">
+					
+					<span class="label label-warning" title="Subtitulada">Sub</span>
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">3:10pm</span>
+					
+						<span class="horario">5:40pm</span>
+					
+						<span class="horario">8:10pm</span>
+					
+						<span class="horario">10:40pm</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">CinePlanet Centro</td>
+		
+			
+			
+				
+				<td class="attr">
+					
+					<span class="label label-warning" title="Subtitulada">Sub</span>
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">12:50pm</span>
+					
+						<span class="horario">3:30pm</span>
+					
+						<span class="horario">6:00pm</span>
+					
+						<span class="horario">8:30pm</span>
+					
+						<span class="horario">11:00pm</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">CinePlanet Piura</td>
+		
+			
+			
+				
+				<td class="attr">
+					
+					<span class="label label-warning" title="Subtitulada">Sub</span>
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">3:00pm</span>
+					
+						<span class="horario">5:30pm</span>
+					
+						<span class="horario">8:00pm</span>
+					
+						<span class="horario">9:20pm</span>
+					
+						<span class="horario">10:30pm</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">CinePlanet Norte</td>
+		
+			
+			
+				
+				<td class="attr">
+					
+					<span class="label label-warning" title="Subtitulada">Sub</span>
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">3:15pm</span>
+					
+						<span class="horario">5:45pm</span>
+					
+						<span class="horario">8:15pm</span>
+					
+						<span class="horario">10:45pm</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">CinePlanet Juliaca</td>
+		
+			
+			
+				
+				<td class="attr">
+					
+					<span class="label label-warning" title="Subtitulada">Sub</span>
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">2:00pm</span>
+					
+						<span class="horario">4:30pm</span>
+					
+						<span class="horario">7:00pm</span>
+					
+						<span class="horario">9:30pm</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">CinePlanet Primavera</td>
+		
+			
+			
+				
+				<td class="attr">
+					
+					<span class="label label-warning" title="Subtitulada">Sub</span>
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">3:10pm</span>
+					
+						<span class="horario">5:40pm</span>
+					
+						<span class="horario">8:15pm</span>
+					
+						<span class="horario">10:45pm</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">CinePlanet Chiclayo</td>
+		
+			
+			
+				
+				<td class="attr">
+					
+					<span class="label label-warning" title="Subtitulada">Sub</span>
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">3:10pm</span>
+					
+						<span class="horario">5:40pm</span>
+					
+						<span class="horario">8:10pm</span>
+					
+						<span class="horario">10:40pm</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">CinePlanet Trujillo Centro</td>
+		
+			
+			
+				
+				<td class="attr">
+					
+					<span class="label label-warning" title="Subtitulada">Sub</span>
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">2:30pm</span>
+					
+						<span class="horario">5:00pm</span>
+					
+						<span class="horario">7:30pm</span>
+					
+						<span class="horario">10:00pm</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">CinePlanet Comas</td>
+		
+			
+			
+				
+				<td class="attr">
+					
+					<span class="label label-warning" title="Subtitulada">Sub</span>
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">2:10pm</span>
+					
+						<span class="horario">4:40pm</span>
+					
+						<span class="horario">7:10pm</span>
+					
+						<span class="horario">9:40pm</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">CinePlanet Trujillo Real Plaza</td>
+		
+			
+			
+				
+				<td class="attr">
+					
+					<span class="label label-warning" title="Subtitulada">Sub</span>
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">3:10pm</span>
+					
+						<span class="horario">5:40pm</span>
+					
+						<span class="horario">8:10pm</span>
+					
+						<span class="horario">10:40pm</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">CinePlanet Arequipa Real Plaza</td>
+		
+			
+			
+				
+				<td class="attr">
+					
+					<span class="label label-warning" title="Subtitulada">Sub</span>
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">2:10pm</span>
+					
+						<span class="horario">4:40pm</span>
+					
+						<span class="horario">7:10pm</span>
+					
+						<span class="horario">9:40pm</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		<!-- cine -->
+	</tr>
+	
+	<tr>
+		<td colspan="3"><h3>UVK Multicines</h3></td>
+	</tr>
+		
+		<tr>
+			<td class="cine">UVK Platino Basadre</td>
+		
+			
+			
+				
+				<td class="attr">
+					
+					<span class="label label-warning" title="Subtitulada">Sub</span>
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">3:15 </span>
+					
+						<span class="horario">5:45 </span>
+					
+						<span class="horario">8:15 </span>
+					
+						<span class="horario">10:45</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">UVK San Martín Centro</td>
+		
+			
+			
+				
+				<td class="attr">
+					
+					<span class="label label-warning" title="Subtitulada">Sub</span>
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">1:00 </span>
+					
+						<span class="horario">3:15 </span>
+					
+						<span class="horario">5:30 </span>
+					
+						<span class="horario">7:45 </span>
+					
+						<span class="horario">10:00</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">UVK Huacho</td>
+		
+			
+			
+				
+				<td class="attr">
+					
+					<span class="label label-warning" title="Subtitulada">Sub</span>
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">3:00 </span>
+					
+						<span class="horario">5:30 </span>
+					
+						<span class="horario">7:50 </span>
+					
+						<span class="horario">10:20</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">UVK El Agustino</td>
+		
+			
+			
+				
+				<td class="attr">
+					
+					<span class="label label-warning" title="Subtitulada">Sub</span>
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">2:30 </span>
+					
+						<span class="horario">4:50 </span>
+					
+						<span class="horario">7:10 </span>
+					
+						<span class="horario">9:30</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">UVK Caminos del Inca</td>
+		
+			
+			
+				
+				<td class="attr">
+					
+					<span class="label label-warning" title="Subtitulada">Sub</span>
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">3:00 </span>
+					
+						<span class="horario">5:30 </span>
+					
+						<span class="horario">8:00 </span>
+					
+						<span class="horario">10:30</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">UVK Larcomar</td>
+		
+			
+			
+				
+				<td class="attr">
+					
+					<span class="label label-warning" title="Subtitulada">Sub</span>
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">3:15 </span>
+					
+						<span class="horario">5:45 </span>
+					
+						<span class="horario">8:15 </span>
+					
+						<span class="horario">10:45</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">UVK Ica</td>
+		
+			
+			
+				
+				<td class="attr">
+					
+					<span class="label label-warning" title="Subtitulada">Sub</span>
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">3:30 </span>
+					
+						<span class="horario">5:45 </span>
+					
+						<span class="horario">8:10 </span>
+					
+						<span class="horario">10:30</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		<!-- cine -->
+	</tr>
+	<!-- cadena -->
+</tbody>
+</table>
+</div>
+
+<div id="detail_movie_11"> 
+<h2>Katty Perry</h2>
+
+<table class="table table-stripped table-condensed">
+<tbody>
+	
+	<tr>
+		<td colspan="3"><h3>Cineplanet</h3></td>
+	</tr>
+		
+		<tr>
+			<td class="cine">CinePlanet San Miguel</td>
+		
+			
+			
+				
+				<td class="attr">
+					
+					<span class="label label-warning" title="Subtitulada">Sub</span>
+					
+					<span class="label label-info" title="3D">3D</span>
+				</td>
+				<td>
+					
+						<span class="horario">9:30pm</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">CinePlanet La Molina</td>
+		
+			
+			
+				
+				<td class="attr">
+					
+					<span class="label label-warning" title="Subtitulada">Sub</span>
+					
+					<span class="label label-info" title="3D">3D</span>
+				</td>
+				<td>
+					
+						<span class="horario">9:40pm</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">CinePlanet Arequipa</td>
+		
+			
+			
+				
+				<td class="attr">
+					
+					<span class="label label-warning" title="Subtitulada">Sub</span>
+					
+					<span class="label label-info" title="3D">3D</span>
+				</td>
+				<td>
+					
+						<span class="horario">9:10pm</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">CinePlanet Centro</td>
+		
+			
+			
+				
+				<td class="attr">
+					
+					<span class="label label-warning" title="Subtitulada">Sub</span>
+					
+					<span class="label label-info" title="3D">3D</span>
+				</td>
+				<td>
+					
+						<span class="horario">9:30pm</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">CinePlanet Primavera</td>
+		
+			
+			
+				
+				<td class="attr">
+					
+					<span class="label label-warning" title="Subtitulada">Sub</span>
+					
+					<span class="label label-info" title="3D">3D</span>
+				</td>
+				<td>
+					
+						<span class="horario">9:40pm</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">CinePlanet Norte</td>
+		
+			
+			
+				
+				<td class="attr">
+					
+					<span class="label label-warning" title="Subtitulada">Sub</span>
+					
+					<span class="label label-info" title="3D">3D</span>
+				</td>
+				<td>
+					
+						<span class="horario">9:30pm</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">CinePlanet Juliaca</td>
+		
+			
+			
+				
+				<td class="attr">
+					
+					<span class="label label-warning" title="Subtitulada">Sub</span>
+					
+					<span class="label label-info" title="3D">3D</span>
+				</td>
+				<td>
+					
+						<span class="horario">9:40pm</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">CinePlanet Chiclayo</td>
+		
+			
+			
+				
+				<td class="attr">
+					
+					<span class="label label-warning" title="Subtitulada">Sub</span>
+					
+					<span class="label label-info" title="3D">3D</span>
+				</td>
+				<td>
+					
+						<span class="horario">9:30pm</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">CinePlanet Comas</td>
+		
+			
+			
+				
+				<td class="attr">
+					
+					<span class="label label-warning" title="Subtitulada">Sub</span>
+					
+					<span class="label label-info" title="3D">3D</span>
+				</td>
+				<td>
+					
+						<span class="horario">9:30pm</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">CinePlanet Trujillo Real Plaza</td>
+		
+			
+			
+				
+				<td class="attr">
+					
+					<span class="label label-warning" title="Subtitulada">Sub</span>
+					
+					<span class="label label-info" title="3D">3D</span>
+				</td>
+				<td>
+					
+						<span class="horario">9:30pm</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">CinePlanet Arequipa Real Plaza</td>
+		
+			
+			
+				
+				<td class="attr">
+					
+					<span class="label label-warning" title="Subtitulada">Sub</span>
+					
+					<span class="label label-info" title="3D">3D</span>
+				</td>
+				<td>
+					
+						<span class="horario">9:50pm</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		<!-- cine -->
+	</tr>
+	<!-- cadena -->
+</tbody>
+</table>
+</div>
+
+<div id="detail_movie_12"> 
+<h2>La Era de Hielo 4</h2>
+
+<table class="table table-stripped table-condensed">
+<tbody>
+	
+	<tr>
+		<td colspan="3"><h3>Cineplanet</h3></td>
+	</tr>
+		
+		<tr>
+			<td class="cine">CinePlanet Risso</td>
+		
+			
+			
+				
+				<td class="attr">
+					<span class="label label-warning" title="Doblada" >Dob</span>
+					
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">1:50pm</span>
+					
+						<span class="horario">3:50pm</span>
+					
+						<span class="horario">5:50pm</span>
+					
+						<span class="horario">7:50pm</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">CinePlanet Huancayo</td>
+		
+			
+			
+				
+				<td class="attr">
+					<span class="label label-warning" title="Doblada" >Dob</span>
+					
+					
+					<span class="label label-info" title="3D">3D</span>
+				</td>
+				<td>
+					
+						<span class="horario">9:30pm</span>
+					
+				</td>
+			</tr>
+			
+			
+				<tr><td class="cine">&nbsp;</td>
+				<td class="attr">
+					<span class="label label-warning" title="Doblada" >Dob</span>
+					
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">3:20pm</span>
+					
+						<span class="horario">5:30pm</span>
+					
+						<span class="horario">7:30pm</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">CinePlanet San Miguel</td>
+		
+			
+			
+				
+				<td class="attr">
+					<span class="label label-warning" title="Doblada" >Dob</span>
+					
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">2:15pm</span>
+					
+						<span class="horario">4:15pm</span>
+					
+						<span class="horario">6:20pm</span>
+					
+						<span class="horario">8:20pm</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">CinePlanet La Molina</td>
+		
+			
+			
+				
+				<td class="attr">
+					<span class="label label-warning" title="Doblada" >Dob</span>
+					
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">2:30pm</span>
+					
+						<span class="horario">4:40pm</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">CinePlanet Santa Clara</td>
+		
+			
+			
+				
+				<td class="attr">
+					<span class="label label-warning" title="Doblada" >Dob</span>
+					
+					
+					<span class="label label-info" title="3D">3D</span>
+				</td>
+				<td>
+					
+						<span class="horario">9:30pm</span>
+					
+				</td>
+			</tr>
+			
+			
+				<tr><td class="cine">&nbsp;</td>
+				<td class="attr">
+					<span class="label label-warning" title="Doblada" >Dob</span>
+					
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">3:20pm</span>
+					
+						<span class="horario">5:20pm</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">CinePlanet Arequipa</td>
+		
+			
+			
+				
+				<td class="attr">
+					<span class="label label-warning" title="Doblada" >Dob</span>
+					
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">1:50pm</span>
+					
+						<span class="horario">3:50pm</span>
+					
+						<span class="horario">5:50pm</span>
+					
+						<span class="horario">7:50pm</span>
+					
+						<span class="horario">9:50pm</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">CinePlanet Tacna</td>
+		
+			
+			
+				
+				<td class="attr">
+					<span class="label label-warning" title="Doblada" >Dob</span>
+					
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">2:50pm</span>
+					
+						<span class="horario">4:50pm</span>
+					
+						<span class="horario">6:50pm</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">CinePlanet Centro</td>
+		
+			
+			
+				
+				<td class="attr">
+					<span class="label label-warning" title="Doblada" >Dob</span>
+					
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">4:30pm</span>
+					
+						<span class="horario">7:40pm</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">CinePlanet Piura</td>
+		
+			
+			
+				
+				<td class="attr">
+					<span class="label label-warning" title="Doblada" >Dob</span>
+					
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">3:10pm</span>
+					
+						<span class="horario">5:20pm</span>
+					
+						<span class="horario">7:40pm</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">CinePlanet Norte</td>
+		
+			
+			
+				
+				<td class="attr">
+					<span class="label label-warning" title="Doblada" >Dob</span>
+					
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">2:10pm</span>
+					
+						<span class="horario">4:10pm</span>
+					
+						<span class="horario">6:20pm</span>
+					
+						<span class="horario">8:30pm</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">CinePlanet Juliaca</td>
+		
+			
+			
+				
+				<td class="attr">
+					<span class="label label-warning" title="Doblada" >Dob</span>
+					
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">1:10pm</span>
+					
+						<span class="horario">3:10pm</span>
+					
+						<span class="horario">5:10pm</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">CinePlanet Primavera</td>
+		
+			
+			
+				
+				<td class="attr">
+					<span class="label label-warning" title="Doblada" >Dob</span>
+					
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">1:50pm</span>
+					
+						<span class="horario">3:50pm</span>
+					
+						<span class="horario">5:50pm</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">CinePlanet Chiclayo</td>
+		
+			
+			
+				
+				<td class="attr">
+					<span class="label label-warning" title="Doblada" >Dob</span>
+					
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">2:00pm</span>
+					
+						<span class="horario">4:00pm</span>
+					
+						<span class="horario">6:00pm</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">CinePlanet Trujillo Centro</td>
+		
+			
+			
+				
+				<td class="attr">
+					<span class="label label-warning" title="Doblada" >Dob</span>
+					
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">3:40pm</span>
+					
+						<span class="horario">7:40pm</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">CinePlanet Comas</td>
+		
+			
+			
+				
+				<td class="attr">
+					<span class="label label-warning" title="Doblada" >Dob</span>
+					
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">2:00pm</span>
+					
+						<span class="horario">4:10pm</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">CinePlanet Trujillo Real Plaza</td>
+		
+			
+			
+				
+				<td class="attr">
+					<span class="label label-warning" title="Doblada" >Dob</span>
+					
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">6:00pm</span>
+					
+						<span class="horario">8:00pm</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">CinePlanet Arequipa Real Plaza</td>
+		
+			
+			
+				
+				<td class="attr">
+					<span class="label label-warning" title="Doblada" >Dob</span>
+					
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">1:50pm</span>
+					
+						<span class="horario">4:10pm</span>
+					
+						<span class="horario">6:10pm</span>
+					
+						<span class="horario">8:10pm</span>
+					
+						<span class="horario">10:20pm</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		<!-- cine -->
+	</tr>
+	
+	<tr>
+		<td colspan="3"><h3>UVK Multicines</h3></td>
+	</tr>
+		
+		<tr>
+			<td class="cine">UVK Larcomar</td>
+		
+			
+			
+				
+				<td class="attr">
+					<span class="label label-warning" title="Doblada" >Dob</span>
+					
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">2:50 </span>
+					
+						<span class="horario">4:50</span>
+					
+				</td>
+			</tr>
+			
+			
+				<tr><td class="cine">&nbsp;</td>
+				<td class="attr">
+					<span class="label label-warning" title="Doblada" >Dob</span>
+					
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">2:50 </span>
+					
+						<span class="horario">4:50</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">UVK El Agustino</td>
+		
+			
+			
+				
+				<td class="attr">
+					<span class="label label-warning" title="Doblada" >Dob</span>
+					
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">2:10                </span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		<!-- cine -->
+	</tr>
+	<!-- cadena -->
+</tbody>
+</table>
+</div>
+
+<div id="detail_movie_13"> 
+<h2>Locura en el Paraíso</h2>
+
+<table class="table table-stripped table-condensed">
+<tbody>
+	
+	<tr>
+		<td colspan="3"><h3>Cineplanet</h3></td>
+	</tr>
+		
+		<tr>
+			<td class="cine">CinePlanet La Molina</td>
+		
+			
+			
+				
+				<td class="attr">
+					
+					<span class="label label-warning" title="Subtitulada">Sub</span>
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">8:30pm</span>
+					
+						<span class="horario">10:50pm</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">CinePlanet Alcázar</td>
+		
+			
+			
+				
+				<td class="attr">
+					
+					<span class="label label-warning" title="Subtitulada">Sub</span>
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">9:30pm</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		<!-- cine -->
+	</tr>
+	
+	<tr>
+		<td colspan="3"><h3>UVK Multicines</h3></td>
+	</tr>
+		
+		<tr>
+			<td class="cine">UVK Platino Basadre</td>
+		
+			
+			
+				
+				<td class="attr">
+					
+					<span class="label label-warning" title="Subtitulada">Sub</span>
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">5:50</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">UVK Larcomar</td>
+		
+			
+			
+				
+				<td class="attr">
+					
+					<span class="label label-warning" title="Subtitulada">Sub</span>
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">8:10 </span>
+					
+						<span class="horario">10:20</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">UVK San Martín Centro</td>
+		
+			
+			
+				
+				<td class="attr">
+					
+					<span class="label label-warning" title="Subtitulada">Sub</span>
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">2:00</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">UVK Huacho</td>
+		
+			
+			
+				
+				<td class="attr">
+					
+					<span class="label label-warning" title="Subtitulada">Sub</span>
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">9:45</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">UVK Caminos del Inca</td>
+		
+			
+			
+				
+				<td class="attr">
+					
+					<span class="label label-warning" title="Subtitulada">Sub</span>
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">9:40</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		<!-- cine -->
+	</tr>
+	<!-- cadena -->
+</tbody>
+</table>
+</div>
+
+<div id="detail_movie_14"> 
+<h2>Presas del Diablo</h2>
+
+<table class="table table-stripped table-condensed">
+<tbody>
+	
+	<tr>
+		<td colspan="3"><h3>Cineplanet</h3></td>
+	</tr>
+		
+		<tr>
+			<td class="cine">CinePlanet Risso</td>
+		
+			
+			
+				
+				<td class="attr">
+					
+					<span class="label label-warning" title="Subtitulada">Sub</span>
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">2:40pm</span>
+					
+						<span class="horario">4:40pm</span>
+					
+						<span class="horario">6:40pm</span>
+					
+						<span class="horario">8:40pm</span>
+					
+						<span class="horario">10:50pm</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">CinePlanet Huancayo</td>
+		
+			
+			
+				
+				<td class="attr">
+					
+					<span class="label label-warning" title="Subtitulada">Sub</span>
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">2:30pm</span>
+					
+						<span class="horario">4:30pm</span>
+					
+						<span class="horario">6:30pm</span>
+					
+						<span class="horario">8:30pm</span>
+					
+						<span class="horario">10:40pm</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">CinePlanet San Miguel</td>
+		
+			
+			
+				
+				<td class="attr">
+					
+					<span class="label label-warning" title="Subtitulada">Sub</span>
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">2:25pm</span>
+					
+						<span class="horario">4:25pm</span>
+					
+						<span class="horario">6:25pm</span>
+					
+						<span class="horario">8:25pm</span>
+					
+						<span class="horario">10:25pm</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">CinePlanet Piura</td>
+		
+			
+			
+				
+				<td class="attr">
+					
+					<span class="label label-warning" title="Subtitulada">Sub</span>
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">4:30pm</span>
+					
+						<span class="horario">6:30pm</span>
+					
+						<span class="horario">8:30pm</span>
+					
+						<span class="horario">10:30pm</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">CinePlanet Arequipa</td>
+		
+			
+			
+				
+				<td class="attr">
+					
+					<span class="label label-warning" title="Subtitulada">Sub</span>
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">2:30pm</span>
+					
+						<span class="horario">4:30pm</span>
+					
+						<span class="horario">6:30pm</span>
+					
+						<span class="horario">8:30pm</span>
+					
+						<span class="horario">10:30pm</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">CinePlanet Tacna</td>
+		
+			
+			
+				
+				<td class="attr">
+					
+					<span class="label label-warning" title="Subtitulada">Sub</span>
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">2:30pm</span>
+					
+						<span class="horario">4:30pm</span>
+					
+						<span class="horario">6:30pm</span>
+					
+						<span class="horario">8:30pm</span>
+					
+						<span class="horario">10:30pm</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">CinePlanet Primavera</td>
+		
+			
+			
+				
+				<td class="attr">
+					
+					<span class="label label-warning" title="Subtitulada">Sub</span>
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">2:30pm</span>
+					
+						<span class="horario">4:30pm</span>
+					
+						<span class="horario">6:30pm</span>
+					
+						<span class="horario">8:35pm</span>
+					
+						<span class="horario">10:40pm</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">CinePlanet Santa Clara</td>
+		
+			
+			
+				
+				<td class="attr">
+					
+					<span class="label label-warning" title="Subtitulada">Sub</span>
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">2:30pm</span>
+					
+						<span class="horario">4:30pm</span>
+					
+						<span class="horario">6:30pm</span>
+					
+						<span class="horario">8:30pm</span>
+					
+						<span class="horario">10:30pm</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">CinePlanet Juliaca</td>
+		
+			
+			
+				
+				<td class="attr">
+					
+					<span class="label label-warning" title="Subtitulada">Sub</span>
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">6:30pm</span>
+					
+						<span class="horario">8:30pm</span>
+					
+						<span class="horario">10:30pm</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">CinePlanet Chiclayo</td>
+		
+			
+			
+				
+				<td class="attr">
+					
+					<span class="label label-warning" title="Subtitulada">Sub</span>
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">2:30pm</span>
+					
+						<span class="horario">4:30pm</span>
+					
+						<span class="horario">6:30pm</span>
+					
+						<span class="horario">8:30pm</span>
+					
+						<span class="horario">10:30pm</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">CinePlanet Trujillo Centro</td>
+		
+			
+			
+				
+				<td class="attr">
+					
+					<span class="label label-warning" title="Subtitulada">Sub</span>
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">2:10pm</span>
+					
+						<span class="horario">4:10pm</span>
+					
+						<span class="horario">6:10pm</span>
+					
+						<span class="horario">8:10pm</span>
+					
+						<span class="horario">10:10pm</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">CinePlanet Comas</td>
+		
+			
+			
+				
+				<td class="attr">
+					
+					<span class="label label-warning" title="Subtitulada">Sub</span>
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">2:30pm</span>
+					
+						<span class="horario">4:30pm</span>
+					
+						<span class="horario">6:30pm</span>
+					
+						<span class="horario">8:30pm</span>
+					
+						<span class="horario">10:30pm</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">CinePlanet Trujillo Real Plaza</td>
+		
+			
+			
+				
+				<td class="attr">
+					
+					<span class="label label-warning" title="Subtitulada">Sub</span>
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">2:30pm</span>
+					
+						<span class="horario">4:30pm</span>
+					
+						<span class="horario">6:30pm</span>
+					
+						<span class="horario">8:30pm</span>
+					
+						<span class="horario">10:30pm</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">CinePlanet Norte</td>
+		
+			
+			
+				
+				<td class="attr">
+					
+					<span class="label label-warning" title="Subtitulada">Sub</span>
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">2:40pm</span>
+					
+						<span class="horario">4:40pm</span>
+					
+						<span class="horario">6:40pm</span>
+					
+						<span class="horario">8:40pm</span>
+					
+						<span class="horario">10:40pm</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		<!-- cine -->
+	</tr>
+	
+	<tr>
+		<td colspan="3"><h3>UVK Multicines</h3></td>
+	</tr>
+		
+		<tr>
+			<td class="cine">UVK Larcomar</td>
+		
+			
+			
+				
+				<td class="attr">
+					
+					<span class="label label-warning" title="Subtitulada">Sub</span>
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">3:45 </span>
+					
+						<span class="horario">5:45 </span>
+					
+						<span class="horario">7:45 </span>
+					
+						<span class="horario">9:45</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">UVK San Martín Centro</td>
+		
+			
+			
+				
+				<td class="attr">
+					
+					<span class="label label-warning" title="Subtitulada">Sub</span>
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">2:10 </span>
+					
+						<span class="horario">4:10 </span>
+					
+						<span class="horario">6:10 </span>
+					
+						<span class="horario">8:10 </span>
+					
+						<span class="horario">10:10</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">UVK Huacho</td>
+		
+			
+			
+				
+				<td class="attr">
+					
+					<span class="label label-warning" title="Subtitulada">Sub</span>
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">4:00 </span>
+					
+						<span class="horario">6:00 </span>
+					
+						<span class="horario">8:00 </span>
+					
+						<span class="horario">10:00</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">UVK Ica</td>
+		
+			
+			
+				
+				<td class="attr">
+					
+					<span class="label label-warning" title="Subtitulada">Sub</span>
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">4:20 </span>
+					
+						<span class="horario">6:20 </span>
+					
+						<span class="horario">8:20 </span>
+					
+						<span class="horario">10:20</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">UVK El Agustino</td>
+		
+			
+			
+				
+				<td class="attr">
+					
+					<span class="label label-warning" title="Subtitulada">Sub</span>
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">4:10 </span>
+					
+						<span class="horario">6:10 </span>
+					
+						<span class="horario">8:10 </span>
+					
+						<span class="horario">10:00</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		<!-- cine -->
+	</tr>
+	<!-- cadena -->
+</tbody>
+</table>
+</div>
+
+<div id="detail_movie_15"> 
+<h2>Valiente</h2>
+
+<table class="table table-stripped table-condensed">
+<tbody>
+	
+	<tr>
+		<td colspan="3"><h3>Cineplanet</h3></td>
+	</tr>
+		
+		<tr>
+			<td class="cine">CinePlanet Risso</td>
+		
+			
+			
+				
+				<td class="attr">
+					<span class="label label-warning" title="Doblada" >Dob</span>
+					
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">1:00pm</span>
+					
+						<span class="horario">3:00pm</span>
+					
+						<span class="horario">5:00pm</span>
+					
+						<span class="horario">7:00pm</span>
+					
+						<span class="horario">9:10pm</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">CinePlanet Huancayo</td>
+		
+			
+			
+				
+				<td class="attr">
+					<span class="label label-warning" title="Doblada" >Dob</span>
+					
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">2:40pm</span>
+					
+						<span class="horario">4:50pm</span>
+					
+						<span class="horario">7:00pm</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">CinePlanet San Miguel</td>
+		
+			
+			
+				
+				<td class="attr">
+					<span class="label label-warning" title="Doblada" >Dob</span>
+					
+					
+					<span class="label label-info" title="3D">3D</span>
+				</td>
+				<td>
+					
+						<span class="horario">5:50pm</span>
+					
+						<span class="horario">8:00pm</span>
+					
+						<span class="horario">10:10pm</span>
+					
+				</td>
+			</tr>
+			
+			
+				<tr><td class="cine">&nbsp;</td>
+				<td class="attr">
+					<span class="label label-warning" title="Doblada" >Dob</span>
+					
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">1:25pm</span>
+					
+						<span class="horario">2:30pm</span>
+					
+						<span class="horario">3:40pm</span>
+					
+						<span class="horario">4:50pm</span>
+					
+						<span class="horario">6:50pm</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">CinePlanet La Molina</td>
+		
+			
+			
+				
+				<td class="attr">
+					<span class="label label-warning" title="Doblada" >Dob</span>
+					
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">2:00pm</span>
+					
+						<span class="horario">4:10pm</span>
+					
+						<span class="horario">5:10pm</span>
+					
+						<span class="horario">6:20pm</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">CinePlanet Alcázar</td>
+		
+			
+			
+				
+				<td class="attr">
+					<span class="label label-warning" title="Doblada" >Dob</span>
+					
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">2:30pm</span>
+					
+						<span class="horario">4:40pm</span>
+					
+						<span class="horario">6:50pm</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">CinePlanet Santa Clara</td>
+		
+			
+			
+				
+				<td class="attr">
+					<span class="label label-warning" title="Doblada" >Dob</span>
+					
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">2:20pm</span>
+					
+						<span class="horario">4:40pm</span>
+					
+						<span class="horario">6:50pm</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">CinePlanet Arequipa</td>
+		
+			
+			
+				
+				<td class="attr">
+					<span class="label label-warning" title="Doblada" >Dob</span>
+					
+					
+					<span class="label label-info" title="3D">3D</span>
+				</td>
+				<td>
+					
+						<span class="horario">2:20pm</span>
+					
+						<span class="horario">4:40pm</span>
+					
+						<span class="horario">6:50pm</span>
+					
+				</td>
+			</tr>
+			
+			
+				<tr><td class="cine">&nbsp;</td>
+				<td class="attr">
+					<span class="label label-warning" title="Doblada" >Dob</span>
+					
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">1:10pm</span>
+					
+						<span class="horario">3:10pm</span>
+					
+						<span class="horario">5:10pm</span>
+					
+						<span class="horario">7:20pm</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">CinePlanet Tacna</td>
+		
+			
+			
+				
+				<td class="attr">
+					<span class="label label-warning" title="Doblada" >Dob</span>
+					
+					
+					<span class="label label-info" title="3D">3D</span>
+				</td>
+				<td>
+					
+						<span class="horario">7:40pm</span>
+					
+						<span class="horario">9:50pm</span>
+					
+				</td>
+			</tr>
+			
+			
+				<tr><td class="cine">&nbsp;</td>
+				<td class="attr">
+					<span class="label label-warning" title="Doblada" >Dob</span>
+					
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">3:00pm</span>
+					
+						<span class="horario">5:20pm</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">CinePlanet Centro</td>
+		
+			
+			
+				
+				<td class="attr">
+					<span class="label label-warning" title="Doblada" >Dob</span>
+					
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">1:00pm</span>
+					
+						<span class="horario">3:10pm</span>
+					
+						<span class="horario">5:20pm</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">CinePlanet Piura</td>
+		
+			
+			
+				
+				<td class="attr">
+					<span class="label label-warning" title="Doblada" >Dob</span>
+					
+					
+					<span class="label label-info" title="3D">3D</span>
+				</td>
+				<td>
+					
+						<span class="horario">2:50pm</span>
+					
+						<span class="horario">5:00pm</span>
+					
+						<span class="horario">7:10pm</span>
+					
+				</td>
+			</tr>
+			
+			
+				<tr><td class="cine">&nbsp;</td>
+				<td class="attr">
+					<span class="label label-warning" title="Doblada" >Dob</span>
+					
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">2:20pm</span>
+					
+						<span class="horario">4:40pm</span>
+					
+						<span class="horario">6:50pm</span>
+					
+						<span class="horario">9:00pm</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">CinePlanet Norte</td>
+		
+			
+			
+				
+				<td class="attr">
+					<span class="label label-warning" title="Doblada" >Dob</span>
+					
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">2:50pm</span>
+					
+						<span class="horario">5:00pm</span>
+					
+						<span class="horario">7:10pm</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">CinePlanet Juliaca</td>
+		
+			
+			
+				
+				<td class="attr">
+					<span class="label label-warning" title="Doblada" >Dob</span>
+					
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">2:30pm</span>
+					
+						<span class="horario">4:30pm</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">CinePlanet Primavera</td>
+		
+			
+			
+				
+				<td class="attr">
+					<span class="label label-warning" title="Doblada" >Dob</span>
+					
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">2:40pm</span>
+					
+						<span class="horario">4:50pm</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">CinePlanet Chiclayo</td>
+		
+			
+			
+				
+				<td class="attr">
+					<span class="label label-warning" title="Doblada" >Dob</span>
+					
+					
+					<span class="label label-info" title="3D">3D</span>
+				</td>
+				<td>
+					
+						<span class="horario">7:20pm</span>
+					
+						<span class="horario">9:40pm</span>
+					
+				</td>
+			</tr>
+			
+			
+				<tr><td class="cine">&nbsp;</td>
+				<td class="attr">
+					<span class="label label-warning" title="Doblada" >Dob</span>
+					
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">3:00pm</span>
+					
+						<span class="horario">5:10pm</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">CinePlanet Trujillo Centro</td>
+		
+			
+			
+				
+				<td class="attr">
+					<span class="label label-warning" title="Doblada" >Dob</span>
+					
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">5:40pm</span>
+					
+						<span class="horario">9:40pm</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">CinePlanet Comas</td>
+		
+			
+			
+				
+				<td class="attr">
+					<span class="label label-warning" title="Doblada" >Dob</span>
+					
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">3:00pm</span>
+					
+						<span class="horario">5:00pm</span>
+					
+						<span class="horario">7:00pm</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">CinePlanet Trujillo Real Plaza</td>
+		
+			
+			
+				
+				<td class="attr">
+					<span class="label label-warning" title="Doblada" >Dob</span>
+					
+					
+					<span class="label label-info" title="3D">3D</span>
+				</td>
+				<td>
+					
+						<span class="horario">4:00pm</span>
+					
+				</td>
+			</tr>
+			
+			
+				<tr><td class="cine">&nbsp;</td>
+				<td class="attr">
+					<span class="label label-warning" title="Doblada" >Dob</span>
+					
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">3:00pm</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">CinePlanet Arequipa Real Plaza</td>
+		
+			
+			
+				
+				<td class="attr">
+					<span class="label label-warning" title="Doblada" >Dob</span>
+					
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">3:20pm</span>
+					
+						<span class="horario">5:30pm</span>
+					
+						<span class="horario">7:40pm</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		<!-- cine -->
+	</tr>
+	
+	<tr>
+		<td colspan="3"><h3>UVK Multicines</h3></td>
+	</tr>
+		
+		<tr>
+			<td class="cine">UVK Platino Basadre</td>
+		
+			
+			
+				
+				<td class="attr">
+					<span class="label label-warning" title="Doblada" >Dob</span>
+					
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">3:40</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">UVK Huacho</td>
+		
+			
+			
+				
+				<td class="attr">
+					<span class="label label-warning" title="Doblada" >Dob</span>
+					
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">2:00</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">UVK El Agustino</td>
+		
+			
+			
+				
+				<td class="attr">
+					<span class="label label-warning" title="Doblada" >Dob</span>
+					
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">2:20 </span>
+					
+						<span class="horario">4:20 </span>
+					
+						<span class="horario">6:20  </span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">UVK Caminos del Inca</td>
+		
+			
+			
+				
+				<td class="attr">
+					<span class="label label-warning" title="Doblada" >Dob</span>
+					
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">3:30 </span>
+					
+						<span class="horario">5:40 </span>
+					
+						<span class="horario">7:50</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">UVK Larcomar</td>
+		
+			
+			
+				
+				<td class="attr">
+					<span class="label label-warning" title="Doblada" >Dob</span>
+					
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">2:30 </span>
+					
+						<span class="horario">3:50 </span>
+					
+						<span class="horario">6:00</span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		
+		<tr>
+			<td class="cine">UVK Ica</td>
+		
+			
+			
+				
+				<td class="attr">
+					<span class="label label-warning" title="Doblada" >Dob</span>
+					
+					
+					
+				</td>
+				<td>
+					
+						<span class="horario">3:40 </span>
+					
+						<span class="horario">5:40 </span>
+					
+						<span class="horario">7:40 </span>
+					
+				</td>
+			</tr>
+			<!-- sala -->
+		</tr>
+		<!-- cine -->
+	</tr>
+	<!-- cadena -->
+</tbody>
+</table>
+</div>
+<!-- pelicula -->
+
+</div><!-- end span -->
+</div><!-- end row -->
+</div>
+
+
+
+<script src="static/js/bootstrap-transition.js"></script>
+<script src="static/js/bootstrap-alert.js"></script>
+<script src="static/js/bootstrap-modal.js"></script>
+<script src="static/js/bootstrap-dropdown.js"></script>
+<script src="static/js/bootstrap-scrollspy.js"></script>
+<script src="static/js/bootstrap-tab.js"></script>
+<script src="static/js/bootstrap-tooltip.js"></script>
+<script src="static/js/bootstrap-popover.js"></script>
+<script src="static/js/bootstrap-button.js"></script>
+<script src="static/js/bootstrap-collapse.js"></script>
+<script src="static/js/bootstrap-carousel.js"></script>
+<script src="static/js/bootstrap-typeahead.js"></script>
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-32882889-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+</body>
+</html>
