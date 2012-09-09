@@ -11,7 +11,7 @@ Copyright (c) 2012 8Consultores SAC All rights reserved.
 import unittest
 import re
 
-import cine
+import moviecrawler
 
 
 class test_cine(unittest.TestCase):
@@ -95,9 +95,9 @@ class test_cine(unittest.TestCase):
 		self.tags = ["UVK", "CMP", "CP"]
 		
 		self.cadenas = { 
-			"UVK": cine.CineUVK(),
-		 	"CMP": cine.CineCMP(), 
-			"CP": cine.CineCP()
+			"UVK": moviecrawler.MovieCrawlerUVK(),
+		 	"CMP": moviecrawler.MovieCrawlerCMP(), 
+			"CP": moviecrawler.MovieCrawlerCP()
 		}
 		
 	

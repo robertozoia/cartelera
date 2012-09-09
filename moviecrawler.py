@@ -20,6 +20,9 @@ import urllib3
 import re
 from bs4 import BeautifulSoup
 
+from models import TheaterChain, Theater, Movie
+
+
 #
 #	Para usar una terminología clara, definimos:
 #		Cadena:  UVK, Cinemark Perú, Cineplanet
@@ -29,11 +32,10 @@ from bs4 import BeautifulSoup
 #
 
 
-class Cine(object):
+class MovieCrawler(object):
 	"""docstring for Cine"""
 		
 	def __init__(self, cadena="", tag=""):
-		super(Cine, self).__init__()
 		
 		self.tag = tag
 		self.cadena = cadena
@@ -76,7 +78,21 @@ class Cine(object):
 	
 	
 		
-		
+	def getTheaterChainMovies(self):
+		"""
+			Returns a TheaterChain object with theaters,
+			movies and showtimes fetched from the theater theater chain 
+			website
+		"""
+		theater_chain = TheaterChain(
+			name = self.cadena,
+			tag = self.tag,
+			theaters = self.get_cartelera_cines_de_cadena()
+			)
+
+		return theater_chain
+
+
 	def get_cines_cadena(self):
 		"""
 		Devuelve una lista que contiene los locales de la cadena de cines en el siguiente
@@ -122,42 +138,22 @@ class Cine(object):
 	
 	def get_cartelera_cines_de_cadena(self):
 		"""
-			Devuelve la programación de cada cine de la cadena en el siguiente formato:
-			
-			[ 
-				{ 	'cine': u'UVK Larcomar', 
-					'cartelera':  [ la cartelera en el formato de get_programacion_cine ]
-				}, 
-				{ 	'cine': u'UVK Platino Basadro', 
-					'cartelera':  [ la cartelera en el formato de get_programacion_cine ]
-				}, 
-				(...)
-			
-			]
-		
-		
-		Returns a list of [ cine,  
-									[ [ movie title, [horario, horario, horario, ... ],
-									  [ movie title, [horario, horario, horario, ... ],
-									],
-
-							]
+			Returns a list of Theater objects.
 		"""
 		result = []
+
 		for t in self.get_cines_cadena():
 			cine, idCine, urlCine = t
 			
+			theater = Theater(name=cine)
+
 			if idCine == 0:
-				result.append({
-					'cine': u"%s" % cine, 
-					'cartelera': self.get_programacion_cine(url=urlCine) 
-				})
+				theater.movies  = self.get_programacion_cine(url=urlCine)
 			else:
-				result.append({
-					'cine': u"%s" % cine, 
-					'cartelera': self.get_programacion_cine(idCine=idCine) 
-				})
-		
+				theater.movies = self.get_programacion_cine(idCine=idCine)
+
+			result.append(theater)
+
 		return result
 	
 	
@@ -266,11 +262,11 @@ class Cine(object):
 		
 	
 
-class CineUVK(Cine):
+class MovieCrawlerUVK(MovieCrawler):
 	"""UVK Multicines"""
 	
 	def __init__(self):
-		super(CineUVK, self).__init__(cadena=u"UVK Multicines",tag="UVK")
+		super(MovieCrawlerUVK, self).__init__(cadena=u"UVK Multicines",tag="UVK")
 		
 		self.url = r"""http://www.uvkmulticines.com"""
 		self.encoding = 'utf-8'
@@ -331,6 +327,8 @@ class CineUVK(Cine):
 			soup = BeautifulSoup(html)
 		
 			peliculas = soup.find(id = re.compile('highslide-html??')).find_all('td', { 'class': 'bg_infotabla1'})
+
+
 		
 			result = []
 		
@@ -341,14 +339,17 @@ class CineUVK(Cine):
 				if peliculas[i].a is not None:
 					# El primer <td> tiene el nombre de la película.
 					# El segundo <td> tiene el horario
-					result.append({
-						'pelicula': self.purify_movie_name(peliculas[i].string), 
-						'horarios': self.grab_horarios(peliculas[i+1].string),
-						'isSubtitulada': self.is_movie_subtitled(peliculas[i].string),
-						'isDoblada': self.is_movie_translated(peliculas[i].string),
-						'isHD':  self.is_movie_HD(peliculas[i].string),
-						'is3D': self.is_movie_3D(peliculas[i].string)
-					})
+
+					movie = Movie(
+						name = self.purify_movie_name(peliculas[i].string),
+						showtimes = self.grab_horarios(peliculas[i+1].string),
+						isSubtitled = self.is_movie_subtitled(peliculas[i].string),
+						isTranslated = self.is_movie_translated(peliculas[i].string),
+						isHD = self.is_movie_HD(peliculas[i].string),
+						is3D =self.is_movie_3D(peliculas[i].string)
+					)
+
+					result.append(movie)
 					i = i +2
 				else:
 					i = i+1
@@ -365,11 +366,11 @@ class CineUVK(Cine):
 
 
 
-class CineCMP(Cine):
+class MovieCrawlerCMP(MovieCrawler):
 	"""docstring for CineCMP"""
 	
 	def __init__(self):
-		super(CineCMP, self).__init__(cadena=u"Cinemark", tag="CMP")
+		super(MovieCrawlerCMP, self).__init__(cadena=u"Cinemark", tag="CMP")
 		
 		self.url = r"""http://www.cinemark-peru.com"""
 		
@@ -444,25 +445,27 @@ class CineCMP(Cine):
 			
 				# Get showtimes for today (first entry on showtime table)
 				tHorarios = t.find('tr', { 'class': re.compile('tablelist-values?')}).string.strip()
+
+				movie = Movie(
+					name = self.purify_movie_name(tPelicula),
+					showtimes = self.grab_horarios(tHorarios),
+					isSubtitled = self.is_movie_subtitled(tPelicula),
+					isTranslated = self.is_movie_translated(tPelicula),
+					isHD = self.is_movie_HD(tPelicula),
+					is3D = self.is_movie_3D(tPelicula)
+				)
 			
-				result.append({
-				 	'pelicula': self.purify_movie_name(tPelicula),
-				 	'horarios': self.grab_horarios(tHorarios),
-					'isSubtitulada': self.is_movie_subtitled(tPelicula),
-					'isDoblada': self.is_movie_translated(tPelicula),
-					'isHD':  self.is_movie_HD(tPelicula),
-					'is3D': self.is_movie_3D(tPelicula)
-				})
+				result.append(movie)
 			
 			return result
 		else:
 			return None
 
 
-class CineCP(Cine):
+class MovieCrawlerCP(MovieCrawler):
 	"""Cine implementation for CinePlanet"""
 	def __init__(self):
-		super(CineCP, self).__init__(cadena=u"Cineplanet", tag="CP")
+		super(MovieCrawlerCP, self).__init__(cadena=u"Cineplanet", tag="CP")
 		
 		
 		# indicadores de subtitulos
@@ -526,15 +529,17 @@ class CineCP(Cine):
 
 			for i in range(0, len(peliculas)-1, 2):
 				tPelicula = peliculas[i].string
-				result.append({
-				 	'pelicula': self.purify_movie_name(tPelicula), 
-					'horarios': self.grab_horarios(peliculas[i+1].contents[0]),
-					'isSubtitulada': self.is_movie_subtitled(tPelicula),
-					'isDoblada': self.is_movie_translated(tPelicula),
-					'isHD':  self.is_movie_HD(tPelicula),
-					'is3D': self.is_movie_3D(tPelicula)
-					
-				})
+
+				movie = Movie(
+					name = self.purify_movie_name(tPelicula),
+					showtimes = self.grab_horarios(peliculas[i+1].contents[0]),
+					isSubtitled = self.is_movie_subtitled(tPelicula),
+					isTranslated = self.is_movie_translated(tPelicula),
+					isHD = self.is_movie_HD(tPelicula),
+					is3D = self.is_movie_3D(tPelicula)
+				)
+
+				result.append(movie)
 			
 			return result
 		else:
