@@ -10,7 +10,7 @@
 	
 	<meta name="description" content="Películas en cartelera en los cines del Perú. Estrenos películas" >
 	<meta name="keywords" content="peliculas, horarios, pelicula, carterlera, cine, estrenos, 
-		{% for cadena in cadenas %} {{ cadena['cadena'] }}, {% endfor %} ">
+		{% for chain in chains %} {{ chain.name }}, {% endfor %} ">
 	
 	<meta name="Robots" content="all">
 	<meta name="Revisit-after" content="1 days">
@@ -100,12 +100,12 @@ h2 {
 
 			<div class="nav-collapse">
 				<ul class="nav">
-					{% for cadena in cadenas %}
+					{% for chain in chains %}
 					<li class="dropdown">
-						<a class="dropdown-toggle" data-toggle="dropdown" href="#">{{ cadena['cadena'] }}<b class="caret"></b></a>
+						<a class="dropdown-toggle" data-toggle="dropdown" href="#">{{ chain.name }}<b class="caret"></b></a>
 						<ul class="dropdown-menu">
-							{% for cine in cadena['cines'] %}
-							<li><a href="#{{ cine['cine']|escape|urlize|replace(' ', '%20') }}">{{ cine['cine'] }}</a></li>
+							{% for theater in chain.theaters %}
+							<li><a href="#{{ theater.name|escape|urlize|replace(' ', '%20') }}">{{ theater.name }}</a></li>
 							{% endfor %}
 				
 						</ul>
@@ -124,28 +124,28 @@ h2 {
 <section id="home" style="padding-top: 0px;">
 <h1>Horarios de películas en cartelera en los cines del Perú</h1>
 </section>
-{% for cadena in cadenas %}
-<h2>{{ cadena['cadena'] }}<i style="margin: 7px 0 0 4px;" class="icon-arrow-right"></i></a>
+{% for chain in chains %}
+<h2>{{ chain.name }}<i style="margin: 7px 0 0 4px;" class="icon-arrow-right"></i></a>
 </h2>
 	
-	{% for cine in cadena['cines'] %}
-	<section id="{{ cine['cine']|escape|urlize|replace(" ", "%20") }}">
-	<h3>{{ cine['cine'] }}&nbsp;&nbsp;&nbsp;&nbsp;<a href="#home" alt="Volver al inicio."><i class="icon-home" style="margin-top: 5px;"></i></a></h3>
+	{% for theater in chain.theaters %}
+	<section id="{{ theater.name|escape|urlize|replace(" ", "%20") }}">
+	<h3>{{ theater.name }}&nbsp;&nbsp;&nbsp;&nbsp;<a href="#home" alt="Volver al inicio."><i class="icon-home" style="margin-top: 5px;"></i></a></h3>
 	
 		<table class="table table-striped table-condensed">
 			<tbody>
-				{% for pelicula in cine['cartelera'] %}
+				{% for movie in theater.movies %}
 				<tr itemscope itemtype="http://schema.org/Event">
-					<td><span itemprop="name">{{ pelicula['pelicula'] }}</span> 
-					{% if pelicula['isDoblada'] %}<span class="label label-warning" title=
+					<td><span itemprop="name">{{ movie.name }}</span> 
+					{% if movie.isTranslated %}<span class="label label-warning" title=
 					"Doblada" >Dob</span>{% endif %}
-					{% if pelicula['isSubtitulada'] %}<span class="label label-warning" title="Subtitulada">Sub</span>{% endif %}
-					{% if pelicula['isHD'] %}<span class="label label-info" title="Alta definición">HD</span>{% endif %}
-					{% if pelicula['is3D'] %}<span class="label label-info" title="3D">3D</span>{% endif %}
+					{% if movie.isSubtitled %}<span class="label label-warning" title="Subtitulada">Sub</span>{% endif %}
+					{% if movie.isTranslated %}<span class="label label-info" title="Alta definición">HD</span>{% endif %}
+					{% if movie.is3D %}<span class="label label-info" title="3D">3D</span>{% endif %}
 					<td>
-					{% for horario in pelicula['horarios'] %}
-						<span itemprop="startDate" content="{{ today }}T{{ horario }}"class="horario" >
-							{{ horario }}</span>
+					{% for st in movie.showtimes %}
+						<span itemprop="startDate" content="{{ today }}T{{ st }}"class="horario" >
+							{{ st }}</span>
 					{% endfor %}
 					</td>	
 				</tr>

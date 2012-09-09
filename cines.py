@@ -19,7 +19,8 @@ import time
 
 from jinja2 import Environment, FileSystemLoader
 
-import cine
+import moviecrawler
+
 from tools import purify
 
 import multithread
@@ -33,61 +34,24 @@ DEBUG = False
 
 def do_processing(args):
 	
-	if DEBUG: start = time.time()
-
-	# t, tag, cine = args
-	
+	if DEBUG: start = time.time()	
 	if DEBUG: print "Thread Start:  %s" % args['tag'] 
 	
-	args['cines'] = args['class'].get_cartelera_cines_de_cadena()
-	
+
+	# args['cines'] = args['class'].get_cartelera_cines_de_cadena()
+	args['theater_chain_movies'] = args['class'].getTheaterChainMovies()
+
+
 	if DEBUG: print "Thread End: %s  - Elapsed Time: %s" % (args['tag'], (time.time() - start) )
 
 
-def build_cartelera(cadenas):
-	"""
-		Devuelve la cartelera en el siguiente formato:
-		[{ 'cadena':  'UVK Multicines', 'tag': 'UVK', 
-			'locales':
-				[ 	'cine': u'UVK Platino Basadre', 
-				 	'cartelera': 
-						[{  'pelicula': 'Sólo por dinero', 
-							'horarios': [ u'9:45', '11:00' ]
-						},
-						[{  'pelicula': 'Los patitos feos', 
-							'horarios': [ u'9:45', '11:00' ]
-						},
-						[{  'pelicula': 'El chanchito con alas', 
-							'horarios': [ u'9:45', '11:00' ]
-						},
-				
-					]
-				], 
-				[ 	'cine': u'UVK Larcomar', 
-				 	'cartelera': 
-						[{  'pelicula': 'Sólo por dinero', 
-							'horarios': [ u'9:45', '11:00' ]
-						},
-						[{  'pelicula': 'Los patitos feos', 
-							'horarios': [ u'9:45', '11:00' ]
-						},
-						[{  'pelicula': 'El chanchito con alas', 
-							'horarios': [ u'9:45', '11:00' ]
-						},
-				
-					]
-				]
-				
-		}]
-	
-	
-	"""
-	
+def build_cartelera(theater_chains):
+
 	result = []
 	
-	for cadena in cadenas:
+	for chain in theater_chains:
 		result.append(
-			{ 'cadena': cadena.cadena, 'tag': cadena.tag, 'url': cadena.url, 'class': cadena , 'cines' : [] }
+			{ 'tag': chain.tag, 'class': chain }
 		)
 		
 	mt = multithread.MultiThread( do_processing, result )
@@ -95,10 +59,9 @@ def build_cartelera(cadenas):
 	mt.start()
 	mt.join()
 		
-	for c in result:
-		del c['class']
-	
-	return result
+	r = [ t['theater_chain_movies'] for t in result ]
+
+	return r
 
 	
 def main(devmode=False):
@@ -109,13 +72,13 @@ def main(devmode=False):
 		import testdata_cartelera as data
 		cadenas = data.cadenas
 	else:
-		cadenas = build_cartelera( [cine.CineUVK(), cine.CineCMP(), cine.CineCP()])
+		cadenas = build_cartelera( [moviecrawler.MovieCrawlerUVK(), moviecrawler.MovieCrawlerCMP(), moviecrawler.MovieCrawlerCP()])
 
 	# Unify movie names
 	cadenas = unify_names.unify_names(cadenas, unify_names.get_reference_movienames(cadenas))
 
 	# organize by movies
-	peliculas = organize_by_movie.organize_by_movie(cadenas)
+	#  peliculas = organize_by_movie.organize_by_movie(cadenas)
 
 
 	# init Jinja templates
@@ -124,7 +87,7 @@ def main(devmode=False):
 
 	# Render by-cine page
 	template = env.get_template(bycine_template)
-	doc = template.render(cadenas=cadenas, today=tDate.strftime("%Y-%m-%d"), now=tDate.strftime("%Y-%m-%d  %H:%M:%S"))
+	doc = template.render(chains=cadenas, today=tDate.strftime("%Y-%m-%d"), now=tDate.strftime("%Y-%m-%d  %H:%M:%S"))
 
 	# write page to file	
 	try:		
@@ -137,19 +100,19 @@ def main(devmode=False):
 		f = open(logfile, 'w')
 		traceback.print_exc(file = f)
 
-	#  Render by-movie page
-	template = env.get_template(bymovie_template)
-	doc = template.render(peliculas=peliculas, today=tDate.strftime("%Y-%m-%d"), now=tDate.strftime("%Y-%m-%d  %H:%M:%S"))
+	# #  Render by-movie page
+	# template = env.get_template(bymovie_template)
+	# doc = template.render(peliculas=peliculas, today=tDate.strftime("%Y-%m-%d"), now=tDate.strftime("%Y-%m-%d  %H:%M:%S"))
 
-	# write page to file
-	try:		
-		f = codecs.open(bymovie_file, 'w', 'utf-8-sig')
-		f.write(doc)
-		f.close()
-	except:
-		import traceback
-		f = open(logfile, 'w')
-		traceback.print_exc(file = f)
+	# # write page to file
+	# try:		
+	# 	f = codecs.open(bymovie_file, 'w', 'utf-8-sig')
+	# 	f.write(doc)
+	# 	f.close()
+	# except:
+	# 	import traceback
+	# 	f = open(logfile, 'w')
+	# 	traceback.print_exc(file = f)
 
 
 
