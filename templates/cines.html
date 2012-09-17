@@ -72,6 +72,9 @@ h2 {
 	font-weight: bold;
 }
 
+td.first-col {
+	width: 50%;
+}
 </style>
 
 <body>	
@@ -143,7 +146,7 @@ h2 {
 			<tbody>
 				{% for movie in theater.movies %}
 				<tr itemscope itemtype="http://schema.org/Event">
-					<td><span itemprop="name">{{ movie.name }}</span>
+					<td class="first-col"><span itemprop="name">{{ movie.name }}</span>
 					{% if movie.imdb_rating > 0 %}<span class="label label-rating" title="Internet Movie Database rating">IMDb {{ movie.imdb_rating }}</span>{% endif %} 
 					{% if movie.isTranslated %}<span class="label" title=
 					"Doblada" >Dob</span>{% endif %}

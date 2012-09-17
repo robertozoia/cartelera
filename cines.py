@@ -59,9 +59,13 @@ def build_cartelera(theater_chains):
 	
 	mt.start()
 	mt.join()
-		
-	r = [ t['theater_chain_movies'] for t in result ]
+	
+	
+	r = []
 
+	for t in result:
+		if 'theater_chain_movies' in t: r.append(t['theater_chain_movies'])
+	
 	return r
 
 	
@@ -69,7 +73,7 @@ def main(devmode=False):
 	
 	# if devmode, don't fetch data from the internet
 	# use local fake data	
-	if devmode == True:
+	if nofetch_mode == True:
 		import testdata_cartelera as data
 		cadenas = data.to_object()
 	else:
@@ -77,7 +81,9 @@ def main(devmode=False):
 
 	# Unify movie names
 	cadenas = unify_names.unify_names(cadenas, unify_names.get_reference_movienames(cadenas))
-	cadenas = imdb_tools.fetch_imdb_data(cadenas)
+
+	if not nofetch_mode:
+		cadenas = imdb_tools.fetch_imdb_data(cadenas)
 
 	# organize by movies
 	#  peliculas = organize_by_movie.organize_by_movie(cadenas)
@@ -140,10 +146,11 @@ if __name__ == '__main__':
 
 	logfile = "traceback.log"
 
-	devmode = False
+	nofetch_mode = False
+
 	if len(sys.argv) > 1:
 		if sys.argv[1] == "--nofetch":
-			devmode = True
+			nofetch_mode = True
 
-	main(devmode)
+	main(nofetch_mode)
 

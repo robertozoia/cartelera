@@ -59,7 +59,7 @@ class Movie(object):
 		self.is3D = is3D
 
 		self.imdb_canonical_title  = ""
-		self.imdb_rating = ""
+		self.imdb_rating = 0
 
 	def __unicode__(self):
 		return self.name

@@ -18,6 +18,8 @@ Copyright (c) 2012 8 Consultores SAC. All rights reserved.
 
 import urllib3
 import re
+import datetime
+
 from bs4 import BeautifulSoup
 import imdb
 
@@ -162,6 +164,10 @@ class MovieCrawler(object):
 		return result
 	
 	
+	#
+	# Utility methods
+	# 
+
 	def is_movie_translated(self, s):
 		result = False
 		
@@ -249,13 +255,36 @@ class MovieCrawler(object):
 		
 		return s.strip()
 	
-	#
-	# Utilities
-	#
+
+	def convert_showtime_to_timeobject(self, showtime):
+		"""
+			Takes a showtime as string and returns a 24H formated time.
+			Handle quirks in movie chains showtimes.
+		"""
+		suffixes = [('pm', 12), ('p.m.', 12), ('am',0), ('a.m.',0)]
+		
+		offset = 12  #  by default, all showtimes are pm, even if not stated
+
+		for sfx, off in suffixes:
+			if sfx in showtime:
+				showtime = showtime.replace(sfx, '')
+				offset = off
+
+		# split hours, minutes
+		hours, minutes = showtime.split(':')
+		hours = int(hours)
+		minutes = int(minutes)
+
+		if (hours == 12) and (offset == 12):  offset = 0
+
+		return datetime.time(int(hours)+offset, int(minutes)).strftime('%H:%M')
+		
+
 	def grab_horarios(self, s):
-		return self.reHorarios.findall(s)
-	
-	
+
+		return [ self.convert_showtime_to_timeobject(t) for t in self.reHorarios.findall(s)]
+
+
 	def replace_accents(self, s):
 		replacements = [(u'á','a'), (u'é','e'), (u'í', 'i'), (u'ó','o'),(u'ú','u'),
 						(u'Á','A'), (u'É', 'E'), (u'Í','I'), (u'Ó','O'), (u'Ú','U'),
@@ -321,9 +350,17 @@ class MovieCrawlerUVK(MovieCrawler):
 		
 		# UVK usa urls para identificar sus cines, no ids
 		# TODO:  handle errors
-		
-		r = self.conn.request('GET', url)
-		
+
+		retries = 3
+
+		while retries > 0:
+			try:	
+				r = self.conn.request('GET', url)
+				break
+			except urllib3.TimeoutError:
+				retries = retries - 1  
+
+
 		if r.status == 200:
 			# Page readed ok
 			
@@ -430,8 +467,15 @@ class MovieCrawlerCMP(MovieCrawler):
 		
 		url = """%s/cine.php?id=%s""" % (self.url, idCine)
 		
-		r = self.conn.request('GET', url)
-	
+		retries = 3
+
+		while retries > 0:
+			try:
+				r = self.conn.request('GET', url)
+				break
+			except urllib3.TimeoutError:
+				retries = retries - 1
+
 		if r.status == 200:
 			# En su página dice 'charset=utf-8' pero usan en realidad iso-8859-15
 			html = r.data.decode(self.encoding, errors='replace')
@@ -525,8 +569,15 @@ class MovieCrawlerCP(MovieCrawler):
 
 		url = """%s/nuestroscines.php?complejo=%02d""" % (self.url, idCine)
 
-		r = self.conn.request('GET', url)
-		
+		retries = 3
+
+		while retries > 0:
+			try:
+				r = self.conn.request('GET', url)
+				break
+			except urrlib3.TimeoutError:
+				retries = retries -1
+
 		if r.status == 200:
 			html = r.data.decode(self.encoding, errors='replace')\
 			
