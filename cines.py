@@ -26,6 +26,7 @@ from tools import purify
 import multithread
 import unify_names
 import organize_by_movie
+import imdb_tools
 
 
 
@@ -70,12 +71,13 @@ def main(devmode=False):
 	# use local fake data	
 	if devmode == True:
 		import testdata_cartelera as data
-		cadenas = data.cadenas
+		cadenas = data.to_object()
 	else:
 		cadenas = build_cartelera( [moviecrawler.MovieCrawlerUVK(), moviecrawler.MovieCrawlerCMP(), moviecrawler.MovieCrawlerCP()])
 
 	# Unify movie names
 	cadenas = unify_names.unify_names(cadenas, unify_names.get_reference_movienames(cadenas))
+	cadenas = imdb_tools.fetch_imdb_data(cadenas)
 
 	# organize by movies
 	#  peliculas = organize_by_movie.organize_by_movie(cadenas)

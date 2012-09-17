@@ -65,6 +65,13 @@ h2 {
 	font-size: 16px;
 	padding-top: 10px;
 }
+.label-rating {
+	background-color: #E4BD1E;
+	color: #000;
+	text-shadow: 0 -1px 0 rgba(255, 255, 255, 0.25);
+	font-weight: bold;
+}
+
 </style>
 
 <body>	
@@ -136,10 +143,11 @@ h2 {
 			<tbody>
 				{% for movie in theater.movies %}
 				<tr itemscope itemtype="http://schema.org/Event">
-					<td><span itemprop="name">{{ movie.name }}</span> 
-					{% if movie.isTranslated %}<span class="label label-warning" title=
+					<td><span itemprop="name">{{ movie.name }}</span>
+					{% if movie.imdb_rating > 0 %}<span class="label label-rating" title="Internet Movie Database rating">IMDb {{ movie.imdb_rating }}</span>{% endif %} 
+					{% if movie.isTranslated %}<span class="label" title=
 					"Doblada" >Dob</span>{% endif %}
-					{% if movie.isSubtitled %}<span class="label label-warning" title="Subtitulada">Sub</span>{% endif %}
+					{% if movie.isSubtitled %}<span class="label" title="Subtitulada">Sub</span>{% endif %}
 					{% if movie.isTranslated %}<span class="label label-info" title="Alta definición">HD</span>{% endif %}
 					{% if movie.is3D %}<span class="label label-info" title="3D">3D</span>{% endif %}
 					<td>

@@ -19,9 +19,10 @@ Copyright (c) 2012 8 Consultores SAC. All rights reserved.
 import urllib3
 import re
 from bs4 import BeautifulSoup
+import imdb
 
 from models import TheaterChain, Theater, Movie
-
+import tools
 
 #
 #	Para usar una terminología clara, definimos:
@@ -47,7 +48,7 @@ class MovieCrawler(object):
 		self.encoding = 'utf-8'
 
 		# connection timeout for fetching pages
-		self.timeout = 10.0
+		self.timeout = 12.0
 		
 		# regex que catpura los horarios de un string
 		self.reHorarios = re.compile(r"""\d{1,2}:\d{2}\s*(?:am|pm|a\.m\.|p\.m\.)*""")
@@ -75,6 +76,10 @@ class MovieCrawler(object):
 			'HD': [],
 			'3D': [],
 		}
+
+		# IMDb related stuff
+		self.imdb = imdb.IMDb()
+		self.movie_cache = {}
 	
 	
 		
@@ -259,8 +264,8 @@ class MovieCrawler(object):
 		for a, b in replacements:
 			s = s.replace(a, b)
 		return s
-		
-	
+
+
 
 class MovieCrawlerUVK(MovieCrawler):
 	"""UVK Multicines"""
@@ -348,6 +353,9 @@ class MovieCrawlerUVK(MovieCrawler):
 						isHD = self.is_movie_HD(peliculas[i].string),
 						is3D =self.is_movie_3D(peliculas[i].string)
 					)
+
+					# append imdb data
+					
 
 					result.append(movie)
 					i = i +2
@@ -455,6 +463,7 @@ class MovieCrawlerCMP(MovieCrawler):
 					is3D = self.is_movie_3D(tPelicula)
 				)
 			
+
 				result.append(movie)
 			
 			return result
@@ -538,6 +547,7 @@ class MovieCrawlerCP(MovieCrawler):
 					isHD = self.is_movie_HD(tPelicula),
 					is3D = self.is_movie_3D(tPelicula)
 				)
+
 
 				result.append(movie)
 			
