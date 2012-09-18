@@ -101,7 +101,9 @@ def fetch_imdb_data(theater_chains):
 				if movie.name in movie_cache.keys():
 					try:
 						movie.imdb_rating = movie_cache[movie.name]['rating']
-						movie.imdb_canonical_title = movie_cache[movie.name]['canonical title']
+						movie.imdb_plot = movie_cache[movie.name]['plot'][0]
+						# movie.imdb_canonical_title = movie_cache[movie.name]['canonical title']
+
 					except KeyError:
 						# if there is no key for this movie, then imdb does not have data (strange case)
 						if DEBUG:  print "No Key for %s." % movie.name

@@ -79,9 +79,39 @@ td.first-col {
 
 <script>
 	
+	var popOver = null;
+	var popOver_showing = false;
+
 	$(document).ready(function() {
-		$('.uiGrid').hide();
+
+		$('tr').on('click', 'td', function(event) {
+
+			if (popOver != null) {
+				if (popOver != this) {
+					if (popOver_showing) 
+						$(popOver).popover('hide');
+					$(this).popover('show');
+					popOver = this;
+					popOver_showing = true;
+				} else {
+					if (popOver_showing) {
+						$(popOver).popover('hide');
+						popOver_showing = false;
+						popOver = null;
+					}
+				}
+
+			} else {
+				$(this).popover('show');
+				popOver = this;
+				popOver_showing	= true;
+			}
+			
+
+		});
+
 	});
+
 </script>
 	
 <div class="navbar navbar-fixed-top">
@@ -142,9 +172,17 @@ td.first-col {
 	
 		<table class="table table-striped table-condensed">
 			<tbody>
-				{% for movie in theater.movies %}
-				<tr itemscope itemtype="http://schema.org/Event">
-					<td class="first-col"><span itemprop="name">{{ movie.name }}</span>
+			{% for movie in theater.movies %}
+				<tr	itemscope itemtype="http://schema.org/Event">
+					<td class="first-col {% if movie.imdb_rating > 0 %}with-popover{% endif %}"
+					{% if movie.imdb_rating >0 %}
+						rel="popover" 
+						data-html='true'
+						data-title="{{ movie.name }}"
+						data-content= "{{ movie.imdb_plot|escape }}"
+						data-placement="bottom" 
+					{% endif %}
+					><span itemprop="name">{{ movie.name }}</span>
 					{% if movie.imdb_rating > 0 %}<span class="label label-rating" title="Internet Movie Database rating">IMDb {{ movie.imdb_rating }}</span>{% endif %} 
 					{% if movie.isTranslated %}<span class="label" title=
 					"Doblada" >Dob</span>{% endif %}
@@ -158,7 +196,7 @@ td.first-col {
 					{% endfor %}
 					</td>	
 				</tr>
-				{% endfor %} <!-- peliculas -->
+				{% endfor %} <!-- movie -->
 			</tbody>
 		</table>
 	</section>

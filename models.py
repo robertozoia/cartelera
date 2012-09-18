@@ -60,7 +60,8 @@ class Movie(object):
 
 		self.imdb_canonical_title  = ""
 		self.imdb_rating = 0
-
+		self.imdb_plot = ""
+		
 	def __unicode__(self):
 		return self.name
 
