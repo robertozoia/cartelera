@@ -23,6 +23,7 @@ class test_cine(unittest.TestCase):
 			("Prometeo 3D (Subtitulada)", True),
 			("Madagascar 3 (Doblada)", False), 
 			("Batman: El Caballero de la Noche Asciende (Digital subtitulada)", True), 
+			(u"007 Operación SkyFall (HD Subtitulada)", True),
 		],
 		"CMP" : [
 			# Cinemark
@@ -48,8 +49,9 @@ class test_cine(unittest.TestCase):
 	}
 	
 	data_HD = {
-		"UVK": [("Tenemos que Hablar de Kevin HD", True), 
-				("Batman: El Caballero de la Noche Asciende (Digital subtitulada)", True),
+		"UVK": [(u"Tenemos que Hablar de Kevin HD", True), 
+				(u"Batman: El Caballero de la Noche Asciende (Digital subtitulada)", True),
+				(u"007 Operación SkyFall (HD Subtitulada)", True),
 		],
 		"CMP": [("XD 3D LA ERA DEL HIELO 4 (DOB)", True), ("2D DIG BLANCA NIEVES Y EL CAZADOR (SUB)", True), 
 			("PROMETEO", False)
@@ -77,6 +79,7 @@ class test_cine(unittest.TestCase):
 			("Blanca Nieves y el Cazador", "Blanca Nieves y el Cazador"),
 			("Batman: El Caballero de la Noche Asciende (Digital subtitulada)", 
 					"Batman: El Caballero de la Noche Asciende"),
+			(u"007 Operación SkyFall (HD Subtitulada)", u"007 Operación SkyFall")
 		],
 		"CMP": [
 			("3D HOMBRES DE NEGRO 3 (SUB)", "Hombres de Negro 3"),

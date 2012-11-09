@@ -1,9 +1,90 @@
 <html>
 <head>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href="static/css/bootstrap.css" rel="stylesheet">
+	<link href="static/css/bootstrap-responsive.css" rel="stylesheet">
+
+	<script type="text/javascript" src="static/js/jquery-1.7.2.min.js"></script>
+	<script src="static/js/bootstrap.min.js"></script>
+
+
+
+
 	<title>Test</title>
 </head>
+
 <body>
 
-<input id="idtest" type="checkbox" /><label for="idtest">test</label>
+<div>
+	<select id="cines" multiple>
+		<option rel='select-action' id="uvk-opt" selected>UVK</option>
+		<option rel='select-action' id="cp-opt" selected>Cineplanet</option>
+		<option rel='select-action' id="cmp-opt">Cinemark</option>
+
+	</select>
+</div>
+
+
+
+<div id="list">
+	<select id="movie-list" multiple size='10'>
+			<option class='uvk-opt-list'>UVK Larcomar</option>
+			<option class='uvk-opt-list'>UVK Caminos del Inca</option>
+			<option class='cp-opt-list'>CP Alc&aacute;zar</option>
+			<option class='cp-opt-list'>CP Huacho</option>
+			<option class='cmp-opt-list'>CMP Jockey Plaza</option>
+			<option class='cmp-opt-list'>CMP Tambogrande</option>
+	</select>
+</div>
+
+<span id="testbox">Jojojojojo</span>
+
+<script type="text/javascript">
+ 
+
+ 	$(document).ready(function(){
+
+ 		var aOptions = new Array();
+
+ 		function saveSelectOptions() {
+ 			$("select#movie-list option").map(function(){
+ 				aOptions.push(this);
+ 			});
+ 		}
+
+ 		function handleAction(e) {
+ 			var id = e.target.id;
+
+ 			$('select#movie-list option').remove();
+
+ 			for (var i = 0; i < aOptions.length; i++) {
+ 				$('#movie-list').append(aOptions[i]);
+ 			}
+
+ 			$("[rel='select-action']").map(
+
+ 				function(){ 
+ 					if ($(this).attr('selected') != 'selected')
+ 					{
+ 						$('.'+this.id+'-list').map(function(){
+ 							$(this).remove()
+ 						});
+
+ 					}
+
+ 				});
+ 			 			
+ 		}
+
+ 		saveSelectOptions();
+ 		$("#cines").on('change', handleAction);
+ 		$("#cp-opt-list").hide();
+
+	});
+
+
+</script>
+
 </body>
 </html>

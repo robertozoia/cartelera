@@ -277,8 +277,12 @@ class MovieCrawler(object):
 
 		if (hours == 12) and (offset == 12):  offset = 0
 
-		return datetime.time(int(hours)+offset, int(minutes)).strftime('%H:%M')
-		
+		try:
+			result = datetime.time(int(hours)+offset, int(minutes)).strftime('%H:%M')
+		except ValueError:
+			result = datetime.time(int(hours), int(minutes)).strftime('%H:%M')
+
+		return result
 
 	def grab_horarios(self, s):
 
@@ -308,20 +312,14 @@ class MovieCrawlerUVK(MovieCrawler):
 		# indicadores de subtitulos
 		self.suffix_subtitles['doblada'] =  [ u'(Doblada)', u'(Digital doblada)', ]
 		self.suffix_subtitles['subtitulada'] = [
-				u'(HD Subtitulada)', u'(Subtitulada)', u'(Digital subtitulada)',
+				u'(Subtitulada)', u'(HD Subtitulada)', u'(Digital subtitulada)',
 			]
 				
 		# indicadores de resolución
 		self.suffix_resolutions['HD'] = [ u'HD', u'(Digital subtitulada)', u'(Digital doblada)', ]
 		self.suffix_resolutions['3D'] = [ u'3D', ]
 		
-		
-		# self.suffix_resolutions = self.replace_strings_for_regex_in_dict_with_list(self.suffix_resolutions)
-		# self.prefix_resolutions = self.replace_strings_for_regex_in_dict_with_list(self.prefix_resolutions)
-		# self.suffix_subtitles = self.replace_strings_for_regex_in_dict_with_list(self.suffix_subtitles)
-		# self.prefix_subtitles = self.replace_strings_for_regex_in_dict_with_list(self.prefix_subtitles)
-		
-		
+				
 		# conexión reusable al servidor de la cadena
 		self.conn = urllib3.connection_from_url(self.url, timeout=self.timeout)
 		
@@ -357,57 +355,54 @@ class MovieCrawlerUVK(MovieCrawler):
 			try:	
 				r = self.conn.request('GET', url)
 				break
-			except urllib3.TimeoutError:
+			except urllib3.exceptions.TimeoutError:
 				retries = retries - 1  
 
-
-		if r.status == 200:
-			# Page readed ok
+		if retries > 0:
+			if r.status == 200:
+				# Page readed ok
+				
+				html = r.data.decode(self.encoding, errors='replace')  
 			
-			html = r.data.decode(self.encoding, errors='replace')  
-		
-			soup = BeautifulSoup(html)
-		
-			peliculas = soup.find(id = re.compile('highslide-html??')).find_all('td', { 'class': 'bg_infotabla1'})
-
-
-		
-			result = []
-		
-			for i in range(0, len(peliculas)-1):
-				# Identificamos el comienzo del listado de películas porque son los
-				# <td> que tienen class bg_infotabla1 y un elemento <a href=...>
+				soup = BeautifulSoup(html)
 			
-				if peliculas[i].a is not None:
-					# El primer <td> tiene el nombre de la película.
-					# El segundo <td> tiene el horario
+				peliculas = soup.find(id = re.compile('highslide-html??')).find_all('td', { 'class': 'bg_infotabla1'})
 
-					movie = Movie(
-						name = self.purify_movie_name(peliculas[i].string),
-						showtimes = self.grab_horarios(peliculas[i+1].string),
-						isSubtitled = self.is_movie_subtitled(peliculas[i].string),
-						isTranslated = self.is_movie_translated(peliculas[i].string),
-						isHD = self.is_movie_HD(peliculas[i].string),
-						is3D =self.is_movie_3D(peliculas[i].string)
-					)
 
-					# append imdb data
-					
-
-					result.append(movie)
-					i = i +2
-				else:
-					i = i+1
-		
-			return result
 			
+				result = []
+			
+				for i in range(0, len(peliculas)-1):
+					# Identificamos el comienzo del listado de películas porque son los
+					# <td> que tienen class bg_infotabla1 y un elemento <a href=...>
+				
+					if peliculas[i].a is not None:
+						# El primer <td> tiene el nombre de la película.
+						# El segundo <td> tiene el horario
+
+						movie = Movie(
+							name = self.purify_movie_name(peliculas[i].string),
+							showtimes = self.grab_horarios(peliculas[i+1].string),
+							isSubtitled = self.is_movie_subtitled(peliculas[i].string),
+							isTranslated = self.is_movie_translated(peliculas[i].string),
+							isHD = self.is_movie_HD(peliculas[i].string),
+							is3D =self.is_movie_3D(peliculas[i].string)
+						)
+
+						# append imdb data
+						
+
+						result.append(movie)
+						i = i +2
+					else:
+						i = i+1
+			
+				return result
+				
+			else:
+				return None
 		else:
 			return None
-	
-	
-
-			
-	
 
 
 
@@ -473,44 +468,47 @@ class MovieCrawlerCMP(MovieCrawler):
 			try:
 				r = self.conn.request('GET', url)
 				break
-			except urllib3.TimeoutError:
+			except urllib3.exceptions.TimeoutError:
 				retries = retries - 1
 
-		if r.status == 200:
-			# En su página dice 'charset=utf-8' pero usan en realidad iso-8859-15
-			html = r.data.decode(self.encoding, errors='replace')
-		
-			soup = BeautifulSoup(html)
-		
-			# soup tiene ahora la página que contiene la cartelera del cine idCine
-			base = soup.find_all('a', { 'id': re.compile('peli-*')})
-		
-			result = []
-		
-			for b in base:
-				t = b.next_sibling
-				while t == '\n':
-					t = t.next_sibling
+		if retries > 0:
+			if r.status == 200:
+				# En su página dice 'charset=utf-8' pero usan en realidad iso-8859-15
+				html = r.data.decode(self.encoding, errors='replace')
+			
+				soup = BeautifulSoup(html)
+			
+				# soup tiene ahora la página que contiene la cartelera del cine idCine
+				base = soup.find_all('a', { 'id': re.compile('peli-*')})
+			
+				result = []
+			
+				for b in base:
+					t = b.next_sibling
+					while t == '\n':
+						t = t.next_sibling
+					
+					# Get movie title
+					tPelicula = t.h2.string.strip()
 				
-				# Get movie title
-				tPelicula = t.h2.string.strip()
-			
-				# Get showtimes for today (first entry on showtime table)
-				tHorarios = t.find('tr', { 'class': re.compile('tablelist-values?')}).string.strip()
+					# Get showtimes for today (first entry on showtime table)
+					tHorarios = t.find('tr', { 'class': re.compile('tablelist-values?')}).string.strip()
 
-				movie = Movie(
-					name = self.purify_movie_name(tPelicula),
-					showtimes = self.grab_horarios(tHorarios),
-					isSubtitled = self.is_movie_subtitled(tPelicula),
-					isTranslated = self.is_movie_translated(tPelicula),
-					isHD = self.is_movie_HD(tPelicula),
-					is3D = self.is_movie_3D(tPelicula)
-				)
-			
+					movie = Movie(
+						name = self.purify_movie_name(tPelicula),
+						showtimes = self.grab_horarios(tHorarios),
+						isSubtitled = self.is_movie_subtitled(tPelicula),
+						isTranslated = self.is_movie_translated(tPelicula),
+						isHD = self.is_movie_HD(tPelicula),
+						is3D = self.is_movie_3D(tPelicula)
+					)
+				
 
-				result.append(movie)
-			
-			return result
+					result.append(movie)
+				
+				return result
+			else:
+				return None
 		else:
 			return None
 
@@ -575,34 +573,37 @@ class MovieCrawlerCP(MovieCrawler):
 			try:
 				r = self.conn.request('GET', url)
 				break
-			except urrlib3.TimeoutError:
+			except urllib3.TimeoutError:
 				retries = retries -1
 
-		if r.status == 200:
-			html = r.data.decode(self.encoding, errors='replace')\
-			
-			soup = BeautifulSoup(html)
-			peliculas = soup.find_all('a', 
-						{ 'href': re.compile('detalle_pelicula.php\?pelicula=.*\&complejo\=%02d' % idCine) } )
+		if retries > 0:
+			if r.status == 200:
+				html = r.data.decode(self.encoding, errors='replace')\
+				
+				soup = BeautifulSoup(html)
+				peliculas = soup.find_all('a', 
+							{ 'href': re.compile('detalle_pelicula.php\?pelicula=.*\&complejo\=%02d' % idCine) } )
 
-			result = [] 
+				result = [] 
 
-			for i in range(0, len(peliculas)-1, 2):
-				tPelicula = peliculas[i].string
+				for i in range(0, len(peliculas)-1, 2):
+					tPelicula = peliculas[i].string
 
-				movie = Movie(
-					name = self.purify_movie_name(tPelicula),
-					showtimes = self.grab_horarios(peliculas[i+1].contents[0]),
-					isSubtitled = self.is_movie_subtitled(tPelicula),
-					isTranslated = self.is_movie_translated(tPelicula),
-					isHD = self.is_movie_HD(tPelicula),
-					is3D = self.is_movie_3D(tPelicula)
-				)
+					movie = Movie(
+						name = self.purify_movie_name(tPelicula),
+						showtimes = self.grab_horarios(peliculas[i+1].contents[0]),
+						isSubtitled = self.is_movie_subtitled(tPelicula),
+						isTranslated = self.is_movie_translated(tPelicula),
+						isHD = self.is_movie_HD(tPelicula),
+						is3D = self.is_movie_3D(tPelicula)
+					)
 
 
-				result.append(movie)
-			
-			return result
+					result.append(movie)
+				
+				return result
+			else:
+				return None
 		else:
 			return None
 
