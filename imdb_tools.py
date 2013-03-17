@@ -1,9 +1,16 @@
 # encoding: utf-8
 
+import os
 import copy
 import operator
 
 import imdb
+import imdbpie
+import pickle
+import datetime
+import hashlib
+
+
 import tools
 
 
@@ -15,9 +22,10 @@ def pick_movie_from_imdb_results(movies):
 
 	DEBUG = False
 
+	w_movies = [item for key, item in movies.iteritems()]
 	# Only one movie, no work to do
-	if len(movies) == 1:
-		return movies
+	if len(w_movies) == 1:
+		return w_movies
 
 	result = None
 	#
@@ -29,18 +37,18 @@ def pick_movie_from_imdb_results(movies):
 	tmp = []
 
 	# Pick this year's movies
-	for m in movies:
+	for m in w_movies:
 		try:
-			if m['year'] == today_year:
+			if int(m['year']) == int(today_year):
 				tmp.append(m)
 		except KeyError:
 			pass
 
 	# If no movies of this year, try last year
 	if len(tmp) == 0:
-		for m in movies:
+		for m in w_movies:
 			try:
-				if m['year'] == today_year-1:
+				if int(m['year']) == int(today_year)-1:
 					tmp.append(m)
 			except KeyError:
 				pass
@@ -62,7 +70,8 @@ def fetch_imdb_data(theater_chains):
 	DEBUG = False
 
 	movie_cache = {}
-	idb = imdb.IMDb()
+	# idb = imdb.IMDb()
+	idb = imdbpie.Imdb({'anonymize' : True})
 
 	chains_work_copy = copy.deepcopy(theater_chains)
 
@@ -72,36 +81,63 @@ def fetch_imdb_data(theater_chains):
 
 				if DEBUG: print "Processing %s..." % tools.purify(movie.name)
 
+				dt = datetime.datetime.utcnow()
+				md = hashlib.md5()
+				md.update(movie.name)
+
+				fname = "movie-%s.cache"  % md.hexdigest()
+
+				if os.path.exists(os.path.join('cache', fname)):
+					inf = open(os.path.join('cache', fname), 'rb')
+					data = pickle.load(inf)
+
+				else:
+					pass
+
 				if movie.name not in movie_cache.keys():
 
 					if DEBUG: print "-- movie not in cache"
 					
-					imdb_m = idb.search_movie(movie.name)
+					# imdb_m = idb.search_movie(movie.name)
+					try:
+						imdb_m = idb.find_by_title(tools.purify(movie.name))
+						cont = True
+					except:
+						cont = False
 
-					if len(imdb_m) == 1:
-						m = imdb_m[0]
-					else:
-						m = pick_movie_from_imdb_results(imdb_m)
+					if cont:
+						if len(imdb_m) == 1:
+							m = imdb_m.values()[0]
+						else:
+							m = pick_movie_from_imdb_results(imdb_m)
 
-					if m is not None:
-						if DEBUG: print "-- hit found in imdb"
-						# fetch additional data from imdb
-						idb.update(m)
+						if m is not None:
+							if DEBUG: print "-- hit found in imdb"
+							# fetch additional data from imdb
+							try:
+								tmp_movie = idb.find_movie_by_id(m['imdb_id'])
+								cont = True
+							except:
+								cont = False
 
-						# add data to movie cache
-						if DEBUG:  print "Adding %s to movie cache" % tools.purify(movie.name)
+							if cont:
+								m['rating'] = tmp_movie.rating
+								m['plot'] = tmp_movie.plot
 
-						movie_cache[movie.name] = m
+								# add data to movie cache
+								if DEBUG:  print "Adding %s to movie cache" % tools.purify(movie.name)
 
-						if DEBUG:  print "Cache keys: %s" % movie_cache.keys()
-					else:
-						if DEBUG:  print "Couldn't find exact entry for %s in imdb." % tools.purify(movie.name)
+								movie_cache[movie.name] = m
+
+								if DEBUG:  print "Cache keys: %s" % movie_cache.keys()
+						else:
+							if DEBUG:  print "Couldn't find exact entry for %s in imdb." % tools.purify(movie.name)
 
 
 				if movie.name in movie_cache.keys():
 					try:
 						movie.imdb_rating = movie_cache[movie.name]['rating']
-						movie.imdb_plot = movie_cache[movie.name]['plot'][0]
+						movie.imdb_plot = movie_cache[movie.name]['plot']
 						# movie.imdb_canonical_title = movie_cache[movie.name]['canonical title']
 
 					except KeyError:
@@ -110,8 +146,6 @@ def fetch_imdb_data(theater_chains):
 						movie.imdb_rating = 0
 				else:
 					movie.imdb_rating = 0
-
-					
 
 	return chains_work_copy
 

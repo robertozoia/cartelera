@@ -14,8 +14,10 @@ def get_unique_movienames(theater_chain):
 
 	data = set()
 	# We just need unique movie names, in no particular order
+	
 	for theater in theater_chain.theaters:
 		for movie in theater.movies:
+			# print '-- %s'% movie.name
 			data.add(movie.name)
 
 	return data

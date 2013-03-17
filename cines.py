@@ -16,17 +16,19 @@ import string
 import codecs
 from datetime import datetime
 import time
+from pprint import pprint as pp
 
 from jinja2 import Environment, FileSystemLoader
 
 import moviecrawler
 
-from tools import purify
+from tools import purify, ppchains
 
 import multithread
 import unify_names
 import organize_by_movie
 import imdb_tools
+
 
 
 
@@ -81,9 +83,11 @@ def main(devmode=False):
 
 	# Unify movie names
 	cadenas = unify_names.unify_names(cadenas, unify_names.get_reference_movienames(cadenas))
-
-	if not nofetch_mode:
-		cadenas = imdb_tools.fetch_imdb_data(cadenas)
+	
+	# if not nofetch_mode:
+	# 	cadenas = imdb_tools.fetch_imdb_data(cadenas)
+	# print "----- imdb ------"
+	# ppchains(cadenas)
 
 	# organize by movies
 	#  peliculas = organize_by_movie.organize_by_movie(cadenas)
