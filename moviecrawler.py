@@ -241,10 +241,10 @@ class MovieCrawler(object):
             self.suffix_subtitles, self.prefix_subtitles,   
         ]
 
-        if self.tag == "UVK": 
-            print "-" * 10
-            print(u"[{0}] s before: {1}".format(self.tag, s))
-        
+#        if self.tag == "UVK": 
+#             print "-" * 10
+#             print(u"[{0}] s before: {1}".format(self.tag, s))
+#         
         
         for listElm in iterList:
             for l in listElm.itervalues():
@@ -257,12 +257,17 @@ class MovieCrawler(object):
         for t in self.suffix_discard:
             s = s.replace(t, "")
         
-        if self.tag=="UVK": 
-            print(u"[{0}] s after: {1}".format(self.tag, s.strip()))
-            print "-" * 10
+#         if self.tag=="UVK": 
+#             print(u"[{0}] s after: {1}".format(self.tag, s.strip()))
+#             print "-" * 10
             
         return s.strip()
 
+    def sort_movies(self, movies):
+        """
+        Sorts movie dict by movie name.
+        """
+        
     
 
     def convert_showtime_to_timeobject(self, showtime):
@@ -413,6 +418,9 @@ class MovieCrawlerUVK(MovieCrawler):
                     else:
                         i = i+1
             
+                # Sort movies
+                result.sort(key=lambda x: x.name)
+                
                 return result
                 
             else:
@@ -551,7 +559,10 @@ class MovieCrawlerCMP(MovieCrawler):
             
                         result.append(movie)
                 
+                # Sort movies
+                result.sort(key=lambda x: x.name)
                 return result
+                
             else:
                 return []
         else:
@@ -666,8 +677,12 @@ class MovieCrawlerCP(MovieCrawler):
 
 
                     result.append(movie)
-                
+
+
+                # Sort movies
+                result.sort(key=lambda x: x.name)
                 return result
+                
             else:
                 return []
         else:

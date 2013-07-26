@@ -1,257 +1,51 @@
-/* RESET */
-html,body,div,ul,ol,li,dl,dt,dd,h1,h2,h3,h4,h5,h6,pre,form,p,blockquote,fieldset,input,abbr,article,aside,command,details,figcaption,figure,footer,header,hgroup,mark,meter,nav,output,progress,section,summary,time { margin: 0; padding: 0; }
-h1,h2,h3,h4,h5,h6,pre,code,address,caption,cite,code,em,strong,th,figcaption { font-size: 1em; font-weight: normal; font-style: normal; }
-fieldset,iframe { border: none; }
-caption,th { text-align: left; }
-table { border-collapse: collapse; border-spacing: 0; }
-article,aside,footer,header,hgroup,nav,section,figure,figcaption { display: block; }
-
-
-/* Layout */
-html { background-color: #fff; }
-
-.clear { clear: both;}
-.clearer { clear: both; display: block; margin: 0; padding: 0; height: 0; line-height: 1px; font-size: 1px; }
-
-/* fonts */
-body { font: 12px/18px "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, sans-serif; background-color: transparent; color: #333; -webkit-font-smoothing: antialiased; }
-
-
-h1,h2,h3,h4 { font-weight: bold; }
-h2,h3,h4 { line-height: 18px; }
-
-h1 { 
-	margin-bottom: 18px;
-	margin-top: 25px; 
-}
-
-
-h2 { 
-	margin-bottom: 18px;
-	margin-top: 18px; 
-}
-	
-h1 { font-size: 24px; line-height: 36px; }
-h2 { 
-	font-size: 16px;
-	border-bottom: 1px solid #666;
-}
-h3 { font-size: 1em; }
-h4 { font-size: 10px; }
-
-
-/*
-** Layout
+/* 
+** cines.css 
 */
 
-/* apply a natural box layout model to all elements */
 
-* { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
-
-#topnav {
-	width: 100%;
-	padding: 40px 30px 0px 30px;
+/* 
+@media (max-width: 320px) {
+    body {
+        padding-top: 0;
+    }
 }
-	
-
-#container {
-	margin: 15px 30px 15px 30px;
+ */
+.horario  {
+	padding-left: 5px;
+	padding-right: 5px;
 }
 
-.floating-index {
-	float: left;
-	width: 220px;
-	margin: 5px 10px 5px 5px;
-	padding: 5px;
+section {
+	padding-top: 40px;
+	margin-bottom: -10px;
+}
+
+h1 {
 	font-size: 90%;
-}
-
-.floating-index ul {
-	list-style-type: none;
-	margin-top: 5px;
-	margin-left: 8px;
-}
-
-
-.floating-index a {
-	padding: 3px 5px;
-	margin-bottom: 2px;
-	margin-right: 15px;
-	display: block;
-	
-	-moz-border-radius: 3px;
-	-webkit-border-radius: 3px;
-	-o-border-radius: 3px;
-	border-radius: 3px;
-	
-}
-
-.floating-index ul li a:link, .floating-index ul li a:visited {
-/*	border-top: 2px solid #077ED1;
-	border-right: 2px solid #077ED1;
-*/
-	font-weight: bold;
-	color: #333;
-	background-color: #ccc;
-	text-decoration: none;
-	
-} 
-
-
-.floating-index ul li a:hover {
-	color: #333; 
-	font-weight: bold;
-	background-color: #aaa;
-	text-decoration: none;
-}
-
-
-
-
-.cartelera-cine {
-	
-}
-
-/* Rounded corners */
-.roundedCorners {
-	-moz-border-radius: 5px;
-	-webkit-border-radius: 5px;
-	-o-border-radius: 5px;
-	border-radius: 5px;
-}
-
-.roundedTopCorners {
-	-moz-border-radius-topleft: 6px;
-	-webkit-border-top-left-radius: 6px;
-	border-top-left-radius: 6px;
-	
-	-moz-border-radius-topright: 6px;
-	-webkit-border-top-right: 6px;
-	border-top-right-radius: 6px;
-	
-}
-
-/*
-* Top navigation
-*/
-
-#topnav {
-	background: #0176C9 url('body-bg.gif') repeat left top;
-	border-bottom: 1px solid #666;
-
-}
-
-#topnav img {
-	margin-top: -15px;
-	margin-bottom: 15px;
-}
-
-#topnav h1 {
-	margin: 0 0 20px 0; padding: 0;
-}
-
-#topnav ul {
-	margin: 0; 
-	padding: 0;
-	list-style-type: none;
-	list-style-image: none;
-}
-
-#topnav li {
-	display: inline;
-	padding: 0;
-}
-
-#topnav a {
-	padding: 4px 10px 3px 10px;
-	margin:  0;
-}
-
-#topnav ul li a:link, #topnav ul li a:visited {
-	border-top: 2px solid #077ED1;
-	border-right: 2px solid #077ED1;
-	font-weight: bold;
-	color: #fff;
-	background-color: #0176C9;
-	text-decoration: none;
-}
-#topnav ul li a:hover {
-	color: #fff; 
-	font-weight: bold;
-	background-color: #0A82D4;
-	text-decoration: none;
-}
-
-/*
-** Container
-*/
-
-#container h1 {
-	background-color: #0176C9;
-/*	border-top: 1px solid #0A82D4;
-	border-left: 1px solid #0A82D4;
-*/	
-	color: #fff;
-	padding: 6px 8px 6px 8px;
-/*	margin-left: -8px;
-*/
-	display: block;
-	width: 220px;
-	margin-bottom: 2px;
-	
-	
-	-moz-border-radius: 6px;
-	-webkit-border-radius: 6px;
-	-o-border-radius: 6px;
-	border-radius: 6px;
-	
-	
-}
-
-#container h2 {
-	
-}
-
-
-/*
-** Cartelera-cine
-*/
-
-.cartelera-cine {
-	margin-bottom: 30px;
-	margin-left: 8px;
-}
-
-/* tables */
-.table-cine {
-	border-collapse: collapse;
-	text-align: left;
-	margin-left: 10px;
-
-}
-
-.table-cine th {
-	font-size: 14px;
 	font-weight: normal;
-	color: #039;
-	padding: 10px 8px;
-	border-bottom: 2px solid #6678b1;
 }
 
-.table-cine tr {
-
+h2 {
+	margin-bottom: -30px;
 }
 
-.table-cine td {
-	color: #333;
-	padding: 0 6px 0 3px;
+#footer {
+	margin-top:50px; 
+	padding-top: 10px;
+	border-top: 1px solid #ccc;
 }
 
-td.nombre-pelicula {
-	width: 200px;
+.navbar .brand {
+	font-size: 16px;
+	padding-top: 10px;
+}
+.label-rating {
+	background-color: #E4BD1E;
+	color: #000;
+	text-shadow: 0 -1px 0 rgba(255, 255, 255, 0.25);
+	font-weight: bold;
 }
 
-td.horario-pelicula {
-
-}
+td.first-col {
+	width: 50%;
 }
