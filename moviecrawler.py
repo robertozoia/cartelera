@@ -23,7 +23,6 @@ import re
 import datetime
 
 from bs4 import BeautifulSoup
-import imdb
 
 from models import TheaterChain, Theater, Movie
 import tools
@@ -81,8 +80,6 @@ class MovieCrawler(object):
             '3D': [],
         }
 
-        # IMDb related stuff
-        self.imdb = imdb.IMDb()
         self.movie_cache = {}
     
     
@@ -239,16 +236,30 @@ class MovieCrawler(object):
     
     def purify_movie_name(self, s):
 
-        iterList = [ self.suffix_subtitles, self.prefix_subtitles,
-            self.suffix_resolutions, self.prefix_resolutions ]
+        iterList = [ 
+            self.suffix_resolutions, self.prefix_resolutions,
+            self.suffix_subtitles, self.prefix_subtitles,   
+        ]
 
-
+        if self.tag == "UVK": 
+            print "-" * 10
+            print(u"[{0}] s before: {1}".format(self.tag, s))
+        
+        
         for listElm in iterList:
             for l in listElm.itervalues():
                 for t in l:
+                    s = s.replace("-", "")
+                    s = " ".join(s.split()) # purge multiple spaces
                     s = s.replace(t, "")
+                    
         
-        s = s.replace("-", "")
+        for t in self.suffix_discard:
+            s = s.replace(t, "")
+        
+        if self.tag=="UVK": 
+            print(u"[{0}] s after: {1}".format(self.tag, s.strip()))
+            print "-" * 10
             
         return s.strip()
 
@@ -298,119 +309,9 @@ class MovieCrawler(object):
 
 
 
-class MovieCrawlerUVK2(MovieCrawler):
-    """
-    UVK Multicines
-    As UVK does not allow access to its page from outside Perú,
-    we fetch the data from papaya.pe
-    """
-    
-    def __init__(self):
-        super(MovieCrawlerUVK2, self).__init__(cadena=u"UVK Multicines",tag="UVK")
-        
-        self.url = r"""http://www.papaya.pe"""
-        self.encoding = 'utf-8'
-
-        # indicadores de subtitulos
-        # (indicador también del desorden cerebral de los encargados del website de UVK)
-        self.suffix_subtitles['doblada'] =  [ u'(HD Doblada)', u'(Digital doblada)', u'(Doblada)']
-        self.suffix_subtitles['subtitulada'] = [
-                u'(Subtitulada)', u'(HD Subtitulada)', u'(Digital subtitulada)',
-            ]
-                
-        # indicadores de resolución
-        self.suffix_resolutions['HD'] = [ u'(HD Doblada)', u'(Digital subtitulada)', u'(Digital doblada)', u'HD']
-        self.suffix_resolutions['3D'] = [ u'3D', ]
-        
-                
-        # conexión reusable al servidor de la cadena
-        self.conn = urllib3.connection_from_url(self.url, timeout=self.timeout)
-        
-        
-        
-    def get_cines_cadena(self):
-                
-        # TODO:  sacar esta lista de la página web
-        
-        result = [
-            ("UVK Caminos del Inca", 0, "http://www.papaya.pe/busqueda/cine/8-uvk-caminos-del-inca"),
-            ("UVK El Agustino", 0, "http://www.papaya.pe/busqueda/cine/114-uvk-el-agustino"),
-            ("UVK Huacho", 0, "http://www.papaya.pe/busqueda/cine/61-uvk-huacho"),
-            ("UVK Ica", 0, "http://www.papaya.pe/busqueda/cine/5-uvk-ica"),
-            ("UVK Larcomar", 0, "http://www.papaya.pe/busqueda/cine/6-uvk-larcomar"),
-            ("UVK Larcomar CineBar", 0, "http://www.papaya.pe/busqueda/cine/37-uvk-larcomar-cine-bar"),
-            ("UVK Piura", 0, "http://www.papaya.pe/busqueda/cine/124-uvk-piura"),
-            ("UVK Platino Basadre", 0, "http://www.papaya.pe/busqueda/cine/11-uvk-platino-basadre"),
-            ("UVK San Martín", 0, "http://www.papaya.pe/busqueda/cine/10-uvk-san-martin"),
-        ]
-        
-        return result
-    
-    
-    def get_programacion_cine(self, idCine=0, url=None):
-        
-        # UVK usa urls para identificar sus cines, no ids
-        # TODO:  handle errors
-
-        retries = 3
-
-        while retries > 0:
-            try:    
-                r = self.conn.request('GET', url)
-                break
-            except TimeoutError:
-                retries = retries - 1  
-
-        if retries > 0:
-            if r.status == 200:
-                # Page readed ok
-                
-                html = r.data.decode(self.encoding, errors='replace')  
-                soup = BeautifulSoup(html)
-            
-                tmp = soup.find_all('h1')[3:]
-                # Select titles 3: to and onward
-                titles = []
-                for t in tmp:
-                    if t['class'][0] == 'titulo2':
-                        break
-                    else:
-                        titles.append(t)
-            # ---- AQUÍ
-                result = []
-            
-                for i in range(0, len(peliculas)-1):
-                    # Identificamos el comienzo del listado de películas porque son los
-                    # <td> que tienen class bg_infotabla1 y un elemento <a href=...>
-                
-                    if peliculas[i].a is not None:
-                        # El primer <td> tiene el nombre de la película.
-                        # El segundo <td> tiene el horario
-
-                        movie = Movie(
-                            name = self.purify_movie_name(peliculas[i].string),
-                            showtimes = self.grab_horarios(peliculas[i+1].string),
-                            isSubtitled = self.is_movie_subtitled(peliculas[i].string),
-                            isTranslated = self.is_movie_translated(peliculas[i].string),
-                            isHD = self.is_movie_HD(peliculas[i].string),
-                            is3D =self.is_movie_3D(peliculas[i].string)
-                        )
-
-                        result.append(movie)
-                        i = i +2
-                    else:
-                        i = i+1
-            
-                return result
-                
-            else:
-                return []
-        else:
-            return []
-
 
 #
-#  UVK2
+#  UVK
 #
 class MovieCrawlerUVK(MovieCrawler):
     """UVK Multicines"""
@@ -423,14 +324,19 @@ class MovieCrawlerUVK(MovieCrawler):
 
         # indicadores de subtitulos
         # (indicador también del desorden cerebral de los encargados del website de UVK)
-        self.suffix_subtitles['doblada'] =  [ u'(HD Doblada)', u'(Digital doblada)', u'(Doblada)']
+        self.suffix_subtitles['doblada'] =  [ 
+                u'(Estreno Doblada)', u'(HD Doblada)', u'(Digital doblada)', u'(Doblada)'
+            ]
         self.suffix_subtitles['subtitulada'] = [
-                u'(Subtitulada)', u'(HD Subtitulada)', u'(Digital subtitulada)',
+                u'(Estreno Subtitulada)', u'(HD Subtitulada)', u'(Digital subtitulada)', 
+                u'(Subtitulada)',
             ]
                 
         # indicadores de resolución
         self.suffix_resolutions['HD'] = [ u'(HD Doblada)', u'(Digital subtitulada)', u'(Digital doblada)', u'HD']
         self.suffix_resolutions['3D'] = [ u'3D', ]
+        
+        self.suffix_discard = [ '(Estreno)', ]
         
                 
         # conexión reusable al servidor de la cadena
@@ -534,6 +440,7 @@ class MovieCrawlerCMP(MovieCrawler):
         # único de Cinemark...
         self.prefix_resolutions['HD'] = [ u'2D Digital', u'2D DIG']
         
+        self.suffix_discard = [ '2D', ]
         
         # aunque su página diga 'utf-8', el servidor envía iso-8859-15
         # self.encoding = 'iso-8859-15'  
@@ -650,6 +557,9 @@ class MovieCrawlerCMP(MovieCrawler):
         else:
             return []
 
+def wanderer():
+    return "The Crawler"
+    
 
 class MovieCrawlerCP(MovieCrawler):
     """Cine implementation for CinePlanet"""
@@ -666,13 +576,23 @@ class MovieCrawlerCP(MovieCrawler):
         # indicadores de resolución
         self.suffix_resolutions['HD'] = [ u'Digital', u'Digital Hd', u'HD', u'Hd',  ]
         self.suffix_resolutions['3D'] = [ u'3D', ]
+        
+        self.suffix_discard = [  ]
+        
                 
         self.url = r"""http://www.cineplanet.com.pe"""
         self.encoding = 'utf-8'
         
         self.cp_server = r"""/cineplanet.server.php"""
-        self.conn = urllib3.connection_from_url(self.url, timeout=self.timeout)
-
+        
+        urllib3.make_headers(user_agent=wanderer())
+        
+        self.conn = urllib3.connectionpool.connection_from_url(
+            self.url, 
+            timeout=self.timeout,
+            headers=wanderer()
+        )
+        
     
     def get_cines_cadena(self):
         """
@@ -709,22 +629,31 @@ class MovieCrawlerCP(MovieCrawler):
 
         while retries > 0:
             try:
-                r = self.conn.request('GET', url)
+                r = self.conn.request('GET', '/nuestroscines.php', 
+                    fields={'complejo': '%02d' % idCine }, 
+                    headers ={ 'user-agent': wanderer() })
+                
                 break
             except TimeoutError:
                 retries = retries -1
 
         if retries > 0:
+        
             if r.status == 200:
                 html = r.data.decode(self.encoding, errors='replace')
                 soup = BeautifulSoup(html)
+#                 print soup
                 peliculas = soup.find_all('a', 
-                            { 'href': re.compile('detalle_pelicula.php\?pelicula=.*\&complejo\=%02d' % idCine) } )
+                            { 'href': re.compile('detalle_pelicula.php\?pelicula=.*?\&complejo\=%02d' % idCine) } )
 
                 result = [] 
+                
+#                 for i in range(0, len(peliculas)-1, 2):
+#                     print "[{0}] Pelicula: {1}".format(i, peliculas[i].string.strip())
+#                     print "[{0}] Horario: {1}".format(i+1, peliculas[i+1].string.strip())
 
                 for i in range(0, len(peliculas)-1, 2):
-                    tPelicula = peliculas[i].string
+                    tPelicula = peliculas[i].string.strip()
 
                     movie = Movie(
                         name = self.purify_movie_name(tPelicula),

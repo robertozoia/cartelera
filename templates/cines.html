@@ -203,16 +203,8 @@ td.first-col {
 			{% if theater.movies %}
                 {% for movie in theater.movies %}
                     <tr	itemscope itemtype="http://schema.org/Event">
-                        <td class="first-col {% if movie.imdb_rating > 0 %}with-popover{% endif %}"
-                        {% if movie.imdb_rating >0 %}
-                            rel="popover" 
-                            data-html='true'
-                            data-title="{{ movie.name }}"
-                            data-content= "{{ movie.imdb_plot|escape }}"
-                            data-placement="bottom" 
-                        {% endif %}
+                        <td class="first-col"
                         ><span itemprop="name">{{ movie.name }}</span>
-                        {% if movie.imdb_rating > 0 %}<span class="label label-rating" title="Internet Movie Database rating">IMDb {{ movie.imdb_rating }}</span>{% endif %} 
                         {% if movie.isTranslated %}<span class="label" title=
                         "Doblada" >Dob</span>{% endif %}
                         {% if movie.isSubtitled %}<span class="label" title="Subtitulada">Sub</span>{% endif %}
@@ -256,7 +248,6 @@ td.first-col {
 <div class="span12" id="footer">
 <ul class="unstyled">
 	<li><a href="./about.html">Acerca de CarteleraPeru.com</a></li>
-	<li>Movie rating information courtesy of <a href="http://imdb.com">The Internet Movie Database.</a></li>
 	<li>Actualizado: {{ now }}</li>
 </ul>
 </div>

@@ -58,9 +58,6 @@ class Movie(object):
 		self.isHD = isHD
 		self.is3D = is3D
 
-		self.imdb_canonical_title  = ""
-		self.imdb_rating = 0
-		self.imdb_plot = ""
 		
 	def __unicode__(self):
 		return self.name
