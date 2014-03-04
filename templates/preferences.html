@@ -1,0 +1,162 @@
+{% extends 'base.html' %}
+
+{% block head_title %}
+    Horarios de Películas en cartelera en los Cines del Perú | Cartelera Perú
+{% endblock %}
+
+{% block head_meta %}
+	<meta name="keywords" content="peliculas, horarios, pelicula, carterlera, cine, estrenos, 
+		{% for chain in chains %} {{ chain.name }}, {% endfor %} ">
+{% endblock %}
+
+{% block head_link %}
+    <link rel="stylesheet" href="/static/css/iphone-checkboxes-style.css">
+    <link rel="stylesheet" href="/static/css/cines.css">
+
+{% endblock %}
+
+{% block head_script %}
+{% endblock %}
+
+{% block nav_menu %}
+            <a class="brand" rel='in-app' href="/index.html">CarteleraPeru.com</a>
+            <a href="/"  rel='in-app' class="btn btn-primary btn-small pull-right">Volver</a>
+
+{% endblock %}
+
+
+{% block content %}
+
+<div class="container-fluid">
+<div class="row-fluid">
+<div id="prefs" class="span5">
+<p>¿Qué cines quieres ver en tu página de CarteleraPerú?</p>
+
+<form class="form">
+    {% for chain in chains %}
+    <div class="accordion" id="accordion2">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                <a class="accordion-toggle" 
+                    data-toggle="collapse"
+                    data-parent="#accordion2"}"
+                    href="#collapse-{{ chain.name|escape|urlize|replace(' ', '-') }}"
+                >
+                {{ chain.name }}
+                </a>
+            </div>  <!-- accordion heading -->
+            <div id="collapse-{{ chain.name|escape|urlize|replace(' ', '-') }}"
+                class="accordion-body collapse 
+                    {# open first accordion, close the rest #}
+                    {% if loop.first %} in {% endif %}
+                ">
+                <div class="accordion-inner">
+                    <table class="table table-striped" style="margin-bottom: 0;">
+                    <tbody>
+                    {% for theater in chain.theaters %}
+                        <tr>
+                            <td style="vertical-align: middle !important;">
+                                {{ theater.name }}
+                            </td>
+                            <td>
+                                <input 
+                                    id="{{ theater.name|escape|urlize|replace(' ', '-') }}" 
+                                    type="checkbox" 
+                                    rel="filter-action"
+                                    name="{{ theater.name|escape|urlize|replace(' ', '-') }}"
+                                    checked="checked"
+                                >
+                            </td> 
+                        </tr>
+                    {% endfor %}<!-- cine -->
+                    </tbody>
+                    </table>
+                        
+                </div>  <!-- accordion inner -->
+            </div>  <!-- accordion body -->
+        </div> <!-- accordion group -->
+        
+    </div> <!--  accordion -->
+    {% endfor %}  <!-- chain -->
+</form>
+
+</div><!--  end span6 --> 
+<div class="span1"></div>
+</div>  <!-- end row -->
+</div><!-- end container -->
+
+{% endblock %}
+
+{% block bottom_js %}
+
+<script src="/static/js/iphone-style-checkboxes.js"></script>
+
+{% endblock %}
+
+{% block bottom_scripts %}
+
+ 	$(document).ready(function(){
+
+       
+        $('[rel="in-app"]').on('click', function(event) {
+            // this is needed to prevent iOS app mode to leave app mode when
+            // clicking links
+            var baseurl = 'http://carteleraperu.com';
+            event.preventDefault();
+            location.href = $(this).attr("href");
+        });
+        
+ 		var cookieName = 'cartelera';
+ 		var cookieVersion = 1.1;
+	
+		function initialize(data) {
+
+			if (data['version']==cookieVersion) {
+				delete data['version'];
+				for (var key in data) {
+					if (data[key]) {
+						$('#'+ key).attr('checked', '');
+						
+					} else {
+						$('#'+ key).removeAttr('checked');
+					}
+				}
+			}
+		}
+
+		function writeCookie()  {
+			// no cookie set, initialize defaults and set cookie
+			var data = new Object();
+			
+			data['version'] = cookieVersion;  // data format version
+
+			// iterate checkboxes and retrive values
+			$("[rel='filter-action']").map(function(){
+				data[this.id]=this.checked;
+			});
+
+			// set cookie
+			$.cookie(cookieName, data, { expires: 360 });
+		}
+
+		$.cookie.json = true;
+		if ($.cookie(cookieName) ) {
+			// cookie exists, read contents
+			var data = $.cookie(cookieName);
+			initialize(data);
+
+		} else {
+			writeCookie();
+		}
+
+        $(':checkbox').iphoneStyle({
+              checkedLabel: 'SI',
+              uncheckedLabel: 'NO',
+              onChange: function(elem, value) {
+                writeCookie();
+              },
+        });
+
+	});
+
+{% endblock %}

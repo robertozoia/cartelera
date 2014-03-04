@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% block head_title %}
+    Horarios de Películas en cartelera en los Cines del Perú | Cartelera Perú
+{% endblock %}
+
+{% block head_meta %}
+	<meta name="keywords" content="peliculas, horarios, pelicula, carterlera, cine, estrenos, 
+		{% for chain in chains %} {{ chain.name }}, {% endfor %} ">
+{% endblock %}
+
+{% block head_link %}
+{% endblock %}
+
+{% block head_script %}
+{% endblock %}
+
+{% block nav_menu %}
+            <a class="brand" rel='in-app' href="/index.html">CarteleraPeru.com</a>
+            <a href="/"  rel='in-app' class="btn btn-primary btn-small pull-right">Volver</a>
+
+{% endblock %}
+
+
+{% block content %}
+
+<div class="container-fluid">
+<div class="row-fluid">
+<div class="span1"></div>
+<div class="span10">
+	<div class="well">
+		<h1>Cartelera Perú</h1>
+		<p>La forma más rápida de saber los horarios de las películas en cartelera en los cines del Perú</p>
+		<h2>¿Por qué esta página?</h2>
+		<p>Ya hay otras páginas que recogen los horarios de las películas en cartelera. Pero te encontrarás que la mayoría son lentas, o poco amigables (en especial las de los propios cines).</p>
+		<p>La idea de Cartelera Perú es consultar los horarios de las películas en cartelera en un formato <b>rápido</b> y <b>sencillo</b>, que se vea tanto en la computadora de tu escritorio como en tu dispositivo móvil favorito.</p>
+		<p>Este proyecto empezó en diciembre de 2012. CarteleraPerú aparece entre los 10 primeros resultados de búsqueda de Google. (Por ejemplo, prueba a buscar en Google <em>horario [la película que quieres ver] larcomar</em>, o el cine que quieras.)</p>
+		
+		<h2>¿Cómo lo hicieron?</h2>
+		<p>CarteleraPerú es un proyecto hecho en retazos de tiempo libre bien aprovechados.  La información es obtenida de lás páginas web de los propios cines.  Si bien tratamos de que sea lo más exacta posible, a veces pueden introducirse pequeños errores.</p>
+		<p>Técnicamente, la página es generada cada hora por un programa escrito en un lenguaje de programación llamado Python. La espartana diagramación de la página se hizo usando una librería llamada Bootstrap.</p>
+		
+		<h2>Más información</h2>
+		<p>¿Interesado en proyectos similares? ¿Quieres poner un banner de publicidad en CarteleraPerú? Puedes contactar a Roberto Zoia a través de <a href="http://zoia.org" target="_blank" alt="Roberto Zoia">zoia.org</a> o <a href="https://twitter.com/#!/rzoian">@rzoian</a> en Twitter.</p>
+		
+		
+	</div>
+</div>
+<div class="span1"></div>
+</div>
+
+<div class="row-fluid">
+<div class="span12">
+	<p>CarteleraPeru.com está desarrollado en Python, usando BeautifulSoup, Jinja y Bootstrap.</p>	
+
+</div> <!-- end span12 -->
+</div> <!-- end row -->
+</div><!-- end container -->
+
+{% endblock %}

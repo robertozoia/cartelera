@@ -11,8 +11,6 @@
 
 {% block head_link %}
 	<link rel="stylesheet" href="/static/css/add2home.css">
-    <link rel="stylesheet" href="/static/css/cines.css">
-
 {% endblock %}
 
 {% block head_script %}
@@ -20,14 +18,6 @@
 {% endblock %}
 
 {% block nav_menu %}
-
-            <a class="brand hidden-phone" rel="in-app" href="/index.html">CarteleraPeru.com</a>
-            <a href="/preferences.html" rel="in-app" class="btn btn-primary btn-small pull-right"><i class="icon-cogs icon-white"></i><span class="hidden-phone hidden-tablet"> Preferencias</span> 
-            </a>
-            <a href="/about.html" rel="in-app" class="btn btn-inverse btn-small pull-right" style="margin-right: 10px;"> 
-				<i class="icon-info-sign icon-white"></i> <span class="hidden-phone hidden-tablet"> Acerca de</span>
-		    </a>
-
 	      	<!-- fb and twitter buttons -->
 			<ul class="nav">
 				<li>
@@ -35,30 +25,50 @@
 					<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>	
 				</li>
 				<li style="padding-top: 10px;">
-<iframe src="//www.facebook.com/plugins/like.php?href=https%3A%2F%2Fwww.facebook.com%2Fcarteleracinesperu&amp;width=100&amp;height=21&amp;colorscheme=dark&amp;layout=button_count&amp;action=like&amp;show_faces=false&amp;send=false&amp;appId=135303389947093" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:100px; height:21px;" allowTransparency="true"></iframe>
+				<iframe src="http://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fcarteleraperu.com&amp;send=false&amp;layout=button_count&amp;width=100&amp;show_faces=false&amp;action=like&amp;colorscheme=dark&amp;font=lucida+grande&amp;height=21&amp;appId=117724708313052" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:100px; height:21px;" allowTransparency="true"></iframe>
 				</li>
 			</ul>
-			
+
+			<div class="nav-collapse">
+				<ul class="nav">
+					{% for chain in chains %}
+					<li class="dropdown">
+						<a class="dropdown-toggle" data-toggle="dropdown" href="#">{{ chain.name }}<b class="caret"></b></a>
+						<ul class="dropdown-menu">
+							{% for theater in chain.theaters %}
+							<li><input checked
+									style="margin-bottom: -35px; margin-left: 8px;" 
+									rel='filter-action' 
+									id= "{{ theater.name|escape|urlize|replace(' ', '-') }}"
+									type="checkbox">
+								<a style="padding: 3px 15px 3px 25px;" 
+								    href="#{{ theater.name|escape|urlize|replace(' ', '-') }}-opt">{{ theater.name }}</a></li>
+							{% endfor %}
+				
+						</ul>
+					</li>
+					{% endfor %}
+				</ul>
+			</div> <!-- end nav-collapse -->
 
 {% endblock %}
-
-
 {% block content %}
 
 <div class="container-fluid">
 <div class="row-fluid">
-<div id="main" class="span6">
+<div class="span6">
 <section id="home" style="padding-top: 0px;">
-<h1 style="line-height: 1.1;">Horarios de películas en cartelera en los cines del Perú</h1>
+<h1>Horarios de películas en cartelera en los cines del Perú</h1>
 </section>
 {% for chain in chains %}
-<h2>{{ chain.name }}</h2>
+<h2>{{ chain.name }}<i style="margin: 7px 0 0 4px;" class="icon-arrow-right"></i></a>
+</h2>
 	
 	{% for theater in chain.theaters %}
 
-	<div rel="theater-box" id="{{ theater.name|escape|urlize|replace(' ', '-') }}-box">
+	<div id="{{ theater.name|escape|urlize|replace(' ', '-') }}-box">
 	<section id="{{ theater.name|escape|urlize|replace(' ', '-') }}-opt">
-	<h3>{{ theater.name }}</h3>
+	<h3>{{ theater.name }}&nbsp;&nbsp;&nbsp;&nbsp;<a href="#home" alt="Volver al inicio."><i class="icon-home" style="margin-top: 5px;"></i></a></h3>
 	
 		<table class="table table-striped table-condensed">
 			<tbody>
@@ -76,7 +86,6 @@
                         {% for st in movie.showtimes %}
                             <span itemprop="startDate" content="{{ today }}T{{ st }}"class="horario" >
                                 {{ st }}</span>
-                                <span itemprop="location" content="{{ theater.name }}"></span>
                         {% endfor %}
                         </td>	
                     </tr>
@@ -114,25 +123,45 @@
 
  	$(document).ready(function(){
 
-        $('[rel="in-app"]').on('click', function(event) {
-            // this is needed to prevent iOS app mode to leave app mode when
-            // clicking links
-            var baseurl = 'http://carteleraperu.com';
-            event.preventDefault();
-            location.href = $(this).attr("href");
-        });
-
  		var cookieName = 'cartelera';
  		var cookieVersion = 1.1;
-	
+
+ 		function handleAction(e) {
+ 			var id = e.target.id;
+ 			$('#'+id + '-box').toggle(this.checked);
+ 			writeCookie();
+		}
+ 	
 		function initialize(data) {
 
 			if (data['version']==cookieVersion) {
 				delete data['version'];
 				for (var key in data) {
+					if (data[key]) {
+						$('#'+ key).attr('checked', '');
+						
+					} else {
+						$('#'+ key).removeAttr('checked');
+					}
 					$('#'+key+'-box').toggle(data[key]);
+
 				}
 			}
+		}
+
+		function writeCookie()  {
+			// no cookie set, initialize defaults and set cookie
+			var data = new Object();
+			
+			data['version'] = cookieVersion;  // data format version
+
+			// iterate checkboxes and retrive values
+			$("[rel='filter-action']").map(function(){
+				data[this.id]=this.checked;
+			});
+
+			// set cookie
+			$.cookie(cookieName, data, { expires: 360 });
 		}
 
 		$.cookie.json = true;
@@ -142,8 +171,11 @@
 			initialize(data);
 
 		} else {
-			$('[rel="theater-box"]').show();
+			writeCookie();
 		}
+
+
+ 		$("[rel='filter-action']").on('change', handleAction);
 
 	});
 

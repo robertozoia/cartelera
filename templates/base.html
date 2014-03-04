@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta property="fb:admins" content="591472802" />
+	
+	<title>{% block head_title %}{% endblock %}</title>
+	<meta name="author" content="Cartelera Perú punto com" >
+	
+	<meta name="description" content="Películas en cartelera en los cines del Perú. Estrenos películas" >
+	{% block head_meta %}
+	{% endblock %}
+	<meta name="keywords" content="peliculas, horarios, pelicula, carterlera, cine, estrenos, 
+		{% for chain in chains %} {{ chain.name }}, {% endfor %} ">
+	
+	<meta name="Robots" content="all">
+	<meta name="Revisit-after" content="1 days">
+
+    <!-- Stylesheets -->
+	<link rel="stylesheet" href="/static/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/static/css/font-awesome.min.css">
+	
+	<style type="text/css">
+        /* Make the container go all the way to the bottom of the topbar */
+        body {
+            padding-top: 80px; 
+        }
+	</style>
+    <link rel="stylesheet" href="/static/css/bootstrap-responsive.min.css" media="screen" >
+    {% block head_link %}
+    {% endblock %}
+	
+	<meta name="apple-mobile-web-app-title" content="CarteleraPeru">
+
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	
+	<link rel='shortcut icon' type='image/x-icon' href='/static/img/favicon.ico' />
+
+	<link rel="apple-touch-icon" sizes="57x57" href="/static/img/apple-touch-icon-57x57.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="/static/img/apple-touch-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="/static/img/apple-touch-icon-114x114.png">
+	<link rel="apple-touch-icon" sizes="144x144" href="/static/img/apple-touch-icon-144x144.png">
+
+    {% block head_script %}
+    {% endblock %}
+
+	<!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+ 	<!--[if lt IE 9]>
+		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+
+<body>	
+
+<div class="navbar navbar-inverse navbar-fixed-top">
+	<div class="navbar-inner">
+		<div class="container-fluid">
+			
+            {% block nav_menu %}
+            {% endblock %}
+            			
+		</div>
+	</div>
+</div>
+
+{% block content %}
+
+{% endblock %}
+
+<script src="http://code.jquery.com/jquery.js"></script>
+<script type="text/javascript" src="/static/js/json2.js"></script>
+<script type="text/javascript" src="/static/js/jquery.cookie.js"></script>
+<script src="static/js/bootstrap.min.js"></script>
+
+{% block bottom_js %}
+{% endblock %}
+
+<script type="text/javascript">
+{% block bottom_scripts %}
+{% endblock %}
+</script>
+{% include 'ga.html' %}
+</body>
+</html>

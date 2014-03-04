@@ -18,6 +18,7 @@ Copyright (c) 2012 8 Consultores SAC. All rights reserved.
 
 import urllib3
 from urllib3.exceptions import HTTPError, TimeoutError, MaxRetryError
+import requests
 
 import re
 import datetime
@@ -345,7 +346,7 @@ class MovieCrawlerUVK(MovieCrawler):
         
                 
         # conexión reusable al servidor de la cadena
-        self.conn = urllib3.connection_from_url(self.url, timeout=self.timeout)
+        # self.conn = urllib3.connection_from_url(self.url, timeout=self.timeout)
         
         
         
@@ -377,21 +378,26 @@ class MovieCrawlerUVK(MovieCrawler):
 
         while retries > 0:
             try:    
-                r = self.conn.request('GET', url)
+                r = requests.get(url)
                 break
             except TimeoutError:
                 retries = retries - 1  
 
         if retries > 0:
-            if r.status == 200:
+            #if r.status == 200:
+            if r.status_code == 200:
                 # Page readed ok
                 
-                html = r.data.decode(self.encoding, errors='replace')  
+                # html = r.data.decode(self.encoding, errors='replace')  
+                html = r.text.encode(r.encoding, errors='replace')            
+                soup = BeautifulSoup(html, 'html5lib')
             
-                soup = BeautifulSoup(html)
-            
-                peliculas = soup.find(id = re.compile('highslide-html??')).find_all('td', { 'class': 'bg_infotabla1'})
-
+                p1 = soup.find('div', class_='highslide-body')
+                
+                if p1:
+                    peliculas = p1.find_all('td', class_='bg_infotabla1')
+                else:
+                    return []
 
             
                 result = []

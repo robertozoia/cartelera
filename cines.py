@@ -89,38 +89,27 @@ def main(devmode=False):
     env = Environment(loader=FileSystemLoader([server_template_dir, development_template_dir]))
     tDate = datetime.now()
 
-    # Render by-cine page
-    template = env.get_template(bycine_template)
-    doc = template.render(chains=cadenas, today=tDate.strftime("%Y-%m-%d"), now=tDate.strftime("%Y-%m-%d  %H:%M:%S"))
-
-    # write page to file    
-    try:        
-        f = codecs.open(bycine_file, 'w', 'utf-8-sig')
-        f.write(doc)
-        f.close()
-    except:
-        # log exception
-        import traceback
-        f = open(logfile, 'w')
-        traceback.print_exc(file = f)
-        f.close()
-        
-    # Render settings page
-    template = env.get_template(settings_template)
-    doc = template.render(chains=cadenas, today=tDate.strftime("%Y-%m-%d"),
-        now=tDate.strftime("%Y-%m-%d  %H:%M:%S"))
-        
-    # write page to file
-    try:
-        f = codecs.open(settings_file, 'w', 'utf-8-sig')
-        f.write(doc)
-        f.close()
-    except:
-        # log exception
-        import traceback
-        f = open(logfile, 'w')
-        traceback.print_exc(file=f)
-        f.close()
+    render_list = [
+        (bycine_template, bycine_file),
+        (settings_template, settings_file),
+        (about_template, about_file),
+    ]
+    
+    for tfile, ofile in render_list:
+        template = env.get_template(tfile)
+        doc = template.render(chains=cadenas, today=tDate.strftime("%Y-%m-%d"), now=tDate.strftime("%Y-%m-%d  %H:%M:%S"))
+    
+        try:        
+            f = codecs.open(ofile, 'w', 'utf-8-sig')
+            f.write(doc)
+            f.close()
+        except:
+            # log exception
+            import traceback
+            f = open(logfile, 'w')
+            traceback.print_exc(file = f)
+            f.close()
+           
         
 
 if __name__ == '__main__':
@@ -139,11 +128,13 @@ if __name__ == '__main__':
     # non deployment dependent settings
     bycine_file =  "%s/index.html" % basedir
     bymovie_file = "%s/bymovie.html" % basedir
-    settings_file = "%s/settings.html" % basedir
+    settings_file = "%s/preferences.html" % basedir
+    about_file = "%s/about.html" % basedir
 
     bycine_template = "cines.html"
     bymovie_template = "movies.html"
-    settings_template = "settings.html"
+    settings_template = "preferences.html"
+    about_template = "about.html"
     
     logfile = "traceback.log"
 
