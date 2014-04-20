@@ -39,10 +39,7 @@ def do_processing(args):
     if DEBUG: start = time.time()   
     if DEBUG: print "Thread Start:  %s" % args['tag'] 
     
-
-    # args['cines'] = args['class'].get_cartelera_cines_de_cadena()
     args['theater_chain_movies'] = args['class'].getTheaterChainMovies()
-
 
     if DEBUG: print "Thread End: %s  - Elapsed Time: %s" % (args['tag'], (time.time() - start) )
 
@@ -60,8 +57,7 @@ def build_cartelera(theater_chains):
     
     mt.start()
     mt.join()
-    
-    
+        
     r = []
 
     for t in result:
@@ -70,23 +66,18 @@ def build_cartelera(theater_chains):
     return r
 
     
-def main(devmode=False):
+def main():
     
-    # if devmode, don't fetch data from the internet
-    # use local fake data   
-    if nofetch_mode == True:
-        import testdata_cartelera as data
-        cadenas = data.to_object()
-    else:
-        cadenas = build_cartelera([moviecrawler.MovieCrawlerUVK(), 
-            moviecrawler.MovieCrawlerCMP(), moviecrawler.MovieCrawlerCP()])
+
+    cadenas = build_cartelera([moviecrawler.MovieCrawlerUVK(), 
+        moviecrawler.MovieCrawlerCMP(), moviecrawler.MovieCrawlerCP()])
 
     # Unify movie names
     cadenas = unify_names.unify_names(cadenas, unify_names.get_reference_movienames(cadenas))
     
 
     # init Jinja templates
-    env = Environment(loader=FileSystemLoader([server_template_dir, development_template_dir]))
+    env = Environment(loader=FileSystemLoader(template_dir))
     tDate = datetime.now()
 
     render_list = [
@@ -114,35 +105,12 @@ def main(devmode=False):
 
 if __name__ == '__main__':
 
-    
-    # deployment dependent settings
-    basedir = "/home/pajarraco/carteleraperu.com"
-
-    if not os.path.exists(basedir):
-        # local development
-        basedir = "./www"
-
-    server_template_dir = '/home/pajarraco/bin/cines/templates'
-    development_template_dir = './templates'
-
-    # non deployment dependent settings
-    bycine_file =  "%s/index.html" % basedir
-    bymovie_file = "%s/bymovie.html" % basedir
-    settings_file = "%s/preferences.html" % basedir
-    about_file = "%s/about.html" % basedir
-
-    bycine_template = "cines.html"
-    bymovie_template = "movies.html"
-    settings_template = "preferences.html"
-    about_template = "about.html"
-    
-    logfile = "traceback.log"
-
-    nofetch_mode = False
-
     if len(sys.argv) > 1:
-        if sys.argv[1] == "--nofetch":
-            nofetch_mode = True
+        if sys.argv[1] == "--dev":
+            from settings.local import *
+    else:
+        from settings.production import * 
 
-    main(nofetch_mode)
+
+    main()
 
