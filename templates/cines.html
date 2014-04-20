@@ -10,13 +10,10 @@
 {% endblock %}
 
 {% block head_link %}
-	<link rel="stylesheet" href="/static/css/add2home.css">
     <link rel="stylesheet" href="/static/css/cines.css">
-
 {% endblock %}
 
 {% block head_script %}
-	<script type="text/javascript" src="/static/js/add2home.js" charset="utf-8"></script>
 {% endblock %}
 
 {% block nav_menu %}
@@ -26,19 +23,7 @@
             </a>
             <a href="/about.html" rel="in-app" class="btn btn-inverse btn-small pull-right" style="margin-right: 10px;"> 
 				<i class="icon-info-sign icon-white"></i> <span class="hidden-phone hidden-tablet"> Acerca de</span>
-		    </a>
-
-	      	<!-- fb and twitter buttons -->
-			<ul class="nav">
-				<li>
-					<a href="https://twitter.com/intent/tweet?screen_name=Cartelera_Peru&text=http%3A%2F%2Fcarteleraperu.com%20Los%20horarios%20de%20las%20pel%C3%ADculas%20de%20los%20principales%20cines%20del%20Per%C3%BA%20en%20una%20sola%20p%C3%A1gina" data-lang="es" data-dnt="true"><img src="static/img/twitter-bird-dark-bgs.png"></a>
-					<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>	
-				</li>
-				<li style="padding-top: 10px;">
-<iframe src="//www.facebook.com/plugins/like.php?href=https%3A%2F%2Fwww.facebook.com%2Fcarteleracinesperu&amp;width=100&amp;height=21&amp;colorscheme=dark&amp;layout=button_count&amp;action=like&amp;show_faces=false&amp;send=false&amp;appId=135303389947093" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:100px; height:21px;" allowTransparency="true"></iframe>
-				</li>
-			</ul>
-			
+		    </a>			
 
 {% endblock %}
 
@@ -93,7 +78,7 @@
 
 </div> <!-- end span10 -->
 <div class="span3 hidden-phone">
-    {% include 'rightcol-ad.html' %}
+
 </div>
 </div> <!-- end row -->
 
