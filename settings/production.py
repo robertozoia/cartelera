@@ -5,10 +5,10 @@
 from base import *
 
 # website root directory
-basedir = "/home/pajarraco/carteleraperu.com"
+basedir = "/var/www"
 
 # jinja2 templates directory
-template_dir = '/home/pajarraco/bin/cines/templates'
+template_dir = '/home/user/cines/templates'
 
 # output webpages filenames
 bycine_file =  "%s/index.html" % basedir
