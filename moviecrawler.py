@@ -1,11 +1,29 @@
-#!/usr/bin/env python
 # encoding: utf-8
-"""
-cine.py
 
-Created by Roberto Zoia on 2012-05-02.
-Copyright (c) 2012 8 Consultores SAC. All rights reserved.
-"""
+# moviecrawler.py
+
+# The MIT License (MIT)
+#
+# Copyright (c) 2012 Roberto Zoia
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+
+# The above copyright notice and this permission notice shall be included in
+# all copies or substantial portions of the Software.
+
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+# THE SOFTWARE.
+#
 
 #
 # Revision history
@@ -659,15 +677,11 @@ class MovieCrawlerCP(MovieCrawler):
             if r.status == 200:
                 html = r.data.decode(self.encoding, errors='replace')
                 soup = BeautifulSoup(html)
-#                 print soup
                 peliculas = soup.find_all('a', 
                             { 'href': re.compile('detalle_pelicula.php\?pelicula=.*?\&complejo\=%02d' % idCine) } )
 
                 result = [] 
                 
-#                 for i in range(0, len(peliculas)-1, 2):
-#                     print "[{0}] Pelicula: {1}".format(i, peliculas[i].string.strip())
-#                     print "[{0}] Horario: {1}".format(i+1, peliculas[i+1].string.strip())
 
                 for i in range(0, len(peliculas)-1, 2):
                     tPelicula = peliculas[i].string.strip()
@@ -695,12 +709,5 @@ class MovieCrawlerCP(MovieCrawler):
             return []
 
 
-
-
-
-if __name__ == '__main__':
-    pass
-    
-    
 
 

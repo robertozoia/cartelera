@@ -1,6 +1,27 @@
-#!/usr/bin/env python
 # encoding: utf-8
 
+# The MIT License (MIT)
+#
+# Copyright (c) 2012 Roberto Zoia
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+
+# The above copyright notice and this permission notice shall be included in
+# all copies or substantial portions of the Software.
+
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+# THE SOFTWARE.
+#
 
 from tools import purify
 from operator import itemgetter
@@ -140,27 +161,6 @@ def prune(data):
 
 	return new_data
 
-
-if __name__=='__main__':
-
-	import testdata_cartelera as data_cartelera
-	import unify_names
-
-	cadenas = data_cartelera.cadenas
-	cadenas = unify_names.unify_names(cadenas, unify_names.get_reference_movienames(cadenas))
-
-	data = organize_by_movie(cadenas)
-
-	for p in data:
-		print "--------------"
-		print "Película: %s" % purify(p['pelicula'])
-
-		for cadena in p['cadenas']:
-			print "[%s]" % cadena['cadena']
-			for cine in cadena['cines']:
-				print "= %s =" % cine['cine']
-				for sala in cine['salas']:
-					print "%s | %s" % (p_attr(sala), p_horarios(sala))
 
 
 

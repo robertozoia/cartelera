@@ -51,6 +51,12 @@ You should at least configure `basedir` and `template_dir`:
 
 If you use the provided templates for generating the webpages, you will need to copy the `www/static` directory contents to `static` under your web server's root.
 
+If you are using Google Anaytics, you specify your account number in `templates/ga.html`.
+
+~~~html
+_gaq.push(['_setAccount', 'UA-XXXXXXXX-X']);
+~~~
+
 
 ## Command line options
 
