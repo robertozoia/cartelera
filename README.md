@@ -25,7 +25,9 @@ $ pip install -r requirements.txt
 
 ## Configuration
 
-The directory `settings` contains three files:
+### Settings
+
+The `settings` directory contains three files:
 
 * Settings common to production and development environments are specified in `base.py`.  (There should be no need to modify this file.)
 * Settings used for development reside in `local.py`. (Intended to be used when running the code on your local machine.)
@@ -44,6 +46,10 @@ You should at least configure `basedir` and `template_dir`:
 
 *  `basedir` is where the generated website will reside and served by your webserver.
 *  `template_dir` is where your template files reside.  For production, it is recommended to specify the full directory path.
+
+### Static webpage content
+
+If you use the provided templates for generating the webpages, you will need to copy the `www/static` directory contents to `static` under your web server's root.
 
 
 ## Command line options
