@@ -76,9 +76,11 @@ $ python cines.py
 
 This is a _scratch your own itch_ kind of project.  The movie theater's websites are slow and bloated with irrelevant information.  I wanted a page showed just the movie titles and show times, and loaded as _fast_ as possible.
 
+Early versions included ratings from IMDb, but IMDb forced the developer of the Python library I was using to shut down and cease development.
+
 ## TODO
 
-* Unify movie names across movie chains.  The current approach is to use `python-Levenshtein` a movie named different across chains, but it does not always work.
+* Unify movie names across movie chains.  The current approach is to use `python-Levenshtein` to identify a movie with different names across different chains, but it does not always work.
 
 * There is bug that 'sometimes' prevents showing information from Jockey Plaza.
 
