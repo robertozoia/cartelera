@@ -34,6 +34,7 @@
 # in an important speed improvement (dropped total page generation time from 50sec to 30sec) 
 #
 
+import os
 import urllib3
 from urllib3.exceptions import HTTPError, TimeoutError, MaxRetryError
 import requests
@@ -601,11 +602,18 @@ class MovieCrawlerCP(MovieCrawler):
     def __init__(self):
         super(MovieCrawlerCP, self).__init__(cadena=u"Cineplanet", tag="CP")
         
+
         
         # indicadores de subtitulos
-        self.suffix_subtitles['doblada'] =  [ u'Dob', u'DOB', u'3D Dob', ]
+        self.suffix_subtitles['doblada'] =  [ 
+            u'2D Doblada', 
+            u'3D Doblada', 
+            u'Doblada',
+        ]
+
         self.suffix_subtitles['subtitluada'] = [
-                u'Sub', u'SUB', u'3D Sub', u'HD Sub',
+                u'Subtitulada', u'2D Subtitulada',
+                u'3D Subtitulada',
             ]
 
         # indicadores de resolución
@@ -618,7 +626,6 @@ class MovieCrawlerCP(MovieCrawler):
         self.url = r"""http://www.cineplanet.com.pe"""
         self.encoding = 'utf-8'
         
-        self.cp_server = r"""/cineplanet.server.php"""
         
         urllib3.make_headers(user_agent=wanderer())
         
@@ -631,42 +638,72 @@ class MovieCrawlerCP(MovieCrawler):
     
     def get_cines_cadena(self):
         """
-            Devuelve una lista de los cines y sus urls (o sus ids)
+            Devuelve una lista de los cines y sus urls.
+            Este método fue modificado el 2014-09-26 porque Cineplanet cambió
+            su página web (cambió para mejor:  más ordenada y gráficamente más
+            amigable).
         """
-        result = [
-            (u'CinePlanet Alcázar', 4, None),
-            (u'CinePlanet Arequipa', 6, None),
-            (u'CinePlanet Arequipa Real Plaza', 28,None),
-            (u'CinePlanet Centro', 22, None),
-            (u'CinePlanet Chiclayo', 13, None),
-            (u'CinePlanet Comas', 16, None),
-            (u'CinePlanet Huancayo', 20, None),
-            (u'CinePlanet Juliaca', 26, None),
-            (u'CinePlanet La Molina', 9, None),
-            (u'CinePlanet Norte', 7, None),
-            (u'CinePlanet Piura', 8, None),
-            (u'CinePlanet Primavera', 5, None),
-            (u'CinePlanet Risso', 12, None),
-            (u'CinePlanet San Miguel', 1, None),
-            (u'CinePlanet Santa Clara', 24, None),
-            (u'CinePlanet Tacna', 27, None),
-            (u'CinePlanet Trujillo Centro', 17, None),
-            (u'CinePlanet Trujillo Real Plaza', 19, None),
-        ]
-        return result
+
+        result = []
+
+        tipo_salas = [ 'cines-lima', 'cines-provincias']
+
+        for sala in tipo_salas:
     
+            retries = 5
+            while retries > 0:
+                try:
+                    r = self.conn.request(
+                        'GET', 
+                        os.path.join(self.url, sala),
+                        headers ={ 'user-agent': wanderer() }
+                    )
+                    break
+                except TimeoutError:
+                    retries = retries - 1
+
+            if retries > 0:
+
+                if r.status == 200:
+                    html = r.data.decode(self.encoding, errors='replace')
+                    soup = BeautifulSoup(html)
+
+                    # Get all cines for this kind of sala
+                    t_cines = soup.find_all('div', { 'class': 'WEB_cineListadoNombre' })
+                    
+                    for c in t_cines:
+                        tmp = []
+                        tmp.append(c.a.text)
+                        tmp.append(0)
+                        tmp.append(os.path.join(self.url, c.a['href']))
+                        result.append(tmp)
+
+
+        # Salas prime
+        # Cineplanet uses Javascript to generate the data for its prime theaters.
+        # So we choose the easiest way (perhaps not the best...): hardcode the urls.
+
+ 
+        result.append([u'Salaverry', 0, os.path.join('/cine/salaverry')])
+        result.append([u'San Borja (La Rambla)', 0, os.path.join('/cine/san-borja')])
+        result.append([u'Plaza San Miguel', 0, os.path.join('/cine/san-miguel')])
+
+        return result
+
     
     def get_programacion_cine(self, idCine=0, url=None):
 
-        url = """%s/nuestroscines.php?complejo=%02d""" % (self.url, idCine)
+        
 
         retries = 5
 
         while retries > 0:
             try:
-                r = self.conn.request('GET', '/nuestroscines.php', 
-                    fields={'complejo': '%02d' % idCine }, 
-                    headers ={ 'user-agent': wanderer() })
+                r = self.conn.request(
+                        'GET', 
+                        url,
+                        headers ={ 'user-agent': wanderer() }
+                )
                 
                 break
             except TimeoutError:
@@ -677,26 +714,36 @@ class MovieCrawlerCP(MovieCrawler):
             if r.status == 200:
                 html = r.data.decode(self.encoding, errors='replace')
                 soup = BeautifulSoup(html)
-                peliculas = soup.find_all('a', 
-                            { 'href': re.compile('detalle_pelicula.php\?pelicula=.*?\&complejo\=%02d' % idCine) } )
 
+
+                movies = soup.find_all('div', {'class': 'WEB_cineCarteleraDetalle'} )
                 result = [] 
+
+                for movie in movies:
+
+                    tipo = movie.find('p', { 'class': 'WEB_peliculaTipo'} ).text.strip()
                 
+                    t_movie = Movie(
 
-                for i in range(0, len(peliculas)-1, 2):
-                    tPelicula = peliculas[i].string.strip()
+                        name = self.purify_movie_name(
+                            movie.find('p', { 'class': 'WEB_cinePeliculaNombre' }).text.strip()
+                        ),
 
-                    movie = Movie(
-                        name = self.purify_movie_name(tPelicula),
-                        showtimes = self.grab_horarios(peliculas[i+1].contents[0]),
-                        isSubtitled = self.is_movie_subtitled(tPelicula),
-                        isTranslated = self.is_movie_translated(tPelicula),
-                        isHD = self.is_movie_HD(tPelicula),
-                        is3D = self.is_movie_3D(tPelicula)
+                        showtimes = self.grab_horarios(
+                            " ".join(
+                                [ t.text for t in movie.find_all(
+                                    'a', { 'class': 'horarioDisponible' }
+                                )]
+                            )
+                        ),
+
+                        isSubtitled = self.is_movie_subtitled(tipo),
+                        isTranslated = self.is_movie_translated(tipo),
+                        isHD = self.is_movie_HD(tipo),
+                        is3D = self.is_movie_3D(tipo),
                     )
 
-
-                    result.append(movie)
+                    result.append(t_movie)
 
 
                 # Sort movies
