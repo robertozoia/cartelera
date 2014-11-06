@@ -65,7 +65,7 @@ class Movie(object):
 
 
 	def __init__(self, name=None, showtimes = [],
-			isSubtitled=True, isTranslated=True, isHD=False, is3D=False ):
+			isSubtitled=True, isTranslated=True, isHD=False, is3D=False, isDbox=False):
 
 		self.name = name
 
@@ -74,6 +74,7 @@ class Movie(object):
 		self.isTranslated = isTranslated
 		self.isHD = isHD
 		self.is3D = is3D
+		self.isDbox = isDbox
 
 		
 	def __unicode__(self):

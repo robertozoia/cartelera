@@ -101,6 +101,7 @@ class MovieCrawler(object):
             '3D': [],
         }
 
+        self.suffix_dbox = []
 
         self.movie_cache = {}
     
@@ -255,6 +256,19 @@ class MovieCrawler(object):
                     break
         
         return result
+
+    def is_movie_dbox(self, s):
+
+        result = False
+        if self.suffix_dbox:
+
+            for r in self.suffix_dbox:
+                if s.find(r) != -1:
+                    result = True
+                    break
+
+        return result
+
     
     def purify_movie_name(self, s):
 
@@ -263,10 +277,6 @@ class MovieCrawler(object):
             self.suffix_subtitles, self.prefix_subtitles,   
         ]
 
-#        if self.tag == "UVK": 
-#             print "-" * 10
-#             print(u"[{0}] s before: {1}".format(self.tag, s))
-#         
         
         for listElm in iterList:
             for l in listElm.itervalues():
@@ -279,9 +289,9 @@ class MovieCrawler(object):
         for t in self.suffix_discard:
             s = s.replace(t, "")
         
-#         if self.tag=="UVK": 
-#             print(u"[{0}] s after: {1}".format(self.tag, s.strip()))
-#             print "-" * 10
+        if self.suffix_dbox:
+            for r in self.suffix_dbox:
+                s = s.replace(r, "")
 
         s = title_except.title_except(s.lower())
             
@@ -441,7 +451,8 @@ class MovieCrawlerUVK(MovieCrawler):
                             isSubtitled = self.is_movie_subtitled(peliculas[i].string),
                             isTranslated = self.is_movie_translated(peliculas[i].string),
                             isHD = self.is_movie_HD(peliculas[i].string),
-                            is3D =self.is_movie_3D(peliculas[i].string)
+                            is3D =self.is_movie_3D(peliculas[i].string),
+                            isDbox = self.is_movie_dbox(peliculas[i].string),
                         )
 
                         result.append(movie)
@@ -480,6 +491,8 @@ class MovieCrawlerCMP(MovieCrawler):
         self.prefix_resolutions['HD'] = [ u'2D Digital', u'2D DIG']
         
         self.suffix_discard = [ '2D', ]
+
+        self.suffix_dbox = [ 'd-box', 'D-Box', 'D-box', 'D-BOX', 'DBOX', 'dbox', 'Dbox',  ]
         
         # aunque su página diga 'utf-8', el servidor envía iso-8859-15
         # self.encoding = 'iso-8859-15'  
@@ -585,7 +598,8 @@ class MovieCrawlerCMP(MovieCrawler):
                             isSubtitled = self.is_movie_subtitled(tPelicula),
                             isTranslated = self.is_movie_translated(tPelicula),
                             isHD = self.is_movie_HD(tPelicula),
-                            is3D = self.is_movie_3D(tPelicula)
+                            is3D = self.is_movie_3D(tPelicula),
+                            isDbox = self.is_movie_dbox(tPelicula),
                         )
             
                         result.append(movie)
@@ -747,6 +761,7 @@ class MovieCrawlerCP(MovieCrawler):
                         isTranslated = self.is_movie_translated(tipo),
                         isHD = self.is_movie_HD(tipo),
                         is3D = self.is_movie_3D(tipo),
+                        isDbox = self.is_movie_dbox(tipo),
                     )
 
                     result.append(t_movie)

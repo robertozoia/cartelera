@@ -54,9 +54,10 @@
                         ><span itemprop="name">{{ movie.name }}</span>
                         {% if movie.isTranslated %}<span class="label" title=
                         "Doblada" >Dob</span>{% endif %}
-                        {% if movie.isSubtitled %}<span class="label" title="Subtitulada">Sub</span>{% endif %}
+                        {% if movie.isSubtitled %}<span class="label label-success" title="Subtitulada">Sub</span>{% endif %}
                         {% if movie.isHD %}<span class="label label-info" title="Alta definición">HD</span>{% endif %}
                         {% if movie.is3D %}<span class="label label-info" title="3D">3D</span>{% endif %}
+                      	{% if movie.isDbox %}<span class="label label-rating" title="DBOX">DBOX</span>{% endif %}
                         <td>
                         {% for st in movie.showtimes %}
                             <span itemprop="startDate" content="{{ today }}T{{ st }}"class="horario" >
