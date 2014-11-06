@@ -125,7 +125,7 @@ if __name__ == '__main__':
         if sys.argv[1] == "--dev":
             from settings.local import *
         else:
-            print("The only recognized option is --dev (runs program in development mode.")
+            print("The only recognized option is --dev (runs program in development mode.)")
             sys.exit(1)
     else:
         from settings.production import * 

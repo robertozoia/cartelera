@@ -623,7 +623,7 @@ class MovieCrawlerCP(MovieCrawler):
         self.suffix_discard = [  ]
         
                 
-        self.url = r"""http://www.cineplanet.com.pe"""
+        self.url = r"""https://cineplanet.com.pe"""
         self.encoding = 'utf-8'
         
         
