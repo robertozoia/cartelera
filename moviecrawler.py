@@ -46,6 +46,7 @@ from bs4 import BeautifulSoup
 
 from models import TheaterChain, Theater, Movie
 import tools
+import title_except
 
 #
 #   Para usar una terminología clara, definimos:
@@ -100,7 +101,7 @@ class MovieCrawler(object):
             '3D': [],
         }
 
-        
+
         self.movie_cache = {}
     
     
@@ -281,6 +282,8 @@ class MovieCrawler(object):
 #         if self.tag=="UVK": 
 #             print(u"[{0}] s after: {1}".format(self.tag, s.strip()))
 #             print "-" * 10
+
+        s = title_except.title_except(s.lower())
             
         return s.strip()
 
@@ -374,15 +377,15 @@ class MovieCrawlerUVK(MovieCrawler):
         # TODO:  sacar esta lista de la página web
         
         result = [
-            (u'UVK Platino Basadre', 0, r"http://www.uvkmulticines.com/multicines/cine/UVK-PLATiNO-BASADRE-"),
-            (u'UVK Larcomar', 0, r"http://www.uvkmulticines.com/multicines/cine/UVK-LARCOMAR" ),
-            (u'UVK Caminos del Inca',0, r"http://www.uvkmulticines.com/multicines/cine/UVK-CAMiNOS-DEL-iNCA"),
-            (u'UVK San Martín Centro', 0, r"http://www.uvkmulticines.com/multicines/cine/UVK-SAN-MARTIN-CENTRO"),
-            (u'UVK Ica', 0, r"http://www.uvkmulticines.com/multicines/cine/UVK-iCA" ),
-            (u'UVK Asia', 0, r"http://www.uvkmulticines.com/multicines/cine/UVK-ASiA"),
-            (u'UVK Huacho', 0,  r"http://www.uvkmulticines.com/multicines/cine/UVK-HUACHO" ),
-            (u'UVK El Agustino', 0, r"http://www.uvkmulticines.com/multicines/cine/UVK-EL-AGUSTINO" ),
-            (u'UVK Piura', 0, r"http://www.uvkmulticines.com/multicines/cine/UVK-PiURA"),
+            (u'Platino Basadre', 0, r"http://www.uvkmulticines.com/multicines/cine/UVK-PLATiNO-BASADRE-"),
+            (u'Larcomar', 0, r"http://www.uvkmulticines.com/multicines/cine/UVK-LARCOMAR" ),
+            (u'Caminos del Inca',0, r"http://www.uvkmulticines.com/multicines/cine/UVK-CAMiNOS-DEL-iNCA"),
+            (u'San Martín Centro', 0, r"http://www.uvkmulticines.com/multicines/cine/UVK-SAN-MARTIN-CENTRO"),
+            (u'Ica', 0, r"http://www.uvkmulticines.com/multicines/cine/UVK-iCA" ),
+            (u'Asia', 0, r"http://www.uvkmulticines.com/multicines/cine/UVK-ASiA"),
+            (u'Huacho', 0,  r"http://www.uvkmulticines.com/multicines/cine/UVK-HUACHO" ),
+            (u'El Agustino', 0, r"http://www.uvkmulticines.com/multicines/cine/UVK-EL-AGUSTINO" ),
+            (u'Piura', 0, r"http://www.uvkmulticines.com/multicines/cine/UVK-PiURA"),
             
         ]
         
