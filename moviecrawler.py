@@ -100,6 +100,7 @@ class MovieCrawler(object):
             '3D': [],
         }
 
+        
         self.movie_cache = {}
     
     
@@ -350,11 +351,12 @@ class MovieCrawlerUVK(MovieCrawler):
         # indicadores de subtitulos
         # (indicador también del desorden cerebral de los encargados del website de UVK)
         self.suffix_subtitles['doblada'] =  [ 
-                u'(Estreno Doblada)', u'(HD Doblada)', u'(Digital doblada)', u'(Doblada)'
+                u'(Estreno Doblada)', u'(HD Doblada)', u'(Digital doblada)', u'(Doblada)',
+                u'( Doblada)',
             ]
         self.suffix_subtitles['subtitulada'] = [
                 u'(Estreno Subtitulada)', u'(HD Subtitulada)', u'(Digital subtitulada)', 
-                u'(Subtitulada)',
+                u'(Subtitulada)', u'( Subtitulada)',
             ]
                 
         # indicadores de resolución
@@ -363,9 +365,7 @@ class MovieCrawlerUVK(MovieCrawler):
         
         self.suffix_discard = [ '(Estreno)', ]
         
-                
-        # conexión reusable al servidor de la cadena
-        # self.conn = urllib3.connection_from_url(self.url, timeout=self.timeout)
+        self.conn = urllib3.connection_from_url(self.url, timeout=self.timeout)
         
         
         
@@ -382,6 +382,7 @@ class MovieCrawlerUVK(MovieCrawler):
             (u'UVK Asia', 0, r"http://www.uvkmulticines.com/multicines/cine/UVK-ASiA"),
             (u'UVK Huacho', 0,  r"http://www.uvkmulticines.com/multicines/cine/UVK-HUACHO" ),
             (u'UVK El Agustino', 0, r"http://www.uvkmulticines.com/multicines/cine/UVK-EL-AGUSTINO" ),
+            (u'UVK Piura', 0, r"http://www.uvkmulticines.com/multicines/cine/UVK-PiURA"),
             
         ]
         
@@ -397,18 +398,20 @@ class MovieCrawlerUVK(MovieCrawler):
 
         while retries > 0:
             try:    
-                r = requests.get(url)
+                r = self.conn.request(
+                    'GET', 
+                    url,
+                    headers = urllib3.make_headers(user_agent=wanderer())
+                )
                 break
             except TimeoutError:
                 retries = retries - 1  
 
         if retries > 0:
-            #if r.status == 200:
-            if r.status_code == 200:
+            if r.status == 200:
                 # Page readed ok
-                
-                # html = r.data.decode(self.encoding, errors='replace')  
-                html = r.text.encode(r.encoding, errors='replace')            
+                html = r.data.decode(self.encoding, errors='replace')  
+                # html = r.text.encode(r.encoding, errors='replace')            
                 soup = BeautifulSoup(html, 'html5lib')
             
                 p1 = soup.find('div', class_='highslide-body')
