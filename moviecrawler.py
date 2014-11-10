@@ -102,9 +102,10 @@ class MovieCrawler(object):
         }
 
         self.suffix_dbox = []
+        self.suffix_discard = []    
 
         self.movie_cache = {}
-    
+
     
         
     def getTheaterChainMovies(self):
@@ -348,6 +349,135 @@ class MovieCrawler(object):
 
 
 
+#
+# Cinépolis
+# 
+
+
+class MovieCrawlerCinepolis(MovieCrawler):
+
+    def __init__(self):
+        super(MovieCrawlerCinepolis, self).__init__(cadena=u"Cinépolis", tag="CPOL")
+
+        self.url = r"""http://www.cinepolis.com.pe"""
+        self.encoding = 'utf-8'
+
+        self.suffix_subtitles['doblada'] = [
+            u'Dob',
+        ]
+
+        self.suffix_subtitles['subtitulada'] = [
+
+        ]
+
+        self.suffix_resolutions['HD'] = [
+            u'Dig',
+        ]
+
+
+        self.conn = urllib3.connection_from_url(self.url, timeout = self.timeout)
+
+
+
+    def get_cines_cadena(self):
+
+        pass
+
+
+    def get_programacion_cine(self):
+
+        pass
+
+
+    def get_cartelera_cines_de_cadena(self):
+        """
+            Returns a list of Theater objects.
+        """
+
+        def get_movies(url):
+
+            retries = 3
+            result = []
+            while retries > 0:
+                try:    
+                    r = self.conn.request(
+                        'GET', 
+                        url,
+                        headers = urllib3.make_headers(user_agent=wanderer())
+                    )
+                    break
+                except TimeoutError:
+                    retries = retries - 1  
+
+
+            if retries > 0:
+                if r.status == 200:
+                    # Page readed ok
+                    html = r.data.decode(self.encoding, errors='replace')            
+                    soup = BeautifulSoup(html)
+
+                    theater_names = [t.string for t in soup.find_all(
+                        'span', class_='TitulosBlanco'
+                    )]
+
+                    theater_codes = [ t['id'][4:] for t in soup.find_all(
+                        'a', id=re.compile('^Cine*')
+                    )]
+
+
+                    
+                    for i in range(0, len(theater_names)):
+
+                        theater = Theater(name=theater_names[i])
+                        movies = []
+
+                        tmp = soup.find_all('a', id=re.compile(
+                            '^idPelCine.+' + theater_codes[i]
+                        ))
+                        
+                        for p in tmp:
+                            movie_name = p.parent.find('a', class_='peliculaCartelera').string
+                            movie_showtimes = [t.string for t in p.parent.parent.find_all(
+                                'span', class_=re.compile('^horariosCartelera*')
+                            )]
+
+                            movie_showtimes = self.grab_horarios(" ".join(movie_showtimes))
+
+
+                            movie = Movie(
+                                name = self.purify_movie_name(movie_name),
+                                showtimes = movie_showtimes,
+                                isSubtitled = self.is_movie_subtitled(movie_name),
+                                isTranslated = self.is_movie_translated(movie_name),
+                                isHD = self.is_movie_HD(movie_name),
+                                is3D = self.is_movie_3D(movie_name),
+                                isDbox = self.is_movie_dbox(movie_name),
+                            )
+
+                            movies.append(movie)
+                            # movies.sort(key=lambda x: x.name)
+
+                        theater.movies = movies
+
+                        result.append(theater)
+                else:
+                    return []
+            else:
+                return []
+
+            return result
+
+        
+        urls = [
+            r"http://www.cinepolis.com.pe/_CARTELERA/cartelera.aspx?ic=100",
+            r"http://www.cinepolis.com.pe/_CARTELERA/cartelera.aspx?ic=143",
+        ]
+        theaters = []
+
+        for u in urls:
+            theaters = theaters + get_movies(u)
+
+        return theaters
 
 #
 #  UVK

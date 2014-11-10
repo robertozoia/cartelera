@@ -69,28 +69,16 @@ def unify_names(theater_chains, ref_movienames):
 	LLimit = 0.8
 
 	# Don't modify original data
-	theater_chains_copy = copy.deepcopy(theater_chains)
+	#theater_chains_copy = copy.deepcopy(theater_chains)
 
 	for ref_name in ref_movienames:
-		for chain in theater_chains_copy:
+		for chain in theater_chains:
 			for theater in chain.theaters:
 				for movie in theater.movies:
 					if Levenshtein.ratio(ref_name.lower(), movie.name.lower()) >= LLimit:
 						movie.name = ref_name
-
-
-
-	# for ref_movie in ref_movienames:
-	# 	for iCadena, cadena in enumerate(data):
-	# 		for iCine, cine in enumerate(cadena['cines']):
-	# 			for iPelicula, pelicula in enumerate(cine['cartelera']):
-	# 				# l = Levenshtein.ratio(ref_movie.lower(), pelicula['pelicula'].lower())
-	# 				# f.write("[%s] to %s:  %f\n" % ( purify(ref_movie), purify(pelicula['pelicula']), l ))
-	# 				if Levenshtein.ratio(ref_movie.lower(), pelicula['pelicula'].lower()) >= LLimit:
-	# 					data[iCadena]['cines'][iCine]['cartelera'][iPelicula]['pelicula'] = ref_movie
-
-
-	return theater_chains_copy
+			
+	return theater_chains
 
 		
 

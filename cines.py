@@ -85,10 +85,15 @@ def build_cartelera(theater_chains):
 def main():
     
 
-    cadenas = build_cartelera([moviecrawler.MovieCrawlerUVK(), 
-        moviecrawler.MovieCrawlerCMP(), moviecrawler.MovieCrawlerCP()])
+    cadenas = build_cartelera([
+        moviecrawler.MovieCrawlerUVK(), 
+        moviecrawler.MovieCrawlerCMP(),
+        moviecrawler.MovieCrawlerCP(),
+        moviecrawler.MovieCrawlerCinepolis(),
+    ])
 
     # Unify movie names
+    
     cadenas = unify_names.unify_names(cadenas, unify_names.get_reference_movienames(cadenas))
     
 
