@@ -349,17 +349,148 @@ class MovieCrawler(object):
 
 
 
+class MovieCrawlerCineStar(MovieCrawler):
+    # http://www.cinestar.com.pe/
+
+    pass
+
+class MovieCrawlerMovieTime(MovieCrawler):
+    # http://www.movietime.com.pe/
+    pass
+
+class MovieCrawlerMultiCinesPlazaJM(MovieCrawler):
+    # http://www.multicinesplazajesusmaria.com/
+    pass
+
+class MovieCrawlerCinerama(MovieCrawler):
+    # http://www.cinerama.com.pe/
+
+    def __init__(self):
+        super(MovieCrawlerCinerama, self).__init__(cadena=u"Cinerama", tag="CRAMA")
+
+        self.url = r"http://www.cinerama.com.pe/"
+        self.encoding = 'utf-8'
+
+        self.conn = urllib3.connection_from_url(self.url, timeout = self.timeout)
+
+
+    def get_cines_cadena(self):
+
+        url = r'http://www.cinerama.com.pe/cines.php'
+
+        retries = 3
+
+        while retries > 0:
+
+            try:
+                r = self.conn.request(
+                    'GET', 
+                    url,
+                    headers = urllib3.make_headers(user_agent=wanderer())            
+                )
+                break
+
+            except TimeoutError:
+                retries = retries - 1
+
+
+        if retries > 0:
+
+            if r.status == 200:
+                html = r.data.decode(self.encoding, errors='replace')
+                soup = BeautifulSoup(html)
+
+                theaters = [
+                    (
+                        c.next.text.strip(),
+                        os.path.join(self.url, c.next['href'])
+                    ) for c in soup.find_all(
+                        'p', class_='titulo-tienda'
+                )]
+
+                return theaters
+        else:
+
+            return []
+
+
+    def get_cartelera_cines_de_cadena(self):
+
+        theaters = []
+
+        t_theaters = self.get_cines_cadena()
+
+        for t in t_theaters:
+
+            theater_name, url = t
+
+            theater = Theater(name = theater_name.capitalize())
+            theater.movies = self.get_programacion_cine(url=url)
+            theaters.append(theater)
+
+        return theaters
+
+
+    def get_programacion_cine(self, idCine=0, url=None):
+
+        retries = 3
+        while retries > 0:
+
+            try:
+                r = self.conn.request(
+                    'GET', 
+                    url,
+                    headers = urllib3.make_headers(user_agent=wanderer())
+                )
+                break
+            except TimeoutError:
+                retries = retries - 1
+
+        if retries > 0:
+
+            if r.status == 200:
+                html = r.data.decode(self.encoding, errors='replace')
+                soup = BeautifulSoup(html)
+
+                m_titles = [m.a.string.strip() for m in soup.find_all(
+                    'div', class_='titcarte') if m.a]
+                m_showtimes = [m.string.strip() for m in soup.find_all('div', class_='horasprof')]
+
+                movies = []
+
+                for i in range(0, len(m_titles)):
+                    movie = Movie(
+                            name = self.purify_movie_name(m_titles[i]),
+                            showtimes = self.grab_horarios(m_showtimes[i]),
+                            # La página web de Cinerama no da mayor información
+                            isSubtitled = True,
+                            isTranslated = False,
+                            isHD = True,
+                            is3D = False,
+                            isDbox = False,
+                    )
+
+                    movies.append(movie)
+
+                return movies
+
+            else:
+                return []
+        else:
+
+            return []
+
+
 #
 # Cinépolis
 # 
-
 
 class MovieCrawlerCinepolis(MovieCrawler):
 
     def __init__(self):
         super(MovieCrawlerCinepolis, self).__init__(cadena=u"Cinépolis", tag="CPOL")
 
-        self.url = r"""http://www.cinepolis.com.pe"""
+        self.url = r"http://www.cinepolis.com.pe"
         self.encoding = 'utf-8'
 
         self.suffix_subtitles['doblada'] = [

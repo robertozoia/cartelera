@@ -90,6 +90,7 @@ def main():
         moviecrawler.MovieCrawlerCMP(),
         moviecrawler.MovieCrawlerCP(),
         moviecrawler.MovieCrawlerCinepolis(),
+        moviecrawler.MovieCrawlerCinerama(),
     ])
 
     # Unify movie names
