@@ -10,7 +10,6 @@
 {% endblock %}
 
 {% block head_link %}
-    <link rel="stylesheet" href="/static/css/cines.css">
 {% endblock %}
 
 {% block head_script %}
@@ -37,11 +36,12 @@
 <h1 style="line-height: 1.1;">Horarios de películas en cartelera en los cines del Perú</h1>
 </section>
 {% for chain in chains %}
+<a name="{{ chain.name|escape|urlize|replace(' ', '-')|replace('(','-')|replace(')','-') }}">
 <h2>{{ chain.name }}</h2>
-	
+</a>	
 	{% for theater in chain.theaters %}
 
-	<div rel="theater-box" id="{{ theater.name|escape|urlize|replace(' ', '-') }}-box">
+	<div rel="theater-box" id="{{ theater.name|escape|urlize|replace(' ', '-')|replace('(','-')|replace(')','-') }}-box">
 	<section id="{{ theater.name|escape|urlize|replace(' ', '-') }}-opt">
 	<h3>{{ chain.name }} - {{ theater.name }}</h3>
 	
@@ -96,41 +96,22 @@
 
 {% endblock %}
 
-{% block bottom_scripts %}
+{% block bottom_js %}
+<!-- deffered loading of js -->
+<script type="text/javascript">
+    // Add a script element as a child of the body
+    function downloadJSAtOnload() {
+    var element = document.createElement("script");
+    element.src = "/static/js/cines-all.min.js";
+    document.body.appendChild(element);
+    }
 
- 	$(document).ready(function(){
-
-        $('[rel="in-app"]').on('click', function(event) {
-            // this is needed to prevent iOS app mode to leave app mode when
-            // clicking links
-            var baseurl = 'http://carteleraperu.com';
-            event.preventDefault();
-            location.href = $(this).attr("href");
-        });
-
- 		var cookieName = 'cartelera';
- 		var cookieVersion = 1.1;
-	
-		function initialize(data) {
-
-			if (data['version']==cookieVersion) {
-				delete data['version'];
-				for (var key in data) {
-					$('#'+key+'-box').toggle(data[key]);
-				}
-			}
-		}
-
-		$.cookie.json = true;
-		if ($.cookie(cookieName) ) {
-			// cookie exists, read contents
-			var data = $.cookie(cookieName);
-			initialize(data);
-
-		} else {
-			$('[rel="theater-box"]').show();
-		}
-
-	});
+    // Check for browser support of event handling capability
+    if (window.addEventListener)
+    window.addEventListener("load", downloadJSAtOnload, false);
+    else if (window.attachEvent)
+    window.attachEvent("onload", downloadJSAtOnload);
+    else window.onload = downloadJSAtOnload;
+</script>
 
 {% endblock %}

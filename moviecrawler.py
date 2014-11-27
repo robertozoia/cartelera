@@ -625,12 +625,13 @@ class MovieCrawlerUVK(MovieCrawler):
         # indicadores de subtitulos
         # (indicador también del desorden cerebral de los encargados del website de UVK)
         self.suffix_subtitles['doblada'] =  [ 
-                u'(Estreno Doblada)', u'(HD Doblada)', u'(Digital doblada)', u'(Doblada)',
-                u'( Doblada)',
+               u'(doblada Estreno)', u'(Doblada - Estreno)',
+               u'(Estreno Doblada)', u'(Doblada Estreno)',  u'(HD Doblada)', u'(Digital doblada)', u'(Doblada)',
+               u'( Doblada)', 
             ]
         self.suffix_subtitles['subtitulada'] = [
-                u'(Estreno Subtitulada)', u'(HD Subtitulada)', u'(Digital subtitulada)', 
-                u'(Subtitulada)', u'( Subtitulada)',
+                u'(subtitulada Estreno )', u'(Estreno Subtitulada)', u'(Subtitulada Estreno)', u'(Subtitulada - Estreno)', u'(HD Subtitulada)', u'(Digital subtitulada)', 
+                u'(subtitulada)', u'(Subtitulada)', u'( Subtitulada)',
             ]
                 
         # indicadores de resolución
