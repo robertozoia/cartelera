@@ -10,7 +10,16 @@
 {% endblock %}
 
 {% block head_link %}
-    <link rel="stylesheet" href="/static/css/iphone-checkboxes-style.min.css">
+    <!-- Stylesheets -->
+    {% if not compress_css_js %}
+        <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+        <link href="/static/css/bootstrap-theme.css" rel="stylesheet">
+        <link rel="stylesheet" href="/static/css/switchery.css">
+        <link href="/static/css/cines.css" rel="stylesheet">
+    {% else %}
+        <link rel="stylesheet" href="/static/css/preferences-all.min.css" media="screen" >
+    {% endif %}
+
 
 {% endblock %}
 
@@ -18,8 +27,15 @@
 {% endblock %}
 
 {% block nav_menu %}
-            <a class="brand" rel='in-app' href="/index.html">CarteleraPeru.com</a>
-            <a href="/"  rel='in-app' class="btn btn-primary btn-small pull-right">Volver</a>
+    <div class="navbar-header">
+        <a class="navbar-brand" rel='in-app' href="/index.html">CarteleraPeru.com</a>
+    </div>
+    <ul class="nav navbar-nav navbar-right">
+        <li>
+            <a href="/"  rel='in-app'>OK</a>
+        </li>
+    </ul>
+    
 
 {% endblock %}
 
@@ -28,59 +44,75 @@
 
 <div class="container-fluid">
 <div class="row-fluid">
-<div id="prefs" class="span5">
+<div id="prefs" class="col-md-6">
 <p>¿Qué cines quieres ver en tu página de CarteleraPerú?</p>
 
 <form class="form">
+    <div class="panel-group" id="accordion" role="tablist" ariamultiselectable="true">
+
     {% for chain in chains %}
-    <div class="accordion" id="accordion2">
-        <div class="accordion-group">
-            <div class="accordion-heading">
-                <a class="accordion-toggle" 
-                    data-toggle="collapse"
-                    data-parent="#accordion2"
-                    href="#collapse-{{ chain.name|escape|urlize|replace(' ', '-') }}"
+    <div class="panel panel-default"
+    >
+        <div 
+            class="panel-heading" 
+            role="tab" 
+            id="heading-{{ chain.name|escape|urlize|replace(' ',
+                    '_')|replace('(','_')|replace(')','_') }}"
+        >
+            <h4 class="panel-title">  
+                <a 
+                    data-toggle="collapse" 
+                    data-parent="#accordion"
+                    href="#collapse-{{ chain.name|escape|urlize|replace(' ',
+                    '_')|replace('(','_')|replace(')','_') }}"
+                    aria-expanded="true" 
+                    aria-controls="collapse-{{ chain.name|escape|urlize|replace(' ',
+                    '_')|replace('(','_')|replace(')','_') }}"
                 >
                 {{ chain.name }}
                 </a>
-            </div>  <!-- accordion heading -->
-            <div id="collapse-{{ chain.name|escape|urlize|replace(' ', '-') }}"
-                class="accordion-body collapse 
-                    {# open first accordion, close the rest #}
-                    {% if loop.first %} in {% endif %}
-                ">
-                <div class="accordion-inner">
-                    <table class="table table-striped" style="margin-bottom: 0;">
-                    <tbody>
-                    {% for theater in chain.theaters %}
-                        <tr>
-                            <td style="vertical-align: middle !important;">
-                                {{ theater.name }}
-                            </td>
-                            <td>
-                                <input 
-                                    id="{{ theater.name|escape|urlize|replace(' ', '-') }}" 
-                                    type="checkbox" 
-                                    rel="filter-action"
-                                    name="{{ theater.name|escape|urlize|replace(' ', '-') }}"
-                                    checked="checked"
-                                >
-                            </td> 
-                        </tr>
-                    {% endfor %}<!-- cine -->
-                    </tbody>
-                    </table>
-                        
-                </div>  <!-- accordion inner -->
-            </div>  <!-- accordion body -->
-        </div> <!-- accordion group -->
-        
-    </div> <!--  accordion -->
-    {% endfor %}  <!-- chain -->
-</form>
+            </h4>
+        </div>
 
-</div><!--  end span6 --> 
-<div class="span1"></div>
+        <div id="collapse-{{ chain.name|escape|urlize|replace(' ',
+                    '_')|replace('(','_')|replace(')','_') }}"
+            class="panel-collapse collapse" 
+            role="tabpanel"
+            aria-labelledby="heading-{{ chain.name|escape|urlize|replace(' ',
+                    '_')|replace('(','_')|replace(')','_') }}"
+        >
+            <div class="panel-body">
+
+                <table class="table table-striped table-hover" style="margin-bottom: 0;">
+                <tbody>
+                {% for theater in chain.theaters %}
+                    <tr>
+                        <td style="vertical-align: middle !important;">
+                            {{ theater.name }}
+                        </td>
+                        <td>
+                            <input 
+                                id="{{ theater.name|escape|urlize|replace(' ', '-')|replace('(','_')|replace(')','_') }}" 
+                                type="checkbox"
+                                class="js-switch"
+                                rel="filter-action"
+                                name="{{ theater.name|escape|urlize|replace(' ', '-')|replace('(','_')|replace(')','_') }}"
+                                checked="checked"
+                            >
+                        </td> 
+                    </tr>
+                {% endfor %}<!-- cine -->
+                </tbody>
+                </table>          
+            </div>  <!-- panel-body -->
+
+        </div><!-- panel-collapse -->
+    </div><!-- panel -->
+    {% endfor %}  <!-- chain -->
+    </div><!-- panel-group -->
+</form>
+</div><!--  end col-md-6 --> 
+<div class="col-md-1"></div>
 </div>  <!-- end row -->
 </div><!-- end container -->
 
@@ -88,6 +120,15 @@
 
 {% block bottom_js %}
 
+{% if not compress_css_js %}
+    <script src="/static/js/jquery-1.11.1.min.js"></script>
+    <script src="/static/js/json2.js"></script>
+    <script src="/static/js/jquery.cookie.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
+    <script src="/static/js/switchery.js"></script>
+    <script src="/static/js/preferences.js"></script>
+{% else %}
+<!-- deffered loading of js -->
 <script type="text/javascript">
     // Add a script element as a child of the body
     function downloadJSAtOnload() {
@@ -103,6 +144,7 @@
     window.attachEvent("onload", downloadJSAtOnload);
     else window.onload = downloadJSAtOnload;
 </script>
+{% endif %}
 
 {% endblock %}
 

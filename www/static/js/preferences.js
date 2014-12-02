@@ -9,7 +9,7 @@
         });
         
  		var cookieName = 'cartelera';
- 		var cookieVersion = 1.1;
+ 		var cookieVersion = 1.2;
 	
 		function initialize(data) {
 			if (data['version']==cookieVersion) {
@@ -44,11 +44,23 @@
 		} else {
 			writeCookie();
 		}
-        $(':checkbox').iphoneStyle({
+
+		var elems = Array.prototype.slice.call(document.querySelectorAll('.js-switch'));
+
+		elems.forEach(function(html) {
+		  var switchery = new Switchery(html);
+		});
+
+		$(':checkbox').change(function() {
+			writeCookie();
+		});
+
+        /* $(':checkbox').iphoneStyle({
               checkedLabel: 'SI',
               uncheckedLabel: 'NO',
               onChange: function(elem, value) {
                 writeCookie();
               },
         });
+ 	*/
 	});

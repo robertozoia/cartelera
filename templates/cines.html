@@ -10,39 +10,93 @@
 {% endblock %}
 
 {% block head_link %}
+
+    <!-- Stylesheets -->
+    {% if not compress_css_js %}
+        <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+        <link href="/static/css/bootstrap-theme.css" rel="stylesheet">
+        <link href="/static/css/cines.css" rel="stylesheet">
+    {% else %}
+        <link rel="stylesheet" href="/static/css/cines-all.min.css" media="screen" >
+    {% endif %}
+
 {% endblock %}
 
 {% block head_script %}
 {% endblock %}
 
 {% block nav_menu %}
+    <div class="navbar-header">
+        <button type="button"
+            class="navbar-toggle collapsed"
+            data-toggle="collapse" 
+            data-target="#navbar-collapse-1">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" rel="in-app" href="/index.html">CarteleraPeru.com</a>
+    </div>
+    <div class="collapse navbar-collapse" id="navbar-collapse-1">
+        <ul class="nav navbar-nav">
+        {% for chain in chains %}
+            <li>        
+                <a rel='in-app' href="#{{ chain.name|escape|urlize|replace(' ', '-')|replace('(','_')|replace(')','_') }}">
+                {{ chain.name }}
+                </a>
+            </li>
+        {% endfor %}
+        </ul>
 
-            <a class="brand hidden-phone" rel="in-app" href="/index.html">CarteleraPeru.com</a>
-            <a href="/preferences.html" rel="in-app" class="btn btn-primary btn-small pull-right"><i class="icon-cogs icon-white"></i><span class="hidden-phone hidden-tablet"> Preferencias</span> 
-            </a>
-            <a href="/about.html" rel="in-app" class="btn btn-inverse btn-small pull-right" style="margin-right: 10px;"> 
-				<i class="icon-info-sign icon-white"></i> <span class="hidden-phone hidden-tablet"> Acerca de</span>
-		    </a>			
-
+        <ul class="nav navbar-nav navbar-right">
+            <li>
+                <a href="/about.html"> 
+                    <span class="glyphicon glyphicon-info-sign glyphicon-white"></span> 
+                    <span class="hidden-xs hidden-sm"> Acerca de </span>
+                </a>
+            </li>
+            <li>
+                <a href="/preferences.html">
+                    <span class="glyphicon glyphicon-cog glyphicon-white"></span>
+                    <span class="hidden-xs hidden-sm"> Preferencias </span>
+                </a>
+            </li>
+        </ul>
+    </div>
 {% endblock %}
 
 
 {% block content %}
+<div class="container-fluid hidden-xs">
+<div class="row-fluid">
+    {% include "adsense.html" %}
+</div>
+</div>
 
 <div class="container-fluid">
 <div class="row-fluid">
-<div id="main" class="span6">
+<div id="main" class="col-md-10">
 <section id="home" style="padding-top: 0px;">
-<h1 style="line-height: 1.1;">Horarios de películas en cartelera en los cines del Perú</h1>
+<h1 style="line-height: 1.1; margin-top: -10px;">Horarios de películas en cartelera en los cines del Perú</h1>
 </section>
-{% for chain in chains %}
-<a name="{{ chain.name|escape|urlize|replace(' ', '-')|replace('(','-')|replace(')','-') }}">
-<h2>{{ chain.name }}</h2>
-</a>	
-	{% for theater in chain.theaters %}
 
-	<div rel="theater-box" id="{{ theater.name|escape|urlize|replace(' ', '-')|replace('(','-')|replace(')','-') }}-box">
-	<section id="{{ theater.name|escape|urlize|replace(' ', '-') }}-opt">
+
+
+{% for chain in chains %}
+    <a name="{{ chain.name|escape|urlize|replace(' ', '-')|replace('(','_')|replace(')','_') }}"></a>
+	
+    {% for theater in chain.theaters %}
+
+	<div 
+        rel="theater-box" 
+        id="{{ theater.name|escape|urlize|replace(' ', '-')|replace('(','_')|replace(')','_') }}-box"
+        {% if loop.first %}
+            style="padding-top: 70px;"
+        {% endif %}
+
+    >
+	<section id="{{ theater.name|escape|urlize|replace(' ', '-')|replace('(','_')|replace(')','_') }}-opt">
 	<h3>{{ chain.name }} - {{ theater.name }}</h3>
 	
 		<table class="table table-striped table-condensed">
@@ -52,7 +106,7 @@
                     <tr	itemscope itemtype="http://schema.org/Event">
                         <td class="first-col"
                         ><span itemprop="name">{{ movie.name }}</span>
-                        {% if movie.isTranslated %}<span class="label" title=
+                        {% if movie.isTranslated %}<span class="label label-default" title=
                         "Doblada" >Dob</span>{% endif %}
                         {% if movie.isSubtitled %}<span class="label label-success" title="Subtitulada">Sub</span>{% endif %}
                         {% if movie.isHD %}<span class="label label-info" title="Alta definición">HD</span>{% endif %}
@@ -78,25 +132,33 @@
 {% endfor %}
 
 </div> <!-- end span10 -->
-<div class="span3 hidden-phone">
+<div class="span3 hidden-xs">
 
 </div>
 </div> <!-- end row -->
 
 <div class="row-fluid">
-<div class="span12" id="footer">
+<div class="col-md-12" id="footer">
 <ul class="unstyled">
 	<li><a href="./about.html">Acerca de CarteleraPeru.com</a></li>
 	<li>Actualizado: {{ now }}</li>
 </ul>
 </div>
-<div class="span1"></div>
+<div class="col-md-1"></div>
 </div>
 </div><!-- end container -->
 
 {% endblock %}
 
 {% block bottom_js %}
+
+{% if not compress_css_js %}
+    <script src="/static/js/jquery-1.11.1.min.js"></script>
+    <script src="/static/js/json2.js"></script>
+    <script src="/static/js/jquery.cookie.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
+    <script src="/static/js/cines.js"></script>
+{% else %}
 <!-- deffered loading of js -->
 <script type="text/javascript">
     // Add a script element as a child of the body
@@ -113,5 +175,6 @@
     window.attachEvent("onload", downloadJSAtOnload);
     else window.onload = downloadJSAtOnload;
 </script>
+{% endif %}
 
 {% endblock %}

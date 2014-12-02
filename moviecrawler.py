@@ -1015,7 +1015,10 @@ class MovieCrawlerCP(MovieCrawler):
                             " ".join(
                                 [ t.text for t in movie.find_all(
                                     'a', { 'class': 'horarioDisponible' }
+                                )] + [ t.text for t in movie.find_all(
+                                    'span', { 'class': 'horarioNoDisponible' }
                                 )]
+
                             )
                         ),
 
@@ -1025,7 +1028,6 @@ class MovieCrawlerCP(MovieCrawler):
                         is3D = self.is_movie_3D(tipo),
                         isDbox = self.is_movie_dbox(tipo),
                     )
-
                     result.append(t_movie)
 
 

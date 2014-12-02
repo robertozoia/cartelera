@@ -110,7 +110,13 @@ def main():
     
     for tfile, ofile in render_list:
         template = env.get_template(tfile)
-        doc = template.render(chains=cadenas, today=tDate.strftime("%Y-%m-%d"), now=tDate.strftime("%Y-%m-%d  %H:%M:%S"))
+        doc = template.render(
+            running_local=RUNNING_LOCAL, 
+            compress_css_js = COMPRESS_CSS_JS,
+            chains=cadenas, 
+            today=tDate.strftime("%Y-%m-%d"), 
+            now=tDate.strftime("%Y-%m-%d  %H:%M:%S")
+        )
     
         try:        
             f = codecs.open(ofile, 'w', 'utf-8-sig')
@@ -123,13 +129,20 @@ def main():
             traceback.print_exc(file = f)
             f.close()
            
-        
+
+RUNNING_LOCAL = False
+COMPRESS_CSS_JS = True 
 
 if __name__ == '__main__':
 
     if len(sys.argv) > 1:
         if sys.argv[1] == "--dev":
             from settings.local import *
+            RUNNING_LOCAL = True
+            COMPRESS_CSS_JS = False
+        elif sys.argv[1] == "--dev-compress":
+            from settings.local import *
+            RUNNING_LOCAL = True
         else:
             print("The only recognized option is --dev (runs program in development mode.)")
             sys.exit(1)

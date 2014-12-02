@@ -2,6 +2,9 @@
 ** cines.css 
 */
 
+body {
+  padding-top: 70px;
+}
 
 
 .horario  {
@@ -10,12 +13,12 @@
 }
 
 section {
-	padding-top: 40px;
+	padding-bottom: 40px;
 	margin-bottom: -10px;
 }
 
 #main h1, #prefs h1 {
-	font-size: 90%;
+	font-size: 100%; 
 	font-weight: normal;
 }
 

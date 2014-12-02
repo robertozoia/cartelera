@@ -9,7 +9,7 @@
         });
 
  		var cookieName = 'cartelera';
- 		var cookieVersion = 1.1;
+ 		var cookieVersion = 1.2;
 	
 		function initialize(data) {
 

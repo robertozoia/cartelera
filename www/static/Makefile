@@ -5,7 +5,7 @@
 YUICOMPRESSOR = java -jar ~/bin/yuicompressor.jar
 
 # CSS files.  Order is important here
-CINES_CSS_FILES = css/bootstrap.min.css css/bootstrap-theme.css css/font-awesome.min.css css/cines.css  
+CINES_CSS_FILES = css/bootstrap.min.css css/bootstrap-theme.css css/cines.css  
 CINES_CSS_ALL = css/cines-all.css
 CINES_CSS_ALL_MIN = css/cines-all.min.css
 
@@ -13,16 +13,23 @@ CINES_JS_FILES = js/jquery-1.11.1.min.js js/json2.js js/jquery.cookie.js js/boot
 CINES_JS_ALL = js/cines-all.js
 CINES_JS_ALL_MIN = js/cines-all.min.js
 
-PREFERENCES_CSS_FILES = css/bootstrap.min.css css/bootstrap-theme.css css/font-awesome.min.css \
-					   css/iphone-checkboxes-style.css css/cines.css
+PREFERENCES_CSS_FILES = css/bootstrap.min.css css/bootstrap-theme.css \
+					   css/switchery.min.css css/cines.css
 PREFERENCES_CSS_ALL = css/preferences-all.css
 PREFERENCES_CSS_ALL_MIN = css/preferences-all.min.css
 
-
-
-PREFERENCES_JS_FILES = js/jquery-1.11.1.min.js js/json2.js js/jquery.cookie.js js/bootstrap.min.js js/preferences.js
+PREFERENCES_JS_FILES = js/jquery-1.11.1.min.js js/json2.js js/jquery.cookie.js js/bootstrap.min.js \
+					js/switchery.min.js js/preferences.js
 PREFERENCES_JS_ALL = js/preferences-all.js
 PREFERENCES_JS_ALL_MIN = js/preferences-all.min.js
+
+ABOUT_CSS_FILES = css/bootstrap.min.css css/bootstrap-theme.css 
+ABOUT_CSS_ALL = css/about-all.css
+ABOUT_CSS_ALL_MIN = css/about-all.min.css
+
+ABOUT_JS_FILES = js/jquery-1.11.1.min.js  js/bootstrap.min.js
+ABOUT_JS_ALL = js/about-all.js
+ABOUT_JS_ALL_MIN = js/about-all.min.js
 
 
 all:	cines-all preferences-all
@@ -71,6 +78,25 @@ $(PREFERENCES_JS_ALL_MIN):
 	$(YUICOMPRESSOR) $(PREFERENCES_JS_ALL) -o $(PREFERENCES_JS_ALL_MIN)
 
 
+about-all:  about-css about-js
+about-css:  $(ABOUT_CSS_ALL)  $(ABOUT_CSS_ALL_MIN)
+about-js:	$(ABOUT_JS_ALL) $(ABOUT_JS_ALL_MIN)
+
+$(ABOUT_CSS_ALL):
+	rm -f $(ABOUT_CSS_ALL)
+	cat $(ABOUT_CSS_FILES) > $(ABOUT_CSS_ALL)
+
+$(ABOUT_CSS_ALL_MIN):
+	rm -f $(ABOUT_CSS_ALL_MIN)
+	$(YUICOMPRESSOR) $(ABOUT_CSS_ALL) -o $(ABOUT_CSS_ALL_MIN)
+
+$(ABOUT_JS_ALL):
+	rm -f $(ABOUT_JS_ALL)
+	cat $(ABOUT_JS_FILES) > $(ABOUT_JS_ALL)
+
+$(ABOUT_JS_ALL_MIN):
+	rm -f $(ABOUT_JS_ALL_MIN)
+	$(YUICOMPRESSOR) $(ABOUT_JS_ALL) -o $(ABOUT_JS_ALL_MIN)
 
 clean:  clean-cines clean-preferences
 
@@ -85,5 +111,11 @@ clean-preferences:
 	rm -f $(PREFERENCES_CSS_ALL_MIN)
 	rm -f $(PREFERENCES_JS_ALL)
 	rm -f $(PREFERENCES_JS_ALL_MIN)
+
+clean-about:
+	rm -f $(ABOUT_CSS_ALL)
+	rm -f $(ABOUT_CSS_ALL_MIN)
+	rm -f $(ABOUT_JS_ALL)
+	rm -f $(ABOUT_JS_ALL_MIN)
 
 
