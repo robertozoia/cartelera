@@ -454,23 +454,33 @@ class MovieCrawlerCinerama(MovieCrawler):
 
                 m_titles = [m.a.string.strip() for m in soup.find_all(
                     'div', class_='titcarte') if m.a]
-                m_showtimes = [m.string.strip() for m in soup.find_all('div', class_='horasprof')]
+
+                m_showtimes = []
+
+                for m in soup.find_all('div', class_='horasprof'):
+                    if m.string:
+                        m_showtimes.append(m.string.strip())
+                    else:
+                        m_showtimes.append(None)
 
                 movies = []
 
-                for i in range(0, len(m_titles)):
-                    movie = Movie(
-                            name = self.purify_movie_name(m_titles[i]),
-                            showtimes = self.grab_horarios(m_showtimes[i]),
-                            # La página web de Cinerama no da mayor información
-                            isSubtitled = True,
-                            isTranslated = False,
-                            isHD = True,
-                            is3D = False,
-                            isDbox = False,
-                    )
 
-                    movies.append(movie)
+                for i in range(0, len(m_titles)):
+                    # This is to handle case when no showtimes available for movie
+                    if m_showtimes[i]:
+                        movie = Movie(
+                                name = self.purify_movie_name(m_titles[i]),
+                                showtimes = self.grab_horarios(m_showtimes[i]),
+                                # La página web de Cinerama no da mayor información
+                                isSubtitled = True,
+                                isTranslated = False,
+                                isHD = True,
+                                is3D = False,
+                                isDbox = False,
+                        )
+
+                        movies.append(movie)
 
                 return movies
 

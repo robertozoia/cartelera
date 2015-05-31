@@ -8,11 +8,13 @@
 	<title>{% block head_title %}{% endblock %}</title>
 	
 	<meta name="author" content="Cartelera Perú punto com" >
-	<meta name="description" content="Películas en cartelera en los cines del Perú. Estrenos películas" >
+	<meta name="description" content="Cartelera en los cines del Perú. Estrenos películas" >
 	{% block head_meta %}
 	{% endblock %}
-	<meta name="keywords" content="peliculas, horarios, pelicula, carterlera, cine, estrenos, 
-		{% for chain in chains %} {{ chain.name }}, {% endfor %} ">
+	<meta name="keywords" content="cartelera,
+	{% for chain in chains %} cartelera {{ chain.name }}, {% endfor %},
+	cines,cartelera cine,estrenos de cine"
+	>
 	
 	<meta name="Robots" content="all">
 	<meta name="Revisit-after" content="1 days">
@@ -61,6 +63,7 @@
 {% block bottom_scripts %}
 {% endblock %}
 </script>
+{% include 'fb-sdk.html' %}
 {% include 'ga.html' %}
 </body>
 </html>

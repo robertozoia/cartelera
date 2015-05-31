@@ -5,11 +5,12 @@
 YUICOMPRESSOR = java -jar ~/bin/yuicompressor.jar
 
 # CSS files.  Order is important here
-CINES_CSS_FILES = css/bootstrap.min.css css/bootstrap-theme.css css/cines.css  
+CINES_CSS_FILES = css/bootstrap.min.css css/bootstrap-theme.css css/addtohomescreen.css css/cines.css 
 CINES_CSS_ALL = css/cines-all.css
 CINES_CSS_ALL_MIN = css/cines-all.min.css
 
-CINES_JS_FILES = js/jquery-1.11.1.min.js js/json2.js js/jquery.cookie.js js/bootstrap.min.js js/cines.js
+CINES_JS_FILES = js/jquery-1.11.1.min.js js/json2.js js/jquery.cookie.js js/bootstrap.min.js \
+			js/addtohomescreen.min.js js/cines.js
 CINES_JS_ALL = js/cines-all.js
 CINES_JS_ALL_MIN = js/cines-all.min.js
 
