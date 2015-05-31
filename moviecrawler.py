@@ -41,6 +41,7 @@ import requests
 
 import re
 import datetime
+import pytz
 
 from bs4 import BeautifulSoup
 
@@ -335,7 +336,11 @@ class MovieCrawler(object):
 
     def grab_horarios(self, s):
 
-        return [ self.convert_showtime_to_timeobject(t) for t in self.reHorarios.findall(s)]
+        horarios = [ self.convert_showtime_to_timeobject(t) for t in self.reHorarios.findall(s)]
+        horarios.sort()
+
+        return horarios
+
 
 
     def replace_accents(self, s):
@@ -822,9 +827,16 @@ class MovieCrawlerCMP(MovieCrawler):
             
             # build string for today in CMP format (i.e., '07 Feb')
             dt = datetime.datetime.utcnow()
-            today_tag = "%02d %s" % (dt.day, months[dt.month-1].upper())
+            dt = dt.replace(tzinfo = pytz.utc)
+
+            
+            today_tag = "%02d %s" % (
+                datetime.datetime.astimezone(dt, pytz.timezone('America/Lima')).day,
+                months[dt.month-1].upper()
+            )
     
             result = []
+
             for elm in l:
                 if elm.text.upper() == today_tag:
                     result.append(elm)
@@ -851,7 +863,8 @@ class MovieCrawlerCMP(MovieCrawler):
                 
                 # keep only today movies and showtimes
                 base = only_today(base)
-                
+
+
                 result = []
 
                 for elm in base:
