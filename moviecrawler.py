@@ -112,7 +112,7 @@ class MovieCrawler(object):
     def getTheaterChainMovies(self):
         """
             Returns a TheaterChain object with theaters,
-            movies and showtimes fetched from the theater theater chain 
+            movies and showtimes fetched from the theater chain 
             website
         """
         theater_chain = TheaterChain(

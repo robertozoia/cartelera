@@ -81,17 +81,24 @@ def build_cartelera(theater_chains):
     
     return r
 
-    
+
+def write_json_file(crawlers):
+
+  pass
+
+
 def main():
     
-
-    cadenas = build_cartelera([
+    crawlers = [
         moviecrawler.MovieCrawlerUVK(), 
         moviecrawler.MovieCrawlerCMP(),
         moviecrawler.MovieCrawlerCP(),
         moviecrawler.MovieCrawlerCinepolis(),
         moviecrawler.MovieCrawlerCinerama(),
-    ])
+    ]
+
+    cadenas = build_cartelera(crawlers)
+
 
     # Unify movie names
     
