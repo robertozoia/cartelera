@@ -1,3 +1,8 @@
+
+
+# THIS CODE IS NO LONGER MAINTAINED.  
+------------
+
 # Cartelera
 
 Cartelera is the code base that generates the website [CarteleraPerú](http://carteleraperu.com).
